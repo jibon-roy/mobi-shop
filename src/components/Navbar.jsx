@@ -45,6 +45,7 @@ export default function Navbar() {
         <li><a>Sidebar Item 1</a></li>
         <li><a>Sidebar Item 1</a></li>
         <li><a>Sidebar Item 1</a></li>
+        <li><a>Sidebar Item 1</a></li>
         <li><a>Sidebar Item 2</a></li>
       </ul>
     </div>
