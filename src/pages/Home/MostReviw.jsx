@@ -3,9 +3,7 @@ import Heading from "../../components/Heading";
 
 export default function MostReviw({data}) {
 
-    const getMostReviewedMobiles = data.sort((a,b)=> b?.ratings - a?.ratings)
-    
-    // .splice(0,8);
+    const getMostReviewedMobiles = data.sort((a,b)=> b?.ratings - a?.ratings).splice(0,8);
     console.log(getMostReviewedMobiles)
   return (
     <div className="w-full my-16 ">
@@ -16,7 +14,7 @@ export default function MostReviw({data}) {
       </div>
       <div className="container">
         <div className="grid grid-cols-1 gap-y-10 gap-x-4 justify-center sm:grid-cols-2 lg:grid-cols-4">
-          {data.map((mobile) => (
+          {getMostReviewedMobiles.map((mobile) => (
             <div key={mobile.id}>
               <Card mobile={mobile}></Card>
             </div>
