@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import Logo from "./Logo";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const navItems = [
@@ -54,7 +55,11 @@ export default function Navbar() {
           </div>
           <div className="mx-2 flex-1 px-2">
             {/* Navbar Logo */}
-            <Logo />
+            <div className="hover:scale-105 cursor-pointer transition-all">
+              <Link to={"/"}>
+                <Logo />
+              </Link>
+            </div>
           </div>
           <div className="hidden flex-none lg:block">
             <ul className="menu font-semibold menu-horizontal">
