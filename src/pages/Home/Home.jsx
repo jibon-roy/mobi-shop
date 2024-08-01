@@ -9,7 +9,6 @@ export default function Home() {
       <section>
         <Banner />
       </section>
-
       <section>
         <MostReviw data={data} />
       </section>
