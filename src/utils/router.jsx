@@ -13,7 +13,7 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />,
-                loader: async() => await fetch("../../public/phones.json")
+                loader: async() => await fetch("./phones.json")
             }
         ]
     }
