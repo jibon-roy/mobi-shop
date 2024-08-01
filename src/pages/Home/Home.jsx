@@ -4,6 +4,7 @@ import MostReviw from "./MostReviw";
 import LatestProduct from "./LatestProduct";
 import FAQ from "./FAQ";
 import WhyChooseUs from "./WhyChooseUs";
+import Statistics from "./Statistics";
 
 export default function Home() {
   const data = useLoaderData()
@@ -20,6 +21,9 @@ export default function Home() {
       </section>
       <section>
         <WhyChooseUs />
+      </section>
+      <section>
+        <Statistics />
       </section>
       <section>
         <FAQ />
