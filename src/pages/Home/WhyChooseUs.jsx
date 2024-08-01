@@ -8,7 +8,7 @@ export default function WhyChooseUs() {
         <div className="flex justify-center mb-16">
           <Heading heading={"Why Choose Us?"}>Make your good decition.</Heading>
         </div>
-        <div className="flex justify-evenly flex-col lg:flex-row">
+        <div className="flex justify-evenly items-center gap-10 flex-col lg:flex-row">
           <img
             src={imagebg}
             className="max-w-md h-80 my-auto object-cover rounded-lg "

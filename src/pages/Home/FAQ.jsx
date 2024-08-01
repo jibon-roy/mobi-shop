@@ -10,7 +10,7 @@ export default function FAQ() {
             Here are some question and answers about us.
           </Heading>
         </div>
-        <div className="flex justify-evenly flex-col lg:flex-row-reverse">
+        <div className="flex justify-evenly items-center gap-10 flex-col lg:flex-row-reverse">
           <img
             src={imagebg}
             className="max-w-md h-80 my-auto object-cover rounded-lg shadow-2xl"

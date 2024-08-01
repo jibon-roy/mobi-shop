@@ -1,19 +1,27 @@
+import Heading from "../../components/Heading";
+
 export default function Statistics() {
   return (
     <div>
       <div
-  className="hero h-80"
+  className="hero"
   style={{
-    backgroundImage: "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
+    backgroundImage: "url(https://content3.jdmagicbox.com/comp/ernakulam/c5/0484px484.x484.131004102709.k9c5/catalogue/smart-mobile-shop-kakkanad-ernakulam-mobile-phone-dealers-sony-a0996vg6mz.jpg)",
+    backgroundAttachment: "fixed",
+    backgroundPosition: "center",
+    backgroundSize: "cover"
   }}>
-  <div className="hero-overlay bg-opacity-60"></div>
-  <div className="hero-content text-neutral-content text-center">
-    <div className="max-w-md">
-      <div className="stats shadow">
+  <div className="hero-overlay bg-opacity-75"></div>
+  <div className="hero-content my-20 flex-col text-neutral-content text-center">
+    <div>
+    <Heading heading={"Our Statistics"}>Explore our stastistics.</Heading>
+    </div>
+    <div className="max-w-lg">
+      <div className="stats stats-vertical md:stats-horizontal shadow">
         <div className="stat place-items-center">
-          <div className="stat-title">Downloads</div>
-          <div className="stat-value">31K</div>
-          <div className="stat-desc">From January 1st to February 1st</div>
+          <div className="stat-title">Products</div>
+          <div className="stat-value">957</div>
+          <div className="stat-desc">Adding more products.</div>
         </div>
 
         <div className="stat place-items-center">
