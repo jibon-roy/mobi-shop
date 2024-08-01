@@ -11,9 +11,9 @@ export default function Banner() {
         }}
       >
         <div className="hero-overlay bg-opacity-60"></div>
-        <div className="hero-content my-32 text-neutral-content ">
-          <div className="max-w-5xl">
-            <div className="hero-content justify-between flex-col lg:flex-row">
+        <div className="my-32 text-neutral-content ">
+          <div className="container">
+            <div className="flex w-full gap-10 justify-around items-center flex-col lg:flex-row">
               <Slider />    
               <div className="max-w-xl">
                 <h1 className="text-5xl text-primary-red font-bold">Shop Your Mobile Now!</h1>
