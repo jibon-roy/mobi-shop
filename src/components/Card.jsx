@@ -10,7 +10,7 @@ export default function Card({ mobile }) {
         <h2 className="card-title cursor-pointer group-hover:text-primary-red">
           {mobile.name}
         </h2>
-        <div className="flex">
+        <div className="flex flex-wrap gap-2 ">
           <div className="rating cursor-default rating-md rating-half">
             <input
               type="radio"
