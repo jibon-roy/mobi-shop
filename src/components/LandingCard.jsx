@@ -3,14 +3,19 @@ export default function LandingCard({mobile}) {
     const words = description.slice(0, 50);
   return (
     <div>
-      <div className="card card-side bg-base-100 shadow-xl">
+      <div className="card card-side h-full bg-base-100 shadow-xl">
         <figure>
             <img src={mobile?.image} className="w-[80%] transform transition duration-300 group-hover:scale-x-[-1]" alt="Mobile" />
         </figure>
         <div className="card-body">
-        <h2 className="card-title cursor-pointer group-hover:text-primary-red">
+      <div className="flex justify-between">
+      <h2 className="card-title cursor-pointer group-hover:text-primary-red">
           {mobile.name}
         </h2>
+        <div className="badge cursor-pointer badge-outline">
+          {mobile?.brand}
+        </div>
+      </div>
         <div className="flex flex-wrap gap-2 ">
           <div className="rating cursor-default rating-md rating-half">
             <input
@@ -110,9 +115,6 @@ export default function LandingCard({mobile}) {
             />
           </div>
           <div>({mobile.ratings})</div>
-        </div>
-        <div className="badge cursor-pointer badge-outline">
-          {mobile?.brand}
         </div>
         <p>{words}...</p>
         <div className="card-actions justify-between">
