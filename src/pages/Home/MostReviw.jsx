@@ -23,7 +23,7 @@ export default function MostReviw({ data }) {
         </div>
       </div>
       <div className="text-center mt-16">
-        <button className="btn btn-secondary">See more</button>
+        <button className="btn btn-secondary">See more {">"}</button>
       </div>
     </div>
   );
