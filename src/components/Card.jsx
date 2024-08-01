@@ -115,7 +115,7 @@ export default function Card({ mobile }) {
         </div>
         <p>{words}...</p>
         <div className="card-actions justify-between">
-          <div className="text-xl font-semibold">{mobile.price}$</div>
+          <div className="text-xl font-semibold">${mobile.price}</div>
           <button className="btn btn-sm btn-secondary">Details</button>
         </div>
       </div>
