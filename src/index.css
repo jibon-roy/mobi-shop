@@ -2,9 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .active {
-    background-color: #ff00d3 !important;
-    font-weight: 600 !important;
-    color: white !important;
+  background-color: #ff00d3 !important;
+  font-weight: 600 !important;
+  color: white !important;
+}
+.active:active,
+.active:focus,
+.active:focus-visible,
+.active:focus-within,
+.active:hover {
+  background-color: #e001bb !important;
+  font-weight: 600 !important;
+  color: white !important;
+}
+
+.navLinknavLink:active,
+.navLink:focus,
+.navLink:focus-visible,
+.navLink:focus-within {
+  background-color: #e001bb !important;
+  color: white !important;
 }

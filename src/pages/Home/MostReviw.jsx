@@ -5,7 +5,7 @@ export default function MostReviw({ data }) {
   const getMostReviewedMobiles = data
     .sort((a, b) => b?.ratings - a?.ratings)
     .splice(0, 8);
-  console.log(getMostReviewedMobiles);
+  // console.log(getMostReviewedMobiles);
   return (
     <div className="w-full my-16 ">
       <div className="mb-16 flex justify-center">

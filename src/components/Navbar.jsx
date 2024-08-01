@@ -66,7 +66,9 @@ export default function Navbar() {
               {/* Navbar menu content here */}
               {navItems.map((nav, idx) => (
                 <li className="mx-1" key={idx}>
-                  <NavLink to={nav?.route}>{nav?.name}</NavLink>
+                  <NavLink className={"navLink"} to={nav?.route}>
+                    {nav?.name}
+                  </NavLink>
                 </li>
               ))}
             </ul>

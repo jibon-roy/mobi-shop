@@ -2,12 +2,11 @@
 import Heading from "../../components/Heading";
 import LandingCard from "../../components/LandingCard";
 
+export default function LatestProduct({ data }) {
+  const latestProducts = data.splice(0, 6);
+  // .sort((a, b) => b?.ratings - a?.ratings)
 
-export default function LatestProduct({data}) {
-    const latestProducts = data.splice(0, 6);
-    // .sort((a, b) => b?.ratings - a?.ratings)
-
-  console.log(latestProducts);
+  // console.log(latestProducts);
   return (
     <div className="w-full py-16 bg-base-200">
       <div className="mb-16 flex justify-center">
