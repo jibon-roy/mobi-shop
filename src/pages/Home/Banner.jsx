@@ -1,3 +1,6 @@
+import Slider from "./Slider";
+
+
 export default function Banner() {
   return (
     <div>
@@ -11,10 +14,7 @@ export default function Banner() {
         <div className="hero-content my-32 text-neutral-content ">
           <div className="max-w-5xl">
             <div className="hero-content justify-between flex-col lg:flex-row">
-              <img
-                src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-                className="max-w-sm rounded-lg shadow-2xl"
-              />
+              <Slider />    
               <div className="max-w-xl">
                 <h1 className="text-5xl text-primary-red font-bold">Shop Your Mobile Now!</h1>
                 <p className="py-6">
