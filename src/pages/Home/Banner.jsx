@@ -20,7 +20,7 @@ export default function Banner() {
                 <p className="py-6">
                 Buy Mobile Phone at Lowest Price in Bangladesh. Latest official smartphone, android, feature phone Price & full Specs available at Mobi Shop Online Shop.
                 </p>
-                <button className="btn btn-primary">Get Started</button>
+                <button className="btn btn-secondary">Get Started</button>
               </div>
             </div>
           </div>
