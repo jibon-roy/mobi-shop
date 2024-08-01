@@ -10,8 +10,8 @@ export default function LatestProduct({data}) {
   return (
     <div className="w-full my-16 ">
       <div className="mb-16 flex justify-center">
-        <Heading heading={"Most Reviewed Mobiles"}>
-          Our most reviewed mobile phones are here.
+        <Heading heading={"Latest Products"}>
+          Our latest mobile phones are here.
         </Heading>
       </div>
       <div className="container">

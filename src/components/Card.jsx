@@ -4,7 +4,7 @@ export default function Card({ mobile }) {
   return (
     <div className="card mx-auto group h-full hover:scale-[0.98] transition-all bg-base-100 max-w-72 shadow-xl">
       <figure>
-        <img src={mobile?.image} className="w-1/2" alt="Shoes" />
+        <img src={mobile?.image} className="w-1/2 transform transition duration-300 group-hover:scale-x-[-1]" alt="Shoes" />
       </figure>
       <div className="card-body">
         <h2 className="card-title cursor-pointer group-hover:text-primary-red">
