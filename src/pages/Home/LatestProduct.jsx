@@ -9,13 +9,13 @@ export default function LatestProduct({data}) {
 
   console.log(latestProducts);
   return (
-    <div className="w-full container my-16 ">
-      <div className="mb-16 ">
-        <Heading left heading={"Latest Products"}>
+    <div className="w-full py-16 bg-base-200">
+      <div className="mb-16 flex justify-center">
+        <Heading heading={"Latest Products"}>
           Our latest mobile phones are here.
         </Heading>
       </div>
-      <div>
+      <div className="container">
         <div className="grid grid-cols-1 gap-y-10 gap-x-4 justify-center sm:grid-cols-2 lg:grid-cols-3">
           {latestProducts.map((mobile) => (
             <div key={mobile.id} className="flex">
@@ -24,7 +24,9 @@ export default function LatestProduct({data}) {
           ))}
         </div>
       </div>
-
+      <div className="text-center mt-16">
+        <button className="btn btn-secondary">See more {">"}</button>
+      </div>
     </div>
   );
 }
