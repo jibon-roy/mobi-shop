@@ -1,7 +1,9 @@
+import { useLoaderData } from "react-router-dom";
 import Banner from "./Banner";
 import MostReviw from "./MostReviw";
 
 export default function Home() {
+  const data = useLoaderData()
   return (
     <>
       <section>
@@ -9,7 +11,7 @@ export default function Home() {
       </section>
 
       <section>
-        <MostReviw />
+        <MostReviw data={data} />
       </section>
     </>
   );

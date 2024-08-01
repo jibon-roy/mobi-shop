@@ -1,25 +1,16 @@
-export default function Card() {
+export default function Card({ mobile }) {
   return (
-    <div>
-      <div className="card mx-auto bg-base-100 max-w-72 shadow-xl">
+
+      <div className="card mx-auto h-full bg-base-100 max-w-72 shadow-xl">
         <figure>
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-            alt="Shoes"
-          />
+          <img src={mobile?.image} alt="Shoes" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">
-            Shoes!
-            <div className="badge badge-secondary">NEW</div>
-          </h2>
+          <h2 className="card-title">{mobile.name}</h2>
+          <div className="badge badge-outline">{mobile.category}</div>
           <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end">
-            <div className="badge badge-outline">Fashion</div>
-            <div className="badge badge-outline">Products</div>
-          </div>
+          <div className="card-actions justify-end"></div>
         </div>
       </div>
-    </div>
   );
 }
