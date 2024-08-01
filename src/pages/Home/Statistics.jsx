@@ -1,4 +1,5 @@
 import Heading from "../../components/Heading";
+import CountUp from 'react-countup';
 
 export default function Statistics() {
   return (
@@ -20,20 +21,20 @@ export default function Statistics() {
       <div className="stats stats-vertical md:stats-horizontal shadow">
         <div className="stat place-items-center">
           <div className="stat-title">Products</div>
-          <div className="stat-value">957</div>
+          <div className="stat-value"><CountUp enableScrollSpy end={978} /></div>
           <div className="stat-desc">Adding more products.</div>
         </div>
 
         <div className="stat place-items-center">
-          <div className="stat-title">Users</div>
-          <div className="stat-value text-secondary">4,200</div>
-          <div className="stat-desc text-secondary">↗︎ 40 (2%)</div>
+          <div className="stat-title">Our Active Users</div>
+          <div className="stat-value text-secondary"><CountUp start={3500} enableScrollSpy end={4231} /></div>
+          <div className="stat-desc text-secondary">↗︎ 48 (3%)</div>
         </div>
 
         <div className="stat place-items-center">
           <div className="stat-title">New Registers</div>
-          <div className="stat-value">1,200</div>
-          <div className="stat-desc">↘︎ 90 (14%)</div>
+          <div className="stat-value"><CountUp start={800} enableScrollSpy end={1639} /></div>
+          <div className="stat-desc">↘︎ 87 (19%)</div>
         </div>
       </div>
     </div>
