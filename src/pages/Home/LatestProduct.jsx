@@ -1,11 +1,12 @@
 import Card from "../../components/Card";
 import Heading from "../../components/Heading";
 
-export default function MostReviw({ data }) {
-  const getMostReviewedMobiles = data
-    .sort((a, b) => b?.ratings - a?.ratings)
-    .splice(0, 8);
-  console.log(getMostReviewedMobiles);
+
+export default function LatestProduct({data}) {
+    const latestProducts = data.splice(0, 8);
+    // .sort((a, b) => b?.ratings - a?.ratings)
+
+  console.log(latestProducts);
   return (
     <div className="w-full my-16 ">
       <div className="mb-16 flex justify-center">
@@ -15,7 +16,7 @@ export default function MostReviw({ data }) {
       </div>
       <div className="container">
         <div className="grid grid-cols-1 gap-y-10 gap-x-4 justify-center sm:grid-cols-2 lg:grid-cols-4">
-          {getMostReviewedMobiles.map((mobile) => (
+          {latestProducts.map((mobile) => (
             <div key={mobile.id}>
               <Card mobile={mobile}></Card>
             </div>
