@@ -1,8 +1,16 @@
 import Banner from "./Banner";
-
+import MostReviw from "./MostReviw";
 
 export default function Home() {
   return (
-    <div><Banner /></div>
-  )
+    <>
+      <section>
+        <Banner />
+      </section>
+
+      <section>
+        <MostReviw />
+      </section>
+    </>
+  );
 }
