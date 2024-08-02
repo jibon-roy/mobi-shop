@@ -2,8 +2,11 @@ import { NavLink } from "react-router-dom";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import CartIcon from "./CartIcon";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
+  const [cartNumber, setCartNumber] = useState(0);
+
   const navItems = [
     {
       id: 1,
@@ -27,12 +30,37 @@ export default function Navbar() {
     },
   ];
 
+  const updateCartNumber = () => {
+    const cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+    setCartNumber(cart.length);
+  };
+
+  useEffect(() => {
+    updateCartNumber();
+
+    const handleStorageChange = () => {
+      updateCartNumber();
+    };
+
+    const handleUpdateCart = () => {
+      updateCartNumber();
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("updateCart", handleUpdateCart);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("updateCart", handleUpdateCart);
+    };
+  }, []);
+
   return (
     <div className="drawer">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content bg-base-300 flex flex-col">
         {/* Navbar */}
-        <div className="navbar  container">
+        <div className="navbar container">
           <div className="flex-none lg:hidden">
             <label
               htmlFor="my-drawer-3"
@@ -65,16 +93,16 @@ export default function Navbar() {
           <div className="hidden flex-none lg:block">
             <ul className="menu font-semibold menu-horizontal">
               {/* Navbar menu content here */}
-              {navItems.map((nav, idx) => (
-                <li className="mx-1" key={idx}>
-                  <NavLink className={"navLink"} to={nav?.route}>
-                    {nav?.name}
+              {navItems.map((nav) => (
+                <li className="mx-1" key={nav.id}>
+                  <NavLink className={"navLink"} to={nav.route}>
+                    {nav.name}
                   </NavLink>
                 </li>
               ))}
               <li className="">
                 <NavLink className={"navLink"} to={"/cart"}>
-                  <CartIcon cartValue={5} />
+                  <CartIcon cartValue={cartNumber} />
                 </NavLink>
               </li>
             </ul>
@@ -93,10 +121,10 @@ export default function Navbar() {
           <li>
             <Logo />
           </li>
-          {navItems.map((nav, idx) => (
-            <li className="z-50 my-1" key={idx}>
-              <NavLink className={"navLink"} to={nav?.route}>
-                {nav?.name}
+          {navItems.map((nav) => (
+            <li className="z-50 my-1" key={nav.id}>
+              <NavLink className={"navLink"} to={nav.route}>
+                {nav.name}
               </NavLink>
             </li>
           ))}

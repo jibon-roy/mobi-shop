@@ -29,6 +29,7 @@ export default function Card({ mobile }) {
     }
 
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    window.dispatchEvent(new Event("updateCart"));
   };
 
   return (
