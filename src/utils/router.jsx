@@ -6,6 +6,7 @@ import Mobiles from "../pages/Mobiles/Mobiles";
 import AboutUs from "../pages/AboutUs/AboutUs";
 import ContactUs from "../pages/Contact/Contact";
 import MobileDetails from "../pages/MobileDetails/MobileDetails";
+import Cart from "../pages/Cart/Cart";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/cart",
+        element: <Cart />,
       },
       {
         path: "/about-us",
