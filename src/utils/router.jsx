@@ -27,9 +27,9 @@ const router = createBrowserRouter([
         path: "/mobiles/:id",
         element: <MobileDetails />,
         loader: async ({ params }) => {
-          const data = await fetch("./phones.json");
-          const mobiles = data.json();
-          return mobiles.find((a) => a.id == params.id);
+          const data = await fetch("/phones.json");
+          const mobiles = await data.json();
+          return mobiles.find((a) => a.id == params.id) || null;
         },
       },
       {

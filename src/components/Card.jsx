@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Card({ mobile }) {
   const description = mobile?.description;
   const words = description.slice(0, 50);
@@ -122,7 +124,9 @@ export default function Card({ mobile }) {
         <p>{words}...</p>
         <div className="card-actions justify-between">
           <div className="text-xl font-semibold">${mobile.price}</div>
-          <button className="btn btn-sm btn-secondary">Details</button>
+          <Link to={`/mobiles/${mobile?.id}`}>
+            <button className="btn btn-sm btn-secondary">Details</button>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,0 +1,5 @@
+.breadcrumbs > ul > li + *:before,
+.breadcrumbs > ol > li + *:before {
+  width: 0.5rem !important;
+  height: 0.5rem !important;
+}
