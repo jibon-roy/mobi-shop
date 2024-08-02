@@ -3,13 +3,19 @@ import Heading from "../../components/Heading";
 import { useState, useEffect } from "react";
 import Card from "../../components/Card";
 import ReactPaginate from "react-paginate";
+// import { useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 export default function Mobiles() {
+  // const location = useLocation();
+  const [searchParams] = useSearchParams();
+
+  const searchKey = searchParams.get("search");
   const data = useLoaderData();
 
   const [err, setErr] = useState(false);
   const [priceRange, setPriceRange] = useState(1700);
-  const [searchMobile, setSearchMobile] = useState("");
+  const [searchMobile, setSearchMobile] = useState(searchKey ? searchKey : "");
   const [searchBrand, setSearchBrand] = useState("");
   const [priceFilt, setPrice] = useState("default");
   const [filteredMobiles, setFilteredMobiles] = useState([]);
@@ -87,6 +93,7 @@ export default function Mobiles() {
                 id="searchMobile"
                 autoComplete="name"
                 className="grow"
+                defaultValue={searchKey ? searchKey : ""}
                 placeholder="Search Keyword"
                 onChange={handleSearchMobile}
               />
