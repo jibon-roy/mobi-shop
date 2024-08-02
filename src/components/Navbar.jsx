@@ -128,6 +128,11 @@ export default function Navbar() {
               </NavLink>
             </li>
           ))}
+          <li className="">
+            <NavLink className={"navLink"} to={"/cart"}>
+              <CartIcon cartValue={cartNumber} />
+            </NavLink>
+          </li>
         </ul>
       </div>
     </div>

@@ -10,6 +10,7 @@ import Cart from "../pages/Cart/Cart";
 
 const localItems = localStorage.getItem("cartItems");
 const localItemsJson = JSON.parse(localItems);
+// console.log(localItemsJson);
 
 const router = createBrowserRouter([
   {
@@ -48,11 +49,11 @@ const router = createBrowserRouter([
         loader: async () => {
           const data = await fetch("/phones.json");
           const mobiles = await data.json();
-          return (
-            mobiles.filter((mobile) =>
-              localItemsJson.some((item) => item.id === mobile.id)
-            ) || []
-          );
+          return localItemsJson
+            ? mobiles.filter((mobile) =>
+                localItemsJson.some((item) => item.id === mobile.id)
+              )
+            : null;
         },
       },
       {
