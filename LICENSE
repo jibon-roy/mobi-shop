@@ -19,13 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-# Mobi Shop
-
-## Features
-
-- Route change without refresh.
-- Most Reviewed and recent mobile products will be show in home page.
-- On click mobile details mobile data will show another route.
-- Dynamic pagination in mobiles page.
-- Dynamic search and filter option in mobiles page.
