@@ -22,19 +22,19 @@ export default function Mobiles() {
       setErr(true);
     }
 
-    const search = data.filter((a) =>
-      a.name.toLowerCase().includes(searchMobile.toLowerCase())
+    const search = data?.filter((a) =>
+      a?.name.toLowerCase()?.includes(searchMobile.toLowerCase())
     );
-    const filterRange = search.filter((a) => a.price <= priceRange);
+    const filterRange = search.filter((a) => a?.price <= priceRange);
     const filterBrand = filterRange.filter((a) =>
-      a.brand.toLowerCase().includes(searchBrand.toLowerCase())
+      a?.brand.toLowerCase().includes(searchBrand.toLowerCase())
     );
     const priceFilter = filterBrand.sort((a, b) =>
       priceFilt === "LowToHigh"
-        ? a.price - b.price
+        ? a?.price - b?.price
         : priceFilt === "HighToLow"
-        ? b.price - a.price
-        : a.price + b.price
+        ? b?.price - a?.price
+        : a?.price + b?.price
     );
 
     setFilteredMobiles(priceFilter);

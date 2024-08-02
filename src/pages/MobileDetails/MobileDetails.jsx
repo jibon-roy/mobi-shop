@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import "./mobileDetail.css";
+import { Link } from "react-router-dom";
 // import Heading from "../../components/Heading";
 
 const MobileDetails = () => {
@@ -15,10 +16,10 @@ const MobileDetails = () => {
         <div className="breadcrumbs text-2xl font-semibold">
           <ul>
             <li>
-              <a>Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a>Documents</a>
+              <Link to="/mobiles">Mobiles</Link>
             </li>
             <li>{mobile.name}</li>
           </ul>
