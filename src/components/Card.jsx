@@ -4,15 +4,20 @@ export default function Card({ mobile }) {
   return (
     <div className="card mx-auto group h-full hover:scale-[0.98] transition-all bg-base-100 max-w-72 shadow-xl">
       <figure>
-        <img src={mobile?.image} className="w-1/2 transform transition duration-300 group-hover:scale-x-[-1]" alt="Mobile" />
+        <img
+          src={mobile?.image}
+          className="w-1/2 transform transition duration-300 group-hover:scale-x-[-1]"
+          alt="Mobile"
+        />
       </figure>
-      <div className="card-body">
+      <div className="card-body p-5">
         <div className="flex justify-between">
-        <h2 className="card-title inline cursor-pointer group-hover:text-primary-red">
-          {mobile.name}
-        </h2> <div className="badge cursor-pointer inline badge-outline">
-          {mobile?.brand}
-        </div>
+          <h2 className="card-title inline cursor-pointer group-hover:text-primary-red">
+            {mobile.name}
+          </h2>{" "}
+          <div className="badge cursor-pointer inline badge-outline">
+            {mobile?.brand}
+          </div>
         </div>
         <div className="flex flex-wrap gap-2 ">
           <div className="rating cursor-default rating-md rating-half">
