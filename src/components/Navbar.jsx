@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
+import CartIcon from "./CartIcon";
 
 export default function Navbar() {
   const navItems = [
@@ -71,6 +72,9 @@ export default function Navbar() {
                   </NavLink>
                 </li>
               ))}
+              <li>
+                <CartIcon cartValue={5} />
+              </li>
             </ul>
           </div>
         </div>
