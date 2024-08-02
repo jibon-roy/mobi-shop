@@ -8,10 +8,12 @@ export default function Mobiles() {
   const data = useLoaderData();
 
   // const [mobiles, setMobiles] = useState([]);
-  const [err, setErr] = useState();
+  const [err, setErr] = useState(false);
   const [priceRange, setPriceRange] = useState(1700);
   const [searchMobile, setSearchMobile] = useState("");
-  const [filteredMobiles, setFilteredMobiles] = useState();
+  const [searchBrand, setSearchBrand] = useState("");
+  const [priceFilt, setPrice] = useState("default");
+  const [filteredMobiles, setFilteredMobiles] = useState([]);
 
   useEffect(() => {
     // fetch("./phones.json")
@@ -26,8 +28,18 @@ export default function Mobiles() {
       a.name.toLowerCase().includes(searchMobile.toLowerCase())
     );
     const filterRange = search.filter((a) => a.price <= priceRange);
-    setFilteredMobiles(filterRange);
-  }, [data, priceRange, searchMobile]);
+    const filterBrand = filterRange.filter((a) =>
+      a.brand.toLowerCase().includes(searchBrand.toLowerCase())
+    );
+    const priceFilter = filterBrand.sort((a, b) =>
+      priceFilt == "LowToHigh"
+        ? a.price - b.price
+        : priceFilt == "HighToLow"
+        ? b.price - a.price
+        : a.price + b.price
+    );
+    setFilteredMobiles(priceFilter);
+  }, [data, priceFilt, priceRange, searchBrand, searchMobile]);
 
   // console.log(mobiles);
 
@@ -38,6 +50,14 @@ export default function Mobiles() {
   const setRange = (e) => {
     const value = e.target.value;
     setPriceRange(value);
+  };
+  const handlePrice = (e) => {
+    const value = e.target.value;
+    setPrice(value);
+  };
+  const handleBrand = (e) => {
+    const value = e.target.value;
+    setSearchBrand(value);
   };
 
   return (
@@ -84,10 +104,11 @@ export default function Mobiles() {
               name="price"
               id="price"
               className="select select-bordered w-full max-w-xs"
+              onChange={handlePrice}
             >
-              <option>Default</option>
-              <option>Low to High</option>
-              <option>High to Low</option>
+              <option value={"default"}>Default</option>
+              <option value={"LowToHigh"}>Low to High</option>
+              <option value={"HighToLow"}>High to Low</option>
             </select>
             {/* price range */}
             <div className="flex justify-between w-full">
@@ -108,16 +129,25 @@ export default function Mobiles() {
               name="brand"
               id="brand"
               className="select select-bordered w-full max-w-xs"
+              onChange={handleBrand}
             >
-              <option>All</option>
+              <option value={""}>All</option>
               <option value={"Apple"}>Apple</option>
+              <option value={"Asus"}>Asus</option>
+              <option value={"Huawei"}>Huawei</option>
+              <option value={"Lenovo"}>Lenovo</option>
+              <option value={"LG"}>LG</option>
+              <option value={"Motorola"}>Motorola</option>
+              <option value={"Nokia"}>Nokia</option>
+              <option value={"OnePlus"}>OnePlus</option>
+              <option value={"Oppo"}>Oppo</option>
               <option value={"Pixel"}>Pixel</option>
-              <option value={""}></option>
-              <option value={""}></option>
-              <option value={""}></option>
-              <option value={""}></option>
-              <option value={""}></option>
-              <option value={""}></option>
+              <option value={"Realme"}>Realme</option>
+              <option value={"Sony"}>Sony</option>
+              <option value={"Samsung"}>Samsung</option>
+              <option value={"Vivo"}>Vivo</option>
+              <option value={"Xiaomi"}>Xiaomi</option>
+              <option value={"ZTE"}>ZTE</option>
             </select>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Card from "../../components/Card";
 import Heading from "../../components/Heading";
 
@@ -23,7 +24,9 @@ export default function MostReviw({ data }) {
         </div>
       </div>
       <div className="text-center mt-16">
-        <button className="btn btn-secondary">See more {">"}</button>
+        <Link to={"/mobiles"}>
+          <button className="btn btn-secondary">See more {">"}</button>
+        </Link>
       </div>
     </div>
   );
