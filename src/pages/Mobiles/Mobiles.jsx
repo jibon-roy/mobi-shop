@@ -73,10 +73,10 @@ export default function Mobiles() {
           View our all mobile phone products.
         </Heading>
       </div>
-      <div className="flex flex-col sm:flex-row my-16 gap-4">
-        <div className="card mx-auto mb-16 bg-base-100 max-w-96 h-fit shadow-xl">
+      <div className="flex flex-col lg:flex-row my-16 gap-4">
+        <div className="card mx-auto mb-16 bg-base-100  max-w-96 h-fit shadow-xl">
           <div className="card-body">
-            <h2 className="card-title font-bold justify-center">
+            <h2 className="card-title font-semibold justify-center">
               Search or filter
             </h2>
             <p className="italic">Search:</p>
@@ -156,8 +156,8 @@ export default function Mobiles() {
         {err ? (
           <div className="flex flex-1 justify-center">Data not found.</div>
         ) : (
-          <div className="flex flex-col items-center">
-            <div className="grid grid-cols-1 gap-y-10 mx-auto gap-x-4 justify-center lg:grid-cols-2 xl:grid-cols-3">
+          <div className="flex flex-1 flex-col items-center">
+            <div className="grid grid-cols-1 gap-y-10 mx-auto gap-x-4 justify-center md:grid-cols-2 xl:grid-cols-3">
               {currentItems.length <= 0 ? (
                 <div className="flex flex-1 justify-center">
                   Data not found.
@@ -170,24 +170,26 @@ export default function Mobiles() {
                 ))
               )}
             </div>
-            <div className="my-10">
-              <ReactPaginate
-                previousLabel={"Previous"}
-                nextLabel={"Next"}
-                breakLabel={"..."}
-                breakClassName={"break-me"}
-                pageCount={pageCount}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={handlePageClick}
-                containerClassName={"flex justify-center mt-4 space-x-2"}
-                pageClassName={"border rounded px-3 py-1"}
-                activeClassName={"bg-primary-red text-white"}
-                previousClassName={"border rounded px-3 py-1"}
-                nextClassName={"border rounded px-3 py-1"}
-                disabledClassName={"text-gray-400"}
-              />
-            </div>
+            {currentItems?.length > 0 && (
+              <div className="my-10">
+                <ReactPaginate
+                  previousLabel={"Previous"}
+                  nextLabel={"Next"}
+                  breakLabel={"..."}
+                  breakClassName={"break-me"}
+                  pageCount={pageCount}
+                  marginPagesDisplayed={2}
+                  pageRangeDisplayed={5}
+                  onPageChange={handlePageClick}
+                  containerClassName={"flex justify-center mt-4 space-x-2"}
+                  pageClassName={"border rounded px-3 py-1"}
+                  activeClassName={"bg-primary-red text-white"}
+                  previousClassName={"border rounded px-3 py-1"}
+                  nextClassName={"border rounded px-3 py-1"}
+                  disabledClassName={"text-gray-400"}
+                />
+              </div>
+            )}
           </div>
         )}
       </div>

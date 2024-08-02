@@ -76,17 +76,22 @@ export default function Navbar() {
         </div>
         {/* content */}
       </div>
-      <div className="drawer-side">
+      <div className="drawer-side z-50">
         <label
           htmlFor="my-drawer-3"
           aria-label="close sidebar"
-          className="drawer-overlay"
+          className="drawer-overlay z-50"
         ></label>
-        <ul className="menu font-semibold bg-base-200 min-h-full p-4">
+        <ul className="menu z-50 w-[60%] sm:w-[40%] font-semibold bg-base-200 min-h-full p-2">
           {/* Sidebar content here */}
+          <li>
+            <Logo />
+          </li>
           {navItems.map((nav, idx) => (
-            <li className="mx-4" key={idx}>
-              <NavLink to={nav?.route}>{nav?.name}</NavLink>
+            <li className="z-50 my-1" key={idx}>
+              <NavLink className={"navLink"} to={nav?.route}>
+                {nav?.name}
+              </NavLink>
             </li>
           ))}
         </ul>

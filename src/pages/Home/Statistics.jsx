@@ -34,7 +34,6 @@ export default function Statistics() {
                     start={0}
                     enableScrollSpy
                     scrollSpyDelay={2}
-                    scrollSpyOnce
                     end={978}
                   />
                 </div>
@@ -48,7 +47,6 @@ export default function Statistics() {
                     start={3500}
                     enableScrollSpy
                     scrollSpyDelay={2}
-                    scrollSpyOnce
                     end={4231}
                   />
                 </div>
@@ -62,7 +60,6 @@ export default function Statistics() {
                     start={800}
                     enableScrollSpy
                     scrollSpyDelay={2}
-                    scrollSpyOnce
                     end={1639}
                   />
                 </div>

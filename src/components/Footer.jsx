@@ -7,9 +7,9 @@ export default function Footer() {
         <aside>
           <Logo />
           <p>
-            ACME Industries Ltd.
+            Mobi Shop LTD.
             <br />
-            Providing reliable tech since 1992
+            Providing reliable mobile online store since 1992
           </p>
         </aside>
         <nav>
