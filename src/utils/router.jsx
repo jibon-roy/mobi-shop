@@ -18,6 +18,7 @@ const router = createBrowserRouter([
       {
         path: "/mobiles",
         element: <Mobiles />,
+        loader: async () => await fetch("./phones.json"),
       },
     ],
   },

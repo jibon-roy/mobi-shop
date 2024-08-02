@@ -7,10 +7,10 @@ import "swiper/css/pagination";
 
 // import required modules
 import { EffectCube, Autoplay, Pagination } from "swiper/modules";
-import m1 from "../../../public/m1.png"
-import m2 from "../../../public/m2.png"
-import m3 from "../../../public/m3.png"
-import m4 from "../../../public/m4.png"
+import m1 from "../../../public/m1.png";
+import m2 from "../../../public/m2.png";
+import m3 from "../../../public/m3.png";
+import m4 from "../../../public/m4.png";
 
 export default function Slider() {
   return (
@@ -20,9 +20,9 @@ export default function Slider() {
         grabCursor={true}
         loop
         autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         cubeEffect={{
           shadow: true,
           slideShadows: true,
@@ -30,7 +30,7 @@ export default function Slider() {
           shadowScale: 0.94,
         }}
         pagination={true}
-        modules={[Autoplay,EffectCube, Pagination]}
+        modules={[Autoplay, EffectCube, Pagination]}
         className="mySwiper w-52"
       >
         <SwiperSlide>
