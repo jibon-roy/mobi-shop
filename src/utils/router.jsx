@@ -8,8 +8,8 @@ import ContactUs from "../pages/Contact/Contact";
 import MobileDetails from "../pages/MobileDetails/MobileDetails";
 import Cart from "../pages/Cart/Cart";
 
-const localItems = localStorage.getItem("cartItems");
-const localItemsJson = JSON.parse(localItems);
+// const localItems = localStorage.getItem("cartItems");
+// const localItemsJson = JSON.parse(localItems);
 // console.log(localItemsJson);
 
 const router = createBrowserRouter([
@@ -47,13 +47,15 @@ const router = createBrowserRouter([
         path: "/cart",
         element: <Cart />,
         loader: async () => {
-          const data = await fetch("/phones.json");
-          const mobiles = await data.json();
-          return localItemsJson
-            ? mobiles.filter((mobile) =>
-                localItemsJson.some((item) => item.id === mobile.id)
-              )
-            : null;
+          const localItems = localStorage.getItem("cartItems");
+          const localItemsJson = JSON.parse(localItems) || [];
+
+          const response = await fetch("/phones.json");
+          const mobiles = await response.json();
+
+          return mobiles.filter((mobile) =>
+            localItemsJson.some((item) => item.id === mobile.id)
+          );
         },
       },
       {

@@ -1,9 +1,48 @@
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 export default function CartCard({ mobile }) {
-  const description = mobile?.description;
-  const words = description.slice(0, 50);
+  const [quantity, setQuantity] = useState(1); // Default quantity
+
+  useEffect(() => {
+    // Initialize quantity from localStorage
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const item = cartItems.find((item) => item.id === mobile.id);
+    if (item) setQuantity(item.quantity);
+  }, [mobile.id]);
+
+  const updateLocalStorage = (updatedItems) => {
+    localStorage.setItem("cartItems", JSON.stringify(updatedItems));
+  };
+
+  const handleDelete = () => {
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    cartItems = cartItems.filter((item) => item.id !== mobile.id);
+    updateLocalStorage(cartItems);
+    window.location.reload(); // Refresh to update cart display
+  };
+
+  const handleQuantityChange = (change) => {
+    let newQuantity = quantity + change;
+    if (newQuantity < 1) newQuantity = 1; // Prevent quantity from going below 1
+
+    setQuantity(newQuantity);
+
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const itemIndex = cartItems.findIndex((item) => item.id === mobile.id);
+
+    if (itemIndex >= 0) {
+      cartItems[itemIndex].quantity = newQuantity;
+    } else {
+      cartItems.push({ ...mobile, quantity: newQuantity });
+    }
+
+    updateLocalStorage(cartItems);
+  };
+
   return (
     <div>
-      <div className="card card-side h-full bg-base-100 shadow-xl">
+      <div className="card card-side group h-full bg-base-100 shadow-xl">
         <figure>
           <img
             src={mobile?.image}
@@ -13,9 +52,11 @@ export default function CartCard({ mobile }) {
         </figure>
         <div className="card-body p-5">
           <div className="flex justify-between">
-            <h2 className="card-title cursor-pointer group-hover:text-primary-red">
-              {mobile.name}
-            </h2>
+            <Link to={`/mobiles/${mobile.id}`}>
+              <h2 className="card-title cursor-pointer group-hover:text-primary-red">
+                {mobile.name}
+              </h2>
+            </Link>
             <div className="badge cursor-pointer badge-outline">
               {mobile?.brand}
             </div>
@@ -120,10 +161,35 @@ export default function CartCard({ mobile }) {
             </div>
             <div>({mobile.ratings})</div>
           </div>
-          <p>{words}...</p>
+          <p>{mobile?.description.slice(0, 50)}...</p>
           <div className="card-actions justify-between">
             <div className="text-xl font-semibold">${mobile.price}</div>
-            <button className="btn btn-sm btn-secondary">Details</button>
+            <div className="flex items-center">
+              <button
+                className="btn btn-sm btn-secondary mr-2"
+                onClick={() => handleQuantityChange(-1)}
+              >
+                -
+              </button>
+              <span className="text-xl font-semibold mx-2">{quantity}</span>
+              <button
+                className="btn btn-sm btn-secondary"
+                onClick={() => handleQuantityChange(1)}
+              >
+                +
+              </button>
+            </div>
+          </div>
+          <div className="flex justify-end gap-2 items-center">
+            <Link to={`/mobiles/${mobile.id}`}>
+              <button className="btn btn-sm">Details</button>
+            </Link>
+            <button
+              className="btn bg-red-500 text-white btn-sm hover:bg-red-600 btn-danger"
+              onClick={handleDelete}
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>
