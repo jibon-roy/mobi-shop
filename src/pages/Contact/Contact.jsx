@@ -1,5 +1,7 @@
 import emailjs from "@emailjs/browser";
 import { useState } from "react";
+import Heading from "../../components/Heading";
+import FAQ from "../Home/FAQ";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -48,7 +50,9 @@ const ContactUs = () => {
 
   return (
     <div className="flex flex-col items-center py-10">
-      <h1 className="text-3xl font-bold mb-4 primary-red">Contact Us</h1>
+      <Heading heading={"Contact Us"}>
+        Feel free to contact us for any queries.
+      </Heading>
       <form className="w-full max-w-lg" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label
@@ -58,7 +62,8 @@ const ContactUs = () => {
             Name
           </label>
           <input
-            className={`shadow appearance-none border ${
+            autoComplete="name"
+            className={`input input-bordered appearance-none border ${
               errors.name ? "border-red-500" : ""
             } rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
             id="name"
@@ -80,10 +85,11 @@ const ContactUs = () => {
             Email
           </label>
           <input
-            className={`shadow appearance-none border ${
+            className={`input input-bordered appearance-none border ${
               errors.email ? "border-red-500" : ""
             } rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
             id="email"
+            autoComplete="email"
             type="email"
             placeholder="Your email"
             name="email"
@@ -102,7 +108,8 @@ const ContactUs = () => {
             Message
           </label>
           <textarea
-            className={`shadow appearance-none border ${
+            rows={5}
+            className={`textarea textarea-bordered appearance-none border ${
               errors.message ? "border-red-500" : ""
             } rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
             id="message"
@@ -129,6 +136,7 @@ const ContactUs = () => {
           </p>
         )}
       </form>
+      <FAQ />
     </div>
   );
 };
