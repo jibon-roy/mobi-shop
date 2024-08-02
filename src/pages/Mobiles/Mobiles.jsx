@@ -69,7 +69,7 @@ export default function Mobiles() {
   return (
     <section className="container">
       <div className="flex justify-center my-10">
-        <Heading heading={"All Mobiles"}>
+        <Heading heading={"Mobiles"}>
           View our all mobile phone products.
         </Heading>
       </div>

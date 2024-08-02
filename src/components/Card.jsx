@@ -14,9 +14,11 @@ export default function Card({ mobile }) {
       </figure>
       <div className="card-body p-5">
         <div className="flex justify-between">
-          <h2 className="card-title inline cursor-pointer group-hover:text-primary-red">
-            {mobile.name}
-          </h2>{" "}
+          <Link to={`/mobiles/${mobile?.id}`}>
+            <h2 className="card-title inline cursor-pointer group-hover:text-primary-red">
+              {mobile.name}
+            </h2>
+          </Link>
           <div className="badge cursor-pointer inline badge-outline">
             {mobile?.brand}
           </div>

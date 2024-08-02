@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 import Slider from "./Slider";
+import { useState } from "react";
 
 export default function Banner() {
+  const [searchValue, setSearchValue] = useState("");
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearchValue(value);
+  };
   return (
     <div>
       <div
@@ -24,9 +30,21 @@ export default function Banner() {
                   official smartphone, android, feature phone Price & full Specs
                   available at Mobi Shop Online Shop.
                 </p>
-                <Link to={"/mobiles"}>
-                  <button className="btn btn-secondary">Browse Mobiles</button>
-                </Link>
+                <div className="flex items-center">
+                  <input
+                    type="text"
+                    id="mainSearch"
+                    onChange={handleSearch}
+                    name="mainSearch"
+                    autoComplete="search"
+                    className="input text-black appearance-none leading-tight focus:outline-none focus:shadow-outline input-bordered rounded-r-none"
+                  />
+                  <Link to={`/mobiles?search=${searchValue}`}>
+                    <button className="btn btn-secondary rounded-l-none">
+                      Search
+                    </button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
