@@ -25,7 +25,7 @@
     "id": 2,
     "name": "Google Pixel 7",
     "price": 699.99,
-    "brand": "Google Pixel",
+    "brand": "Pixel",
     "category": "Smartphone",
     "image": "https://fdn2.gsmarena.com/vv/bigpic/oneplus-nord-2t.jpg",
     "description": "The Google Pixel 7 offers an exceptional blend of performance and camera capabilities. Equipped with Google's latest Tensor G2 processor, it provides a smooth and responsive user experience. The 6.3-inch OLED display ensures vibrant visuals, while the advanced dual-camera system captures stunning photos in any lighting condition. With regular software updates and AI-powered features, the Pixel 7 is a top choice for Android enthusiasts.",
@@ -91,7 +91,7 @@
     "id": 5,
     "name": "Huawei P50 Pro",
     "price": 899.99,
-    "brand":"Huawei",
+    "brand": "Huawei",
     "category": "Smartphone",
     "image": "https://fdn2.gsmarena.com/vv/bigpic/huawei-p50-pro.jpg",
     "description": "The Huawei P50 Pro is a premium device that combines cutting-edge technology with a luxurious design. It features a 6.6-inch OLED display with a high refresh rate, delivering fluid visuals and vibrant colors. Powered by the Kirin 9000 processor, it excels in performance and efficiency. The P50 Pro's camera system includes a 50 MP main sensor and advanced AI capabilities, making it ideal for photography enthusiasts. Its sleek design and long-lasting battery complete the package.",
@@ -113,7 +113,7 @@
     "id": 6,
     "name": "Oppo Find X5 Pro",
     "price": 1099.99,
-    "brand":"Oppo",
+    "brand": "Oppo",
     "category": "Smartphone",
     "image": "https://fdn2.gsmarena.com/vv/bigpic/oppo-find-x5-pro.jpg",
     "description": "The Oppo Find X5 Pro is a flagship smartphone that offers a premium experience across the board. It features a 6.7-inch AMOLED display with a high refresh rate for smooth visuals. Powered by the Snapdragon 8 Gen 1 processor, it delivers exceptional performance and speed. The Find X5 Pro boasts a versatile camera setup with a 50 MP main sensor, allowing for high-quality photography and video. Additionally, its fast charging capabilities and sleek design enhance the overall user experience.",
@@ -421,7 +421,7 @@
     "id": 20,
     "name": "Poco F4 GT",
     "price": 699.99,
-    "brand":"Xiaomi",
+    "brand": "Xiaomi",
     "category": "Smartphone",
     "image": "https://fdn2.gsmarena.com/vv/bigpic/oppo-find-x5-pro.jpg",
     "description": "The Poco F4 GT is designed for gamers, featuring a 6.67-inch AMOLED display with a 120 Hz refresh rate for smooth visuals. It is powered by the Snapdragon 8 Gen 1 processor and includes a dual-camera system with a 64 MP main sensor. The phone offers fast charging and a robust design, making it a strong performer in the gaming smartphone market.",
@@ -443,7 +443,7 @@
     "id": 21,
     "name": "Google Pixel 6 Pro",
     "price": 899.99,
-    "brand": "Google Pixel",
+    "brand": "Pixel",
     "category": "Smartphone",
     "image": "https://fdn2.gsmarena.com/vv/bigpic/google-pixel-6-pro.jpg",
     "description": "The Google Pixel 6 Pro offers a premium experience with its 6.7-inch LTPO AMOLED display and Google's Tensor processor. The phone features a triple-camera system with a 50 MP main sensor, delivering excellent photo and video quality. With its unique design, clean software experience, and powerful performance, the Pixel 6 Pro is a top choice for Android enthusiasts.",
@@ -487,7 +487,7 @@
     "id": 23,
     "name": "Oppo Reno 8 Pro",
     "price": 749.99,
-    "brand":"Oppo",
+    "brand": "Oppo",
     "category": "Smartphone",
     "image": "https://fdn2.gsmarena.com/vv/bigpic/oneplus-nord-2t.jpg",
     "description": "The Oppo Reno 8 Pro features a 6.7-inch AMOLED display and is powered by the MediaTek Dimensity 8100 processor. The phone includes a 50 MP main camera and supports fast charging. Its sleek design and balanced performance make it a solid choice for users seeking a high-quality mid-range smartphone.",
@@ -531,7 +531,7 @@
     "id": 25,
     "name": "HTC U23 Pro",
     "price": 699.99,
-    "brand":"HTC",
+    "brand": "HTC",
     "category": "Smartphone",
     "image": "https://fdn2.gsmarena.com/vv/bigpic/htc-u23-pro.jpg",
     "description": "The HTC U23 Pro features a 6.7-inch AMOLED display with a high refresh rate and is powered by the Snapdragon 7 Gen 1 processor. The phone includes a 108 MP main camera and supports fast charging. Its sleek design and powerful performance make it a strong contender in the high-performance mid-range segment.",
@@ -773,7 +773,7 @@
     "id": 36,
     "name": "Google Pixel 7 Pro",
     "price": 899.99,
-    "brand": "Google Pixel",
+    "brand": "Pixel",
     "category": "Smartphone",
     "image": "https://fdn2.gsmarena.com/vv/bigpic/vivo-x80-pro.jpg",
     "description": "The Google Pixel 7 Pro features a 6.7-inch LTPO AMOLED display with a 120 Hz refresh rate and is powered by Google’s Tensor G2 processor. It includes a 50 MP main camera and offers excellent software experience with Android updates. The phone’s camera and performance make it a top choice for Android enthusiasts.",
@@ -835,48 +835,48 @@
       "battery": "4400 mAh"
     }
   },
-    {
-      "id": 39,
-      "name": "Oppo Find X5 Pro",
-      "price": 999.99,
-      "brand":"Oppo",
-      "category": "Smartphone",
-      "image": "https://fdn2.gsmarena.com/vv/bigpic/oppo-find-x5-pro.jpg",
-      "description": "The Oppo Find X5 Pro features a 6.7-inch AMOLED display with a 120 Hz refresh rate and is powered by the Snapdragon 8 Gen 1 processor. It includes a 50 MP main camera with advanced imaging capabilities and supports fast charging. The phone combines premium design with high-end performance.",
-      "review": {
-        "average": 4.5,
-        "count": 700
-      },
-      "ratings": 4.5,
-      "specifications": {
-        "display": "6.7 inches",
-        "processor": "Snapdragon 8 Gen 1",
-        "ram": "8/12 GB",
-        "storage": "256 GB",
-        "camera": "50 MP + 50 MP + 13 MP",
-        "battery": "5000 mAh"
-      }
+  {
+    "id": 39,
+    "name": "Oppo Find X5 Pro",
+    "price": 999.99,
+    "brand": "Oppo",
+    "category": "Smartphone",
+    "image": "https://fdn2.gsmarena.com/vv/bigpic/oppo-find-x5-pro.jpg",
+    "description": "The Oppo Find X5 Pro features a 6.7-inch AMOLED display with a 120 Hz refresh rate and is powered by the Snapdragon 8 Gen 1 processor. It includes a 50 MP main camera with advanced imaging capabilities and supports fast charging. The phone combines premium design with high-end performance.",
+    "review": {
+      "average": 4.5,
+      "count": 700
     },
-    {
-      "id": 40,
-      "name": "Xiaomi Mi 12T Pro",
-      "price": 749.99,
-      "brand":"Xiaomi",
-      "category": "Smartphone",
-      "image": "https://fdn2.gsmarena.com/vv/bigpic/sony-xperia-1-iv.jpg",
-      "description": "The Xiaomi Mi 12T Pro offers a 6.67-inch AMOLED display with a 120 Hz refresh rate and is powered by the Snapdragon 8+ Gen 1 processor. It features a 200 MP main camera and supports fast charging. The phone provides a high-end experience with its impressive camera and performance.",
-      "review": {
-        "average": 4.6,
-        "count": 650
-      },
-      "ratings": 4.6,
-      "specifications": {
-        "display": "6.67 inches",
-        "processor": "Snapdragon 8+ Gen 1",
-        "ram": "8/12 GB",
-        "storage": "256 GB",
-        "camera": "200 MP + 8 MP + 2 MP",
-        "battery": "5000 mAh"
-      }
+    "ratings": 4.5,
+    "specifications": {
+      "display": "6.7 inches",
+      "processor": "Snapdragon 8 Gen 1",
+      "ram": "8/12 GB",
+      "storage": "256 GB",
+      "camera": "50 MP + 50 MP + 13 MP",
+      "battery": "5000 mAh"
     }
+  },
+  {
+    "id": 40,
+    "name": "Xiaomi Mi 12T Pro",
+    "price": 749.99,
+    "brand": "Xiaomi",
+    "category": "Smartphone",
+    "image": "https://fdn2.gsmarena.com/vv/bigpic/sony-xperia-1-iv.jpg",
+    "description": "The Xiaomi Mi 12T Pro offers a 6.67-inch AMOLED display with a 120 Hz refresh rate and is powered by the Snapdragon 8+ Gen 1 processor. It features a 200 MP main camera and supports fast charging. The phone provides a high-end experience with its impressive camera and performance.",
+    "review": {
+      "average": 4.6,
+      "count": 650
+    },
+    "ratings": 4.6,
+    "specifications": {
+      "display": "6.67 inches",
+      "processor": "Snapdragon 8+ Gen 1",
+      "ram": "8/12 GB",
+      "storage": "256 GB",
+      "camera": "200 MP + 8 MP + 2 MP",
+      "battery": "5000 mAh"
+    }
+  }
 ]
