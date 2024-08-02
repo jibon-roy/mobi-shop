@@ -16,12 +16,18 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: async () => await fetch("./phones.json"),
+        loader: async () => {
+          const data = await fetch("/phones.json");
+          return (await data.json()) || null;
+        },
       },
       {
         path: "/mobiles",
         element: <Mobiles />,
-        loader: async () => await fetch("./phones.json"),
+        loader: async () => {
+          const data = await fetch("/phones.json");
+          return (await data.json()) || null;
+        },
       },
       {
         path: "/mobiles/:id",
