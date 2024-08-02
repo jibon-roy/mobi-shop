@@ -1,25 +1,23 @@
 import { useLoaderData } from "react-router-dom";
 import Heading from "../../components/Heading";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Card from "../../components/Card";
+import ReactPaginate from "react-paginate";
 
 export default function Mobiles() {
   const data = useLoaderData();
 
-  // const [mobiles, setMobiles] = useState([]);
   const [err, setErr] = useState(false);
   const [priceRange, setPriceRange] = useState(1700);
   const [searchMobile, setSearchMobile] = useState("");
   const [searchBrand, setSearchBrand] = useState("");
   const [priceFilt, setPrice] = useState("default");
   const [filteredMobiles, setFilteredMobiles] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const itemsPerPage = 9;
 
   useEffect(() => {
-    // fetch("./phones.json")
-    //   .then((data) => data.json())
-    //   .then((mobileData) => setMobiles(mobileData))
-    //   .catch((err) => setErr(err));
     if (data.length <= 0) {
       setErr(true);
     }
@@ -32,16 +30,16 @@ export default function Mobiles() {
       a.brand.toLowerCase().includes(searchBrand.toLowerCase())
     );
     const priceFilter = filterBrand.sort((a, b) =>
-      priceFilt == "LowToHigh"
+      priceFilt === "LowToHigh"
         ? a.price - b.price
-        : priceFilt == "HighToLow"
+        : priceFilt === "HighToLow"
         ? b.price - a.price
         : a.price + b.price
     );
-    setFilteredMobiles(priceFilter);
-  }, [data, priceFilt, priceRange, searchBrand, searchMobile]);
 
-  // console.log(mobiles);
+    setFilteredMobiles(priceFilter);
+    setCurrentPage(0);
+  }, [data, priceFilt, priceRange, searchBrand, searchMobile]);
 
   const handleSearchMobile = (e) => {
     const value = e.target.value;
@@ -60,6 +58,14 @@ export default function Mobiles() {
     setSearchBrand(value);
   };
 
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
+  const offset = currentPage * itemsPerPage;
+  const currentItems = filteredMobiles.slice(offset, offset + itemsPerPage);
+  const pageCount = Math.ceil(filteredMobiles.length / itemsPerPage);
+
   return (
     <section className="container">
       <div className="flex justify-center my-10">
@@ -73,7 +79,6 @@ export default function Mobiles() {
             <h2 className="card-title font-bold justify-center">
               Search or filter
             </h2>
-            {/* Search */}
             <p className="italic">Search:</p>
             <label className="input input-bordered flex items-center gap-2">
               <input
@@ -98,7 +103,6 @@ export default function Mobiles() {
                 />
               </svg>
             </label>
-            {/* price low to high */}
             <p className="italic">Price:</p>
             <select
               name="price"
@@ -110,7 +114,6 @@ export default function Mobiles() {
               <option value={"LowToHigh"}>Low to High</option>
               <option value={"HighToLow"}>High to Low</option>
             </select>
-            {/* price range */}
             <div className="flex justify-between w-full">
               <p className="italic">Price Range:</p>
               <p className="font-semibold text-end">${priceRange}</p>
@@ -123,7 +126,6 @@ export default function Mobiles() {
               onChange={setRange}
               className="range range-xs range-secondary"
             />
-            {/* brand */}
             <p className="italic">Brand:</p>
             <select
               name="brand"
@@ -154,16 +156,38 @@ export default function Mobiles() {
         {err ? (
           <div className="flex flex-1 justify-center">Data not found.</div>
         ) : (
-          <div className="grid grid-cols-1 gap-y-10 mx-auto gap-x-4 justify-center lg:grid-cols-2 xl:grid-cols-3">
-            {filteredMobiles?.length <= 0 ? (
-              <div className="flex flex-1 justify-center">Data not found.</div>
-            ) : (
-              filteredMobiles?.map((mobile) => (
-                <div key={mobile.id}>
-                  <Card mobile={mobile}></Card>
+          <div className="flex flex-col items-center">
+            <div className="grid grid-cols-1 gap-y-10 mx-auto gap-x-4 justify-center lg:grid-cols-2 xl:grid-cols-3">
+              {currentItems.length <= 0 ? (
+                <div className="flex flex-1 justify-center">
+                  Data not found.
                 </div>
-              ))
-            )}
+              ) : (
+                currentItems.map((mobile) => (
+                  <div key={mobile.id}>
+                    <Card mobile={mobile}></Card>
+                  </div>
+                ))
+              )}
+            </div>
+            <div className="my-10">
+              <ReactPaginate
+                previousLabel={"Previous"}
+                nextLabel={"Next"}
+                breakLabel={"..."}
+                breakClassName={"break-me"}
+                pageCount={pageCount}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={handlePageClick}
+                containerClassName={"flex justify-center mt-4 space-x-2"}
+                pageClassName={"border rounded px-3 py-1"}
+                activeClassName={"bg-primary-red text-white"}
+                previousClassName={"border rounded px-3 py-1"}
+                nextClassName={"border rounded px-3 py-1"}
+                disabledClassName={"text-gray-400"}
+              />
+            </div>
           </div>
         )}
       </div>
