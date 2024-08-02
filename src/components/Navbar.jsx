@@ -56,7 +56,7 @@ export default function Navbar() {
           </div>
           <div className="mx-2 flex-1 px-2">
             {/* Navbar Logo */}
-            <div className="hover:scale-105 cursor-pointer transition-all">
+            <div className="hover:scale-[1.03] cursor-pointer transition-all">
               <Link to={"/"}>
                 <Logo />
               </Link>
@@ -72,8 +72,10 @@ export default function Navbar() {
                   </NavLink>
                 </li>
               ))}
-              <li>
-                <CartIcon cartValue={5} />
+              <li className="">
+                <NavLink className={"navLink"} to={"/cart"}>
+                  <CartIcon cartValue={5} />
+                </NavLink>
               </li>
             </ul>
           </div>

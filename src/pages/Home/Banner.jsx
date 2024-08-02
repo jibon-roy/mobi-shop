@@ -38,6 +38,7 @@ export default function Banner() {
                     id="mainSearch"
                     onChange={handleSearch}
                     name="mainSearch"
+                    placeholder="Search Mobiles"
                     autoComplete="search"
                     className="input text-black appearance-none leading-tight focus:outline-none focus:shadow-outline input-bordered rounded-r-none"
                   />
