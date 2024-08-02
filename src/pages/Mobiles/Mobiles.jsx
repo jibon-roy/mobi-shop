@@ -75,9 +75,7 @@ export default function Mobiles() {
   return (
     <section className="container">
       <div className="flex justify-center my-10">
-        <Heading heading={"Mobiles"}>
-          View our all mobile phone products.
-        </Heading>
+        <Heading heading={"Mobiles"}>View our mobile phone products.</Heading>
       </div>
       <div className="flex flex-col lg:flex-row my-16 gap-4">
         <div className="card mx-auto mb-16 bg-base-100  max-w-96 h-fit shadow-xl">

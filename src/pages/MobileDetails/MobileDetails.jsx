@@ -1,14 +1,39 @@
+import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import "./mobileDetail.css";
 import { Link } from "react-router-dom";
-// import Heading from "../../components/Heading";
+import "./mobileDetail.css";
 
 const MobileDetails = () => {
   const mobile = useLoaderData();
+  const [quantity, setQuantity] = useState(1); // Initialize the quantity state
 
   if (!mobile) {
     return <p className="text-center text-red-500">Mobile not found.</p>;
   }
+
+  // Handle incrementing the quantity
+  const incrementQuantity = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
+
+  // Handle decrementing the quantity
+  const decrementQuantity = () => {
+    setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
+  };
+
+  // Handle adding to cart and storing the mobile ID and quantity in local storage
+  const addToCart = () => {
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const itemIndex = cartItems.findIndex((item) => item.id === mobile.id);
+
+    if (itemIndex >= 0) {
+      cartItems[itemIndex].quantity += quantity;
+    } else {
+      cartItems.push({ id: mobile.id, quantity });
+    }
+
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  };
 
   return (
     <div className="container">
@@ -32,8 +57,37 @@ const MobileDetails = () => {
             alt={mobile.name}
             className="rounded-lg w-[85%]"
           />
-          <div className="mx-auto text-center my-5 font-medium">
+          <div className="mx-auto text-center my-5 text-xl font-medium">
             {mobile.name}
+          </div>
+          <div className="flex flex-col justify-center items-center">
+            <div className="flex items-center space-x-2 mt-4">
+              <button
+                className="btn btn-sm btn-secondary"
+                onClick={decrementQuantity}
+              >
+                -
+              </button>
+              <input
+                type="number"
+                value={quantity}
+                name={`mobile-${mobile.id}`}
+                autoComplete="number"
+                readOnly
+                className="max-w-32 text-center border rounded"
+              />
+              <button
+                className="btn btn-sm btn-secondary"
+                onClick={incrementQuantity}
+              >
+                +
+              </button>
+            </div>
+            <div className="card-actions justify-between mt-4">
+              <button className="btn btn-md btn-primary" onClick={addToCart}>
+                Add to Cart
+              </button>
+            </div>
           </div>
         </div>
         <div className="w-full md:w-1/2 mt-6 md:mt-0 md:pl-6">
@@ -51,6 +105,7 @@ const MobileDetails = () => {
           <div className="flex items-center mb-4">
             <div className="flex flex-wrap gap-2 ">
               <div className="rating cursor-default rating-md rating-half">
+                {/* Rating inputs */}
                 <input
                   type="radio"
                   name={`rating-${mobile.id}`}
