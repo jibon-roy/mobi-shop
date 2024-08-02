@@ -17,12 +17,12 @@ export default function Navbar() {
     {
       id: 3,
       name: "About Us",
-      route: "/about",
+      route: "/about-us",
     },
     {
       id: 4,
-      name: "Contact",
-      route: "/contact",
+      name: "Contact Us",
+      route: "/contact-us",
     },
   ];
 
