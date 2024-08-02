@@ -27,7 +27,11 @@ const MobileDetails = () => {
       </div>
       <div className="flex flex-col md:flex-row items-center p-6 max-w-4xl mx-auto">
         <div className="w-full md:w-1/2">
-          <img src={mobile.image} alt={mobile.name} className="rounded-lg" />
+          <img
+            src={mobile.image}
+            alt={mobile.name}
+            className="rounded-lg w-[85%]"
+          />
         </div>
         <div className="w-full md:w-1/2 mt-6 md:mt-0 md:pl-6">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -42,7 +46,109 @@ const MobileDetails = () => {
             <strong>Category:</strong> {mobile.category}
           </p>
           <div className="flex items-center mb-4">
-            <span className="text-yellow-500 font-bold">{mobile.ratings}</span>
+            <div className="flex flex-wrap gap-2 ">
+              <div className="rating cursor-default rating-md rating-half">
+                <input
+                  type="radio"
+                  name={`rating-${mobile.id}`}
+                  className="rating-hidden"
+                />
+                <input
+                  type="radio"
+                  name={`rating-${mobile.id}`}
+                  className="mask mask-star cursor-default mask-half-1 bg-orange-400"
+                  disabled
+                  checked={
+                    mobile.ratings >= 0 && mobile.ratings <= 0.5 ? true : false
+                  }
+                />
+                <input
+                  type="radio"
+                  name={`rating-${mobile.id}`}
+                  className="mask mask-star cursor-default mask-half-2 bg-orange-400"
+                  disabled
+                  checked={
+                    mobile.ratings >= 0.5 && mobile.ratings <= 1 ? true : false
+                  }
+                />
+                <input
+                  type="radio"
+                  name={`rating-${mobile.id}`}
+                  className="mask mask-star cursor-default mask-half-1 bg-orange-400"
+                  disabled
+                  checked={
+                    mobile.ratings >= 1 && mobile.ratings <= 1.5 ? true : false
+                  }
+                />
+                <input
+                  type="radio"
+                  name={`rating-${mobile.id}`}
+                  className="mask mask-star cursor-default mask-half-2 bg-orange-400"
+                  disabled
+                  checked={
+                    mobile.ratings >= 1.5 && mobile.ratings <= 2 ? true : false
+                  }
+                />
+                <input
+                  type="radio"
+                  name={`rating-${mobile.id}`}
+                  className="mask mask-star cursor-default mask-half-1 bg-orange-400"
+                  disabled
+                  checked={
+                    mobile.ratings >= 2 && mobile.ratings <= 2.5 ? true : false
+                  }
+                />
+                <input
+                  type="radio"
+                  name={`rating-${mobile.id}`}
+                  className="mask mask-star cursor-default mask-half-2 bg-orange-400"
+                  disabled
+                  checked={
+                    mobile.ratings > 2.5 && mobile.ratings <= 3 ? true : false
+                  }
+                />
+                <input
+                  type="radio"
+                  name={`rating-${mobile.id}`}
+                  className="mask mask-star cursor-default mask-half-1 bg-orange-400"
+                  disabled
+                  checked={
+                    mobile.ratings > 3 && mobile.ratings <= 3.5 ? true : false
+                  }
+                />
+                <input
+                  type="radio"
+                  name={`rating-${mobile.id}`}
+                  className="mask mask-star cursor-default mask-half-2 bg-orange-400"
+                  disabled
+                  checked={
+                    mobile.ratings > 3.5 && mobile.ratings <= 4 ? true : false
+                  }
+                />
+                <input
+                  type="radio"
+                  name={`rating-${mobile.id}`}
+                  className="mask mask-star cursor-default mask-half-1 bg-orange-400"
+                  disabled
+                  checked={
+                    mobile.ratings > 4 && mobile.ratings <= 4.5 ? true : false
+                  }
+                />
+                <input
+                  type="radio"
+                  name={`rating-${mobile.id}`}
+                  className="mask mask-star cursor-default mask-half-2 bg-orange-400"
+                  disabled
+                  checked={
+                    mobile.ratings > 4.5 && mobile.ratings <= 5 ? true : false
+                  }
+                />
+              </div>
+            </div>
+            <br />
+            <div className="text-orange-400 ml-2 font-bold">
+              {mobile.ratings}
+            </div>
             <span className="text-gray-600 ml-2">
               ({mobile.review.count} reviews)
             </span>
