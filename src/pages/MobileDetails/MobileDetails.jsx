@@ -32,6 +32,9 @@ const MobileDetails = () => {
             alt={mobile.name}
             className="rounded-lg w-[85%]"
           />
+          <div className="mx-auto text-center my-5 font-medium">
+            {mobile.name}
+          </div>
         </div>
         <div className="w-full md:w-1/2 mt-6 md:mt-0 md:pl-6">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
