@@ -1,8 +1,36 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Card({ mobile }) {
+  const [quantity, setQuantity] = useState(1); // Initialize the quantity state
+
   const description = mobile?.description;
   const words = description.slice(0, 50);
+
+  // Handle incrementing the quantity
+  const incrementQuantity = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
+
+  // Handle decrementing the quantity
+  const decrementQuantity = () => {
+    setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
+  };
+
+  // Handle adding to cart and storing the mobile ID and quantity in local storage
+  const addToCart = () => {
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const itemIndex = cartItems.findIndex((item) => item.id === mobile.id);
+
+    if (itemIndex >= 0) {
+      cartItems[itemIndex].quantity += quantity;
+    } else {
+      cartItems.push({ id: mobile.id, quantity });
+    }
+
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  };
+
   return (
     <div className="card mx-auto group h-full hover:scale-[0.98] transition-all bg-base-100 max-w-72 shadow-xl">
       <figure>
@@ -23,6 +51,7 @@ export default function Card({ mobile }) {
             {mobile?.brand}
           </div>
         </div>
+        <div className="text-xl font-semibold">${mobile.price}</div>
         <div className="flex flex-wrap gap-2 ">
           <div className="rating cursor-default rating-md rating-half">
             <input
@@ -81,7 +110,7 @@ export default function Card({ mobile }) {
               className="mask mask-star cursor-default mask-half-2 bg-orange-400"
               disabled
               checked={
-                mobile.ratings >= 2.5 && mobile.ratings <= 3 ? true : false
+                mobile.ratings > 2.5 && mobile.ratings <= 3 ? true : false
               }
             />
             <input
@@ -90,7 +119,7 @@ export default function Card({ mobile }) {
               className="mask mask-star cursor-default mask-half-1 bg-orange-400"
               disabled
               checked={
-                mobile.ratings >= 3 && mobile.ratings <= 3.5 ? true : false
+                mobile.ratings > 3 && mobile.ratings <= 3.5 ? true : false
               }
             />
             <input
@@ -99,7 +128,7 @@ export default function Card({ mobile }) {
               className="mask mask-star cursor-default mask-half-2 bg-orange-400"
               disabled
               checked={
-                mobile.ratings >= 3.5 && mobile.ratings <= 4 ? true : false
+                mobile.ratings > 3.5 && mobile.ratings <= 4 ? true : false
               }
             />
             <input
@@ -108,7 +137,7 @@ export default function Card({ mobile }) {
               className="mask mask-star cursor-default mask-half-1 bg-orange-400"
               disabled
               checked={
-                mobile.ratings >= 4 && mobile.ratings <= 4.5 ? true : false
+                mobile.ratings > 4 && mobile.ratings <= 4.5 ? true : false
               }
             />
             <input
@@ -117,18 +146,44 @@ export default function Card({ mobile }) {
               className="mask mask-star cursor-default mask-half-2 bg-orange-400"
               disabled
               checked={
-                mobile.ratings >= 4.5 && mobile.ratings <= 5 ? true : false
+                mobile.ratings > 4.5 && mobile.ratings <= 5 ? true : false
               }
             />
           </div>
           <div>({mobile.ratings})</div>
         </div>
         <p>{words}...</p>
-        <div className="card-actions justify-between">
-          <div className="text-xl font-semibold">${mobile.price}</div>
-          <Link to={`/mobiles/${mobile?.id}`}>
-            <button className="btn btn-sm btn-secondary">Details</button>
-          </Link>
+        <Link to={`/mobiles/${mobile?.id}`}>
+          <button className="btn btn-sm w-full btn-secondary">Details</button>
+        </Link>
+        <div className="card-actions justify-between mt-4">
+          <div className="flex space-x-2">
+            <div className="flex items-center gap-2">
+              <button
+                className="btn btn-sm btn-secondary"
+                onClick={decrementQuantity}
+              >
+                -
+              </button>
+              <input
+                id={`increase-${mobile?.id}`}
+                name={`increase-${mobile?.id}`}
+                type={`increase-${mobile?.id}`}
+                value={quantity}
+                readOnly
+                className="w-full input input-xs input-bordered m-0 p-0 text-center border rounded"
+              />
+              <button
+                className="btn btn-sm btn-secondary"
+                onClick={incrementQuantity}
+              >
+                +
+              </button>
+            </div>
+            <button className="btn btn-sm btn-primary" onClick={addToCart}>
+              Add to Cart
+            </button>
+          </div>
         </div>
       </div>
     </div>
