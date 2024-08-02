@@ -1,30 +1,33 @@
-// import { useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import Heading from "../../components/Heading";
 import { useState } from "react";
 import { useEffect } from "react";
 import Card from "../../components/Card";
 
 export default function Mobiles() {
-  // const data = useLoaderData();
+  const data = useLoaderData();
 
-  const [mobiles, setMobiles] = useState([]);
+  // const [mobiles, setMobiles] = useState([]);
   const [err, setErr] = useState();
   const [priceRange, setPriceRange] = useState(1700);
   const [searchMobile, setSearchMobile] = useState("");
   const [filteredMobiles, setFilteredMobiles] = useState();
 
   useEffect(() => {
-    fetch("./phones.json")
-      .then((data) => data.json())
-      .then((mobileData) => setMobiles(mobileData))
-      .catch((err) => setErr(err));
+    // fetch("./phones.json")
+    //   .then((data) => data.json())
+    //   .then((mobileData) => setMobiles(mobileData))
+    //   .catch((err) => setErr(err));
+    if (data.length <= 0) {
+      setErr(true);
+    }
 
-    const search = mobiles.filter((a) =>
+    const search = data.filter((a) =>
       a.name.toLowerCase().includes(searchMobile.toLowerCase())
     );
     const filterRange = search.filter((a) => a.price <= priceRange);
     setFilteredMobiles(filterRange);
-  }, [mobiles, priceRange, searchMobile]);
+  }, [data, priceRange, searchMobile]);
 
   // console.log(mobiles);
 
@@ -45,7 +48,7 @@ export default function Mobiles() {
         </Heading>
       </div>
       <div className="flex flex-col sm:flex-row my-16 gap-4">
-        <div className="card bg-base-100 max-w-96 h-fit shadow-xl">
+        <div className="card mx-auto mb-16 bg-base-100 max-w-96 h-fit shadow-xl">
           <div className="card-body">
             <h2 className="card-title font-bold justify-center">
               Search or filter
@@ -77,7 +80,11 @@ export default function Mobiles() {
             </label>
             {/* price low to high */}
             <p className="italic">Price:</p>
-            <select className="select select-bordered w-full max-w-xs">
+            <select
+              name="price"
+              id="price"
+              className="select select-bordered w-full max-w-xs"
+            >
               <option>Default</option>
               <option>Low to High</option>
               <option>High to Low</option>
@@ -97,16 +104,20 @@ export default function Mobiles() {
             />
             {/* brand */}
             <p className="italic">Brand:</p>
-            <select className="select select-bordered w-full max-w-xs">
+            <select
+              name="brand"
+              id="brand"
+              className="select select-bordered w-full max-w-xs"
+            >
               <option>All</option>
-              <option>Java</option>
-              <option>Go</option>
-              <option>C</option>
-              <option>C#</option>
-              <option>C++</option>
-              <option>Rust</option>
-              <option>JavaScript</option>
-              <option>Python</option>
+              <option value={"Apple"}>Apple</option>
+              <option value={"Pixel"}>Pixel</option>
+              <option value={""}></option>
+              <option value={""}></option>
+              <option value={""}></option>
+              <option value={""}></option>
+              <option value={""}></option>
+              <option value={""}></option>
             </select>
           </div>
         </div>

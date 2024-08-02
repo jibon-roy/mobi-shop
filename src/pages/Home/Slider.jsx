@@ -7,10 +7,10 @@ import "swiper/css/pagination";
 
 // import required modules
 import { EffectCube, Autoplay, Pagination } from "swiper/modules";
-import m1 from "../../../public/m1.png";
-import m2 from "../../../public/m2.png";
-import m3 from "../../../public/m3.png";
-import m4 from "../../../public/m4.png";
+import m1 from "../../assets/m1.png";
+import m2 from "../../assets/m2.png";
+import m3 from "../../assets/m3.png";
+import m4 from "../../assets/m4.png";
 
 export default function Slider() {
   return (
