@@ -28,9 +28,11 @@ export default function Banner() {
                 <p className="py-6">
                   Buy Mobile Phone at Lowest Price in Bangladesh. Latest
                   official smartphone, android, feature phone Price & full Specs
-                  available at Mobi Shop Online Shop.
+                  available at Mobi Shop Online Shop. We offer a wide selection
+                  of devices from top brands, ensuring you find the perfect
+                  phone to meet your needs.
                 </p>
-                <div className="flex items-center">
+                <div className="flex mt-5 items-center">
                   <input
                     type="text"
                     id="mainSearch"
