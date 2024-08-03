@@ -19,7 +19,7 @@ export default function Statistics() {
         }}
       >
         <div className="hero-overlay bg-opacity-75"></div>
-        <div className="hero-content my-20 flex-col text-neutral-content text-center">
+        <div className="hero-content w-40 min-[240px]:w-auto my-20 flex-col text-neutral-content text-center">
           <div>
             <Heading heading={"Our Statistics"}>
               Explore our stastistics.
