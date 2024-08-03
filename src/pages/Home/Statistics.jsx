@@ -54,7 +54,7 @@ export default function Statistics() {
               </div>
 
               <div className="stat place-items-center">
-                <div className="stat-title">New Registers</div>
+                <div className="stat-title">New Users</div>
                 <div className="stat-value" ref={countUpRef3}>
                   <CountUp
                     start={800}

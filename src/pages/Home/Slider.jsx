@@ -31,7 +31,7 @@ export default function Slider() {
         }}
         pagination={true}
         modules={[Autoplay, EffectCube, Pagination]}
-        className="mySwiper w-52"
+        className="mySwiper max-w-40"
       >
         <SwiperSlide>
           <img src={m1} className="w-40 sm:w-80" />

@@ -16,7 +16,7 @@ export default function Banner() {
           backgroundImage: "url(https://wallpaperaccess.com/full/8033213.jpg)",
         }}
       >
-        <div className="hero-overlay bg-opacity-60"></div>
+        <div className="hero-overlay  bg-opacity-60"></div>
         <div className="my-32 text-neutral-content ">
           <div className="container">
             <div className="flex w-full gap-10 justify-around items-center flex-col lg:flex-row">
@@ -40,7 +40,7 @@ export default function Banner() {
                     name="mainSearch"
                     placeholder="Search Mobiles"
                     autoComplete="search"
-                    className="input w-[120px] min-[300px]:w-[180px] min-[380px]:w-[40%] text-black appearance-none leading-tight focus:outline-none focus:shadow-outline input-bordered rounded-r-none"
+                    className="input w-[80px] min-[240px]:w-[120px] min-[300px]:w-[180px] min-[380px]:w-[40%] text-black appearance-none leading-tight focus:outline-none focus:shadow-outline input-bordered rounded-r-none"
                   />
                   <Link to={`/mobiles?search=${searchValue}`}>
                     <button className="btn btn-secondary rounded-l-none">
