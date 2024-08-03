@@ -1,10 +1,8 @@
-import { useState } from "react";
-import { useEffect } from "react";
+// src/components/MainLoading.jsx
+import { useState, useEffect } from "react";
 import Loading from "./Loading";
-import { RouterProvider } from "react-router-dom";
-import router from "../utils/router";
 
-export const MainLoading = () => {
+export const MainLoading = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
 
@@ -49,13 +47,5 @@ export const MainLoading = () => {
     };
   }, []);
 
-  return (
-    <>
-      {isLoading ? (
-        <Loading progress={progress} />
-      ) : (
-        <RouterProvider router={router} />
-      )}
-    </>
-  );
+  return <>{isLoading ? <Loading progress={progress} /> : children}</>;
 };
