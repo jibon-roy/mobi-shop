@@ -19,7 +19,6 @@ export default function MainLayout() {
     return <Loading />;
   }
 
-  console.log("MainLayout content will render");
   return (
     <main className="flex min-h-screen flex-col justify-between">
       <div>
