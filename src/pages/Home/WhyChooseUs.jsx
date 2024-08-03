@@ -11,7 +11,7 @@ export default function WhyChooseUs() {
         <div className="flex justify-evenly items-center gap-10 flex-col lg:flex-row">
           <img
             src={imagebg}
-            className="max-w-md w-[80%] sm:w-full max-h-80 my-auto object-cover rounded-lg "
+            className="max-w-md w-[90%] sm:w-full max-h-80 my-auto object-cover rounded-lg "
           />
           <div className="max-w-lg my-auto flex-1 text-xl">
             <p className="mb-5">

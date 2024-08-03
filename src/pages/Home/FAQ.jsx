@@ -5,7 +5,7 @@ export default function FAQ() {
   return (
     <div>
       <div className="container py-20 pb-28">
-        <div className="flex justify-center mb-16">
+        <div className="flex justify-center mb-10 md:mb-16">
           <Heading heading={"FAQs & Answers"}>
             Here are some question and answers about us.
           </Heading>
@@ -13,7 +13,7 @@ export default function FAQ() {
         <div className="flex justify-evenly items-center gap-10 flex-col lg:flex-row-reverse">
           <img
             src={imagebg}
-            className="max-w-md h-80 my-auto object-cover rounded-lg shadow-2xl"
+            className="max-w-md w-[80%] h-80 my-auto object-cover rounded-lg shadow-2xl"
           />
           <div className="max-w-lg flex-1">
             <div className="collapse collapse-plus mb-3 bg-base-200">

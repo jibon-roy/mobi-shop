@@ -116,7 +116,7 @@ export default function Navbar() {
           aria-label="close sidebar"
           className="drawer-overlay z-50"
         ></label>
-        <ul className="menu z-50 w-[60%] sm:w-[40%] font-semibold bg-base-200 min-h-full p-2">
+        <ul className="menu z-50 w-[70%] sm:w-[40%] font-semibold bg-base-200 min-h-full p-2">
           {/* Sidebar content here */}
           <li>
             <Logo />

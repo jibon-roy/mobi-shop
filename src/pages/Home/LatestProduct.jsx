@@ -8,13 +8,13 @@ export default function LatestProduct({ data }) {
 
   // console.log(latestProducts);
   return (
-    <div className="w-full py-16 bg-base-200">
+    <div className="w-full py-16 container bg-base-200">
       <div className="mb-16 flex justify-center">
         <Heading heading={"Latest Products"}>
           Our latest mobile phones are here.
         </Heading>
       </div>
-      <div className="container">
+      <div className="">
         <div className="grid grid-cols-1 gap-y-10 gap-x-4 justify-center  lg:grid-cols-3">
           {latestProducts.map((mobile) => (
             <div key={mobile.id} className="flex justify-center">

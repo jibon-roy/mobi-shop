@@ -13,7 +13,7 @@ export default function LandingCard({ mobile }) {
         </figure>
         <div className="card-body p-5">
           <div className="flex justify-between">
-            <h2 className="card-title cursor-pointer group-hover:text-primary-red">
+            <h2 className="card-title text-base sm:text-md cursor-pointer group-hover:text-primary-red">
               {mobile.name}
             </h2>
             <div className="badge cursor-pointer badge-outline">
@@ -21,7 +21,7 @@ export default function LandingCard({ mobile }) {
             </div>
           </div>
           <div className="flex flex-wrap gap-2 ">
-            <div className="rating cursor-default rating-md rating-half">
+            <div className="rating cursor-default rating-sm rating-half">
               <input
                 type="radio"
                 name={`rating-${mobile.id}`}
@@ -118,7 +118,7 @@ export default function LandingCard({ mobile }) {
                 }
               />
             </div>
-            <div>({mobile.ratings})</div>
+            <div className="text-sm">({mobile.ratings})</div>
           </div>
           <p>{words}...</p>
           <div className="card-actions justify-between">
