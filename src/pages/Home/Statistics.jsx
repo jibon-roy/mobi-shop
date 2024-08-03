@@ -1,11 +1,13 @@
 import { useRef } from "react";
 import Heading from "../../components/Heading";
-import CountUp from "react-countup";
+// import CountUp from "react-countup";
+import SlotCounter from "react-slot-counter";
 
 export default function Statistics() {
   const countUpRef1 = useRef(null);
   const countUpRef2 = useRef(null);
   const countUpRef3 = useRef(null);
+
   return (
     <div>
       <div
@@ -30,11 +32,12 @@ export default function Statistics() {
               <div className="stat place-items-center">
                 <div className="stat-title">Products</div>
                 <div className="stat-value" ref={countUpRef1}>
-                  <CountUp
-                    start={0}
-                    enableScrollSpy
-                    scrollSpyDelay={2}
-                    end={978}
+                  <SlotCounter
+                    value={978}
+                    animateOnVisible={{
+                      triggerOnce: false,
+                      rootMargin: "0px 0px -100px 0px",
+                    }}
                   />
                 </div>
                 <div className="stat-desc">Adding more products.</div>
@@ -43,11 +46,18 @@ export default function Statistics() {
               <div className="stat place-items-center">
                 <div className="stat-title">Our Active Users</div>
                 <div className="stat-value text-secondary" ref={countUpRef2}>
-                  <CountUp
+                  {/* <CountUp
                     start={3500}
                     enableScrollSpy
                     scrollSpyDelay={2}
                     end={4231}
+                  /> */}
+                  <SlotCounter
+                    value={4231}
+                    animateOnVisible={{
+                      triggerOnce: false,
+                      rootMargin: "0px 0px -100px 0px",
+                    }}
                   />
                 </div>
                 <div className="stat-desc text-secondary">↗︎ 48 (3%)</div>
@@ -56,11 +66,12 @@ export default function Statistics() {
               <div className="stat place-items-center">
                 <div className="stat-title">New Users</div>
                 <div className="stat-value" ref={countUpRef3}>
-                  <CountUp
-                    start={800}
-                    enableScrollSpy
-                    scrollSpyDelay={2}
-                    end={1639}
+                  <SlotCounter
+                    value={1639}
+                    animateOnVisible={{
+                      triggerOnce: false,
+                      rootMargin: "0px 0px -100px 0px",
+                    }}
                   />
                 </div>
                 <div className="stat-desc">↘︎ 87 (19%)</div>
