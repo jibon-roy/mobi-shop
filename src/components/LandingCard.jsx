@@ -3,7 +3,7 @@ export default function LandingCard({ mobile }) {
   const words = description.slice(0, 50);
   return (
     <div>
-      <div className="card card-side h-full bg-base-100 shadow-xl">
+      <div className="card flex-wrap min-[320px]:flex-nowrap pt-4 justify-center min-[320px]:p-2 card-side h-full bg-base-100 shadow-xl">
         <figure>
           <img
             src={mobile?.image}

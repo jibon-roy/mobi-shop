@@ -158,8 +158,8 @@ export default function Card({ mobile }) {
           <button className="btn btn-sm w-full btn-secondary">Details</button>
         </Link>
         <div className="card-actions justify-between mt-4">
-          <div className="flex space-x-2">
-            <div className="flex items-center gap-2">
+          <div className="flex items-center space-x-2">
+            <div className="flex flex-wrap justify-center min-[300px]:flex-nowrap items-center gap-2">
               <button
                 className="btn btn-sm btn-secondary"
                 onClick={decrementQuantity}
