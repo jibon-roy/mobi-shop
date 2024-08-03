@@ -7,7 +7,8 @@ import WhyChooseUs from "./WhyChooseUs";
 import Statistics from "./Statistics";
 
 export default function Home() {
-  const data = useLoaderData()
+  const data = useLoaderData();
+
   return (
     <>
       <section>
