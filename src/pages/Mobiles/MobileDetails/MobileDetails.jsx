@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./mobileDetail.css";
+import Button from "../../../components/Button";
+import Ratings from "../../../components/Ratings";
 
 const MobileDetails = () => {
   const mobile = useLoaderData();
@@ -63,12 +65,12 @@ const MobileDetails = () => {
           </div>
           <div className="flex flex-col justify-center items-center">
             <div className="flex items-center space-x-2 mt-4">
-              <button
-                className="btn btn-sm btn-secondary"
+              <Button
+                className="btn-secondary btn-sm"
                 onClick={decrementQuantity}
               >
                 -
-              </button>
+              </Button>
               <input
                 type="number"
                 value={quantity}
@@ -77,12 +79,12 @@ const MobileDetails = () => {
                 readOnly
                 className="max-w-32 text-center border rounded"
               />
-              <button
-                className="btn btn-sm btn-secondary"
+              <Button
+                className="btn-secondary btn-sm"
                 onClick={incrementQuantity}
               >
                 +
-              </button>
+              </Button>
             </div>
             <div className="card-actions justify-between mt-4">
               <button className="btn btn-md btn-primary" onClick={addToCart}>
@@ -104,108 +106,11 @@ const MobileDetails = () => {
             <strong>Category:</strong> {mobile.category}
           </p>
           <div className="flex items-center mb-4">
-            <div className="flex flex-wrap gap-2 ">
-              <div className="rating cursor-default rating-md rating-half">
-                {/* Rating inputs */}
-                <input
-                  type="radio"
-                  name={`rating-${mobile.id}`}
-                  className="rating-hidden"
-                />
-                <input
-                  type="radio"
-                  name={`rating-${mobile.id}`}
-                  className="mask mask-star cursor-default mask-half-1 bg-orange-400"
-                  disabled
-                  checked={
-                    mobile.ratings >= 0 && mobile.ratings <= 0.5 ? true : false
-                  }
-                />
-                <input
-                  type="radio"
-                  name={`rating-${mobile.id}`}
-                  className="mask mask-star cursor-default mask-half-2 bg-orange-400"
-                  disabled
-                  checked={
-                    mobile.ratings >= 0.5 && mobile.ratings <= 1 ? true : false
-                  }
-                />
-                <input
-                  type="radio"
-                  name={`rating-${mobile.id}`}
-                  className="mask mask-star cursor-default mask-half-1 bg-orange-400"
-                  disabled
-                  checked={
-                    mobile.ratings >= 1 && mobile.ratings <= 1.5 ? true : false
-                  }
-                />
-                <input
-                  type="radio"
-                  name={`rating-${mobile.id}`}
-                  className="mask mask-star cursor-default mask-half-2 bg-orange-400"
-                  disabled
-                  checked={
-                    mobile.ratings >= 1.5 && mobile.ratings <= 2 ? true : false
-                  }
-                />
-                <input
-                  type="radio"
-                  name={`rating-${mobile.id}`}
-                  className="mask mask-star cursor-default mask-half-1 bg-orange-400"
-                  disabled
-                  checked={
-                    mobile.ratings >= 2 && mobile.ratings <= 2.5 ? true : false
-                  }
-                />
-                <input
-                  type="radio"
-                  name={`rating-${mobile.id}`}
-                  className="mask mask-star cursor-default mask-half-2 bg-orange-400"
-                  disabled
-                  checked={
-                    mobile.ratings > 2.5 && mobile.ratings <= 3 ? true : false
-                  }
-                />
-                <input
-                  type="radio"
-                  name={`rating-${mobile.id}`}
-                  className="mask mask-star cursor-default mask-half-1 bg-orange-400"
-                  disabled
-                  checked={
-                    mobile.ratings > 3 && mobile.ratings <= 3.5 ? true : false
-                  }
-                />
-                <input
-                  type="radio"
-                  name={`rating-${mobile.id}`}
-                  className="mask mask-star cursor-default mask-half-2 bg-orange-400"
-                  disabled
-                  checked={
-                    mobile.ratings > 3.5 && mobile.ratings <= 4 ? true : false
-                  }
-                />
-                <input
-                  type="radio"
-                  name={`rating-${mobile.id}`}
-                  className="mask mask-star cursor-default mask-half-1 bg-orange-400"
-                  disabled
-                  checked={
-                    mobile.ratings > 4 && mobile.ratings <= 4.5 ? true : false
-                  }
-                />
-                <input
-                  type="radio"
-                  name={`rating-${mobile.id}`}
-                  className="mask mask-star cursor-default mask-half-2 bg-orange-400"
-                  disabled
-                  checked={
-                    mobile.ratings > 4.5 && mobile.ratings <= 5 ? true : false
-                  }
-                />
-              </div>
+            <div className="flex flex-wrap gap-2 items-center">
+              <Ratings mobile={mobile} />
             </div>
             <br />
-            <div className="text-orange-400 ml-2 font-bold">
+            <div className="text-orange-400 ml-2 text-lg font-semibold">
               {mobile.ratings}
             </div>
             <span className="text-gray-600 ml-2">
