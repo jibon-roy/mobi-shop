@@ -3,6 +3,7 @@ import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import CartIcon from "./CartIcon";
 import { useEffect, useState } from "react";
+import SearchBar from "./SearchBar";
 
 export default function Navbar() {
   const [cartNumber, setCartNumber] = useState(0);
@@ -84,11 +85,11 @@ export default function Navbar() {
           </div>
           <div className="mx-2 flex-1 px-2">
             {/* Navbar Logo */}
-            <div className="hover:scale-[1.03] cursor-pointer transition-all">
-              <Link to={"/"}>
+            <div className="flex gap-4 items-center cursor-pointer ">
+              <Link to={"/"} className="hover:scale-[1.03] transition-all">
                 <Logo />
               </Link>
-              <input className="input input-sm" />
+              <SearchBar />
             </div>
           </div>
           <div className="hidden flex-none lg:block">
