@@ -151,12 +151,12 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <div className="noLink w-full">
+            <div className="noLink z-50 w-full">
               <SearchBar id="navSearch2" />
             </div>
           </li>
           {navItems.map((nav) => (
-            <li className="z-50 my-1" key={nav.id}>
+            <li className="z-40 my-1" key={nav.id}>
               <NavLink
                 className={"navLink hover:bg-transparent hover:text-[#ef00d3]"}
                 to={nav.route}
