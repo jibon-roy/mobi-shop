@@ -11,7 +11,6 @@ export default function Mobiles() {
   const isSearched = location.search.split("?")[1].includes("search");
   const [searchParams, setSearchParams] = useSearchParams();
   const searchpar = searchParams.get("search");
-  console.log(searchpar.length);
   const data = useLoaderData();
 
   const [searchKey, setSearchKey] = useState(searchParams.get("search") || "");
