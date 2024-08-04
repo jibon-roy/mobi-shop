@@ -78,7 +78,7 @@ export default function Mobiles() {
         <Heading heading={searchKey ? "Search Results" : "All Mobiles"}>
           {searchKey ? (
             <span>
-              Search results for: <strong>{searchKey}</strong>
+              Search results for: <strong>{searchMobile}</strong>
             </span>
           ) : (
             "View our mobile phone products."
