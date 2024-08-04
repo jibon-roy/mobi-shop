@@ -5,8 +5,9 @@ import Home from "../pages/Home/Home";
 import Mobiles from "../pages/Mobiles/Mobiles";
 import AboutUs from "../pages/AboutUs/AboutUs";
 import ContactUs from "../pages/Contact/Contact";
-import MobileDetails from "../pages/MobileDetails/MobileDetails";
+
 import Cart from "../pages/Cart/Cart";
+import MobileDetails from "../pages/Mobiles/MobileDetails/MobileDetails";
 
 // const localItems = localStorage.getItem("cartItems");
 // const localItemsJson = JSON.parse(localItems);
