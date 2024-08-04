@@ -25,10 +25,10 @@ export default function FAQ() {
           {/* <Lottie options={defaultOptions} height={400} width={400}></Lottie> */}
           <img
             src={imagebg}
-            className="max-w-md w-[80%] h-80 my-auto object-cover rounded-lg shadow-2xl"
+            className="max-w-md w-[80%] h-80 my-auto object-cover rounded-md shadow-2xl"
           />
           <div className="max-w-lg flex-1">
-            <div className="collapse collapse-plus mb-3 bg-base-200">
+            <div className="collapse collapse-arrow rounded-md mb-3 bg-base-200">
               <input type="radio" name="my-accordion-3" defaultChecked />
               <div className="collapse-title text-xl font-medium">
                 1. What types of mobile phones do you offer?
@@ -42,7 +42,7 @@ export default function FAQ() {
                 </p>
               </div>
             </div>
-            <div className="collapse collapse-plus mb-3 bg-base-200">
+            <div className="collapse collapse-arrow rounded-md mb-3 bg-base-200">
               <input type="radio" name="my-accordion-3" />
               <div className="collapse-title text-xl font-medium">
                 2. Do you provide any warranty on the mobile phones?
@@ -56,7 +56,7 @@ export default function FAQ() {
                 </p>
               </div>
             </div>
-            <div className="collapse collapse-plus mb-3 bg-base-200">
+            <div className="collapse collapse-arrow rounded-md mb-3 bg-base-200">
               <input type="radio" name="my-accordion-3" />
               <div className="collapse-title text-xl font-medium">
                 3. What payment methods do you accept?
@@ -70,7 +70,7 @@ export default function FAQ() {
                 </p>
               </div>
             </div>
-            <div className="collapse collapse-plus mb-3 bg-base-200">
+            <div className="collapse collapse-arrow rounded-md mb-3 bg-base-200">
               <input type="radio" name="my-accordion-3" />
               <div className="collapse-title text-xl font-medium">
                 4. Can I return or exchange a mobile phone if I am not

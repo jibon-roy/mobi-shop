@@ -88,6 +88,7 @@ export default function Navbar() {
               <Link to={"/"}>
                 <Logo />
               </Link>
+              <input className="input input-sm" />
             </div>
           </div>
           <div className="hidden flex-none lg:block">
