@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 
 export default function Mobiles() {
   const location = useLocation();
-  const isSearched = location.search.split("?")[1].includes("search");
+  const isSearched = location?.search.split("?")[1]?.includes("search");
   const [searchParams, setSearchParams] = useSearchParams();
   const searchpar = searchParams.get("search");
   const data = useLoaderData();
