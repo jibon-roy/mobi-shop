@@ -25,7 +25,9 @@ export default function MostReviw({ data }) {
       </div>
       <div className="text-center mt-16">
         <Link to={"/mobiles"}>
-          <button className="btn btn-secondary">See more {">"}</button>
+          <button className="btn rounded-sm btn-secondary">
+            See more {">"}
+          </button>
         </Link>
       </div>
     </div>
