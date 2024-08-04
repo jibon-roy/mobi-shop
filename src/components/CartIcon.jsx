@@ -4,9 +4,9 @@ const CartIcon = ({ cartValue }) => {
   return (
     <div className="relative flex items-center gap-2">
       <FaCartShopping className="" />
-      <span>My Cart</span>
+      <span className="lg:hidden">My Cart</span>
       {cartValue > 0 && (
-        <span className="absolute -top-3 -left-3 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+        <span className="absolute -top-4 -left-4 bg-red-500 text-white rounded-full text-xs w-4 h-4 flex items-center justify-center">
           {cartValue}
         </span>
       )}

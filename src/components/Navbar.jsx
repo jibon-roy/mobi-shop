@@ -4,8 +4,12 @@ import { Link } from "react-router-dom";
 import CartIcon from "./CartIcon";
 import { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
+import { useLocation } from "react-router-dom";
 
 export default function Navbar() {
+  const location = useLocation();
+  const isCartPath = location.pathname == "/cart";
+
   const [cartNumber, setCartNumber] = useState(0);
 
   const navItems = [
@@ -101,7 +105,7 @@ export default function Navbar() {
                 <li className="" key={nav.id}>
                   <NavLink
                     className={
-                      "navLink px-3 hover:bg-transparent hover:text-[#ef00d3]"
+                      "navLink px-3 max-h-8 hover:bg-transparent hover:text-[#ef00d3]"
                     }
                     to={nav.route}
                   >
@@ -110,14 +114,16 @@ export default function Navbar() {
                 </li>
               ))}
               <li className="">
-                <NavLink
-                  className={
-                    "navLink hover:bg-transparent hover:text-[#ef00d3]"
-                  }
+                <Link
+                  className={`${
+                    isCartPath
+                      ? "bg-primary-red hover:bg-primary-red text-white"
+                      : "bg-border text-black hover:text-white"
+                  } cartLink ml-1 w-8 h-8 p-0 flex justify-center rounded-md border-0  hover:bg-primary-red`}
                   to={"/cart"}
                 >
                   <CartIcon cartValue={cartNumber} />
-                </NavLink>
+                </Link>
               </li>
             </ul>
           </div>
@@ -138,8 +144,8 @@ export default function Navbar() {
             </div>
           </li>
           <li>
-            <div className="noLink">
-              <SearchBar />
+            <div className="noLink lg:hidden">
+              <SearchBar id="navSearch2" />
             </div>
           </li>
           {navItems.map((nav) => (
@@ -152,9 +158,9 @@ export default function Navbar() {
               </NavLink>
             </li>
           ))}
-          <li className="">
+          <li>
             <NavLink
-              className={"navLink hover:bg-transparent hover:text-[#ef00d3]"}
+              className={"noLink hover:bg-transparent hover:text-[#ef00d3]"}
               to={"/cart"}
             >
               <CartIcon cartValue={cartNumber} />

@@ -35,6 +35,15 @@
   background-color: transparent !important;
 }
 
+.cartLink:active,
+.cartLink:focus,
+.cartLink:focus-visible,
+.cartLink:focus-within,
+.cartLink:hover {
+  background-color: #ff00d3 !important;
+  color: white;
+}
+
 .navLinknavLink:active,
 .navLink:focus,
 .navLink:focus-visible,

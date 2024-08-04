@@ -1,10 +1,10 @@
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
-export default function SearchBar() {
+export default function SearchBar({ id }) {
   return (
     <div className="flex justify-center">
       <input
-        id="navSearch"
+        id={id ? id : "navSearch"}
         name="navSearch"
         autoComplete="search"
         type="text"
