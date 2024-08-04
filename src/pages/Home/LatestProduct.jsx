@@ -10,9 +10,7 @@ export default function LatestProduct({ data }) {
   return (
     <div className="w-full py-16 container bg-base-200">
       <div className="mb-16 flex justify-center">
-        <Heading heading={"Latest Products"}>
-          Our latest mobile phones are here.
-        </Heading>
+        <Heading heading={"Latest Products"}>Our latest mobile phones</Heading>
       </div>
       <div className="">
         <div className="grid grid-cols-1 gap-y-10 gap-x-4 justify-center  lg:grid-cols-3">

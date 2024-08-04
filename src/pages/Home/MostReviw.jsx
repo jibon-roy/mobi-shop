@@ -11,7 +11,7 @@ export default function MostReviw({ data }) {
     <div className="w-full my-16 ">
       <div className="mb-16 flex justify-center">
         <Heading heading={"Most Reviewed Mobiles"}>
-          Our most reviewed mobile phones are here.
+          Our most reviewed mobile phones
         </Heading>
       </div>
       <div className="container">

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function Card({ mobile }) {
   const [quantity, setQuantity] = useState(1); // Initialize the quantity state
@@ -30,10 +31,15 @@ export default function Card({ mobile }) {
 
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     window.dispatchEvent(new Event("updateCart"));
+    Swal.fire({
+      title: "Added to cart",
+      icon: "success",
+      confirmButtonColor: "#ff00d3",
+    });
   };
 
   return (
-    <div className="card mx-auto group h-full hover:scale-[0.98] transition-all bg-base-100 max-w-72 shadow-xl">
+    <div className="card mx-auto rounded-lg group h-full hover:scale-[0.98] transition-all bg-base-100 max-w-72 shadow-xl">
       <figure>
         <img
           src={mobile?.image}
@@ -155,15 +161,12 @@ export default function Card({ mobile }) {
         </div>
         <p>{words}...</p>
         <Link to={`/mobiles/${mobile?.id}`}>
-          <button className="btn btn-sm w-full btn-secondary">Details</button>
+          <button className="btn btn-sm w-full ">Details</button>
         </Link>
         <div className="card-actions justify-between mt-4">
           <div className="flex items-center space-x-2">
             <div className="flex flex-wrap justify-center min-[300px]:flex-nowrap items-center gap-2">
-              <button
-                className="btn btn-sm btn-secondary"
-                onClick={decrementQuantity}
-              >
+              <button className="btn btn-sm " onClick={decrementQuantity}>
                 -
               </button>
               <input
@@ -174,14 +177,11 @@ export default function Card({ mobile }) {
                 readOnly
                 className="w-full input input-xs input-bordered m-0 p-0 text-center border rounded"
               />
-              <button
-                className="btn btn-sm btn-secondary"
-                onClick={incrementQuantity}
-              >
+              <button className="btn btn-sm " onClick={incrementQuantity}>
                 +
               </button>
             </div>
-            <button className="btn btn-sm btn-primary" onClick={addToCart}>
+            <button className="btn btn-sm btn-secondary" onClick={addToCart}>
               Add to Cart
             </button>
           </div>
