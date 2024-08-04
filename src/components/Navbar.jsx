@@ -10,6 +10,7 @@ import Button from "./Button";
 export default function Navbar() {
   const location = useLocation();
   const isCartPath = location.pathname == "/cart";
+  const isMobiles = location.pathname == "/mobiles";
   const isSearched = location?.search.split("?")[1]?.includes("search");
 
   const [cartNumber, setCartNumber] = useState(0);
@@ -76,7 +77,9 @@ export default function Navbar() {
               </Link>
               <div
                 className={
-                  isSearched ? "hidden" : "noLink z-50 hidden lg:block"
+                  isSearched || isMobiles
+                    ? "hidden"
+                    : "noLink z-50 hidden lg:block"
                 }
               >
                 <SearchBar />
@@ -156,7 +159,11 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <div className={isSearched ? "hidden" : "noLink z-50 w-full"}>
+            <div
+              className={
+                isSearched || isMobiles ? "hidden" : "noLink z-50 w-full"
+              }
+            >
               <SearchBar id="navSearch2" />
             </div>
           </li>
