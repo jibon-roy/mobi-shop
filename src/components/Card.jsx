@@ -161,12 +161,15 @@ export default function Card({ mobile }) {
         </div>
         <p>{words}...</p>
         <Link to={`/mobiles/${mobile?.id}`}>
-          <button className="btn btn-sm w-full ">Details</button>
+          <button className="btn btn-sm rounded-sm  w-full ">Details</button>
         </Link>
         <div className="card-actions justify-between mt-4">
           <div className="flex items-center space-x-2">
             <div className="flex flex-wrap justify-center min-[300px]:flex-nowrap items-center gap-2">
-              <button className="btn btn-sm " onClick={decrementQuantity}>
+              <button
+                className="btn btn-sm rounded-sm "
+                onClick={decrementQuantity}
+              >
                 -
               </button>
               <input
@@ -177,11 +180,17 @@ export default function Card({ mobile }) {
                 readOnly
                 className="w-full input input-xs input-bordered m-0 p-0 text-center border rounded"
               />
-              <button className="btn btn-sm " onClick={incrementQuantity}>
+              <button
+                className="btn btn-sm rounded-sm "
+                onClick={incrementQuantity}
+              >
                 +
               </button>
             </div>
-            <button className="btn btn-sm btn-secondary" onClick={addToCart}>
+            <button
+              className="btn btn-sm rounded-sm btn-secondary"
+              onClick={addToCart}
+            >
               Add to Cart
             </button>
           </div>
