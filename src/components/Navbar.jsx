@@ -151,7 +151,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <div className="noLink lg:hidden">
+            <div className="noLink w-full">
               <SearchBar id="navSearch2" />
             </div>
           </li>
