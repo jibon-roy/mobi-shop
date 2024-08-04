@@ -40,7 +40,7 @@ export default function SearchBar({ id }) {
   };
 
   return (
-    <div className="relative z-50 flex w-full justify-center">
+    <div className="relative z-50 flex w-full group justify-center">
       <input
         id={id ? id : "navSearch"}
         name="navSearch"
@@ -55,7 +55,11 @@ export default function SearchBar({ id }) {
           <FaMagnifyingGlass />
         </button>
       </Link>
-      <div className="lg:w-96 bg-white z-50 absolute translate-y-[102%] rounded-md bottom-0 left-0 max-h-80 overflow-auto">
+      <div
+        className={
+          "lg:w-96 hidden group-hover:block group-focus-within:block group-focus:block group-active:block group-focus-visible:block bg-white z-50 absolute translate-y-[102%] rounded-md bottom-0 left-0 max-h-80 overflow-auto"
+        }
+      >
         {finalData.map((mobile, index) => (
           <Link
             to={`/mobiles/${mobile.id}`}
