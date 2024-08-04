@@ -61,12 +61,23 @@ export default function Navbar() {
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content bg-base-300 flex flex-col">
         {/* Navbar */}
-        <div className="navbar container">
-          <div className="flex-none lg:hidden">
+        <div className="navbar container justify-between">
+          <div className="mx-2 flex-1 px-2">
+            {/* Navbar Logo */}
+            <div className="flex gap-4 items-center cursor-pointer ">
+              <Link to={"/"} className="hover:scale-[1.03] transition-all">
+                <Logo />
+              </Link>
+              <div className="hidden lg:block">
+                <SearchBar />
+              </div>
+            </div>
+          </div>
+          <div className="flex-none  lg:hidden">
             <label
               htmlFor="my-drawer-3"
               aria-label="open sidebar"
-              className="btn btn-square btn-ghost"
+              className="btn btn-square bg-transparent border-border border-none rounded-md hover:bg-border/90"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -83,23 +94,14 @@ export default function Navbar() {
               </svg>
             </label>
           </div>
-          <div className="mx-2 flex-1 px-2">
-            {/* Navbar Logo */}
-            <div className="flex gap-4 items-center cursor-pointer ">
-              <Link to={"/"} className="hover:scale-[1.03] transition-all">
-                <Logo />
-              </Link>
-              <SearchBar />
-            </div>
-          </div>
           <div className="hidden flex-none lg:block">
             <ul className="menu font-semibold menu-horizontal">
               {/* Navbar menu content here */}
               {navItems.map((nav) => (
-                <li className="mx-1 " key={nav.id}>
+                <li className="" key={nav.id}>
                   <NavLink
                     className={
-                      "navLink hover:bg-transparent hover:text-[#ef00d3]"
+                      "navLink px-3 hover:bg-transparent hover:text-[#ef00d3]"
                     }
                     to={nav.route}
                   >
@@ -131,7 +133,14 @@ export default function Navbar() {
         <ul className="menu z-50 w-[70%] sm:w-[40%] font-semibold bg-base-200 min-h-full p-2">
           {/* Sidebar content here */}
           <li>
-            <Logo />
+            <div className="noLink">
+              <Logo />
+            </div>
+          </li>
+          <li>
+            <div className="noLink">
+              <SearchBar />
+            </div>
           </li>
           {navItems.map((nav) => (
             <li className="z-50 my-1" key={nav.id}>

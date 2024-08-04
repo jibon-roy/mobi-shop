@@ -7,6 +7,7 @@ export default {
     extend: {
       colors: {
         "primary-red": "#ff00d3",
+        border: "#D2D4D7",
       },
       container: {
         center: "true",

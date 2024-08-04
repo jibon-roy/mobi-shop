@@ -27,6 +27,14 @@
   background-color: #ef00d3 !important;
 }
 
+.noLink:active,
+.noLink:focus,
+.noLink:focus-visible,
+.noLink:focus-within,
+.noLink:hover {
+  background-color: transparent !important;
+}
+
 .navLinknavLink:active,
 .navLink:focus,
 .navLink:focus-visible,
