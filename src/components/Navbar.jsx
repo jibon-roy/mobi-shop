@@ -10,6 +10,7 @@ import Button from "./Button";
 export default function Navbar() {
   const location = useLocation();
   const isCartPath = location.pathname == "/cart";
+  const isSearched = location?.search.split("?")[1]?.includes("search");
 
   const [cartNumber, setCartNumber] = useState(0);
 
@@ -73,7 +74,11 @@ export default function Navbar() {
               <Link to={"/"} className="hover:scale-[1.03] transition-all">
                 <Logo />
               </Link>
-              <div className="hidden lg:block">
+              <div
+                className={
+                  isSearched ? "hidden" : "noLink z-50 hidden lg:block"
+                }
+              >
                 <SearchBar />
               </div>
             </div>
@@ -151,7 +156,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <div className="noLink z-50 w-full">
+            <div className={isSearched ? "hidden" : "noLink z-50 w-full"}>
               <SearchBar id="navSearch2" />
             </div>
           </li>
