@@ -60,11 +60,11 @@ export default function CartCard({ mobile, fetchData }) {
 
   return (
     <div>
-      <div className="card card-side group h-full bg-base-100 shadow-xl">
+      <div className="card card-side h-full bg-base-100 shadow-xl">
         <figure>
           <img
             src={mobile?.image}
-            className="w-[80%] transform transition duration-300 group-hover:scale-x-[-1]"
+            className="w-[80%] transform transition duration-300 "
             alt="Mobile"
           />
         </figure>
