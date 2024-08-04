@@ -4,39 +4,50 @@ import Swal from "sweetalert2";
 import Ratings from "./Ratings";
 
 export default function Card({ mobile }) {
-  const [quantity, setQuantity] = useState(1); // Initialize the quantity state
+  const [quantity, setQuantity] = useState(mobile?.inStock <= 0 ? 0 : 1);
 
   const description = mobile?.description;
   const words = description.slice(0, 50);
 
-  // Handle incrementing the quantity
   const incrementQuantity = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+    if (mobile?.inStock <= quantity) {
+      Swal.fire({
+        title: "Opps out of stock!",
+        icon: "error",
+        confirmButtonColor: "#ff00d3",
+      });
+    } else setQuantity((prevQuantity) => prevQuantity + 1);
   };
 
-  // Handle decrementing the quantity
   const decrementQuantity = () => {
     setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
   };
 
-  // Handle adding to cart and storing the mobile ID and quantity in local storage
   const addToCart = () => {
-    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    const itemIndex = cartItems.findIndex((item) => item.id === mobile.id);
-
-    if (itemIndex >= 0) {
-      cartItems[itemIndex].quantity += quantity;
+    if (mobile?.inStock <= 0) {
+      Swal.fire({
+        title: "Opps out of stock!",
+        icon: "error",
+        confirmButtonColor: "#ff00d3",
+      });
     } else {
-      cartItems.push({ id: mobile.id, quantity });
-    }
+      const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+      const itemIndex = cartItems.findIndex((item) => item.id === mobile.id);
 
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    window.dispatchEvent(new Event("updateCart"));
-    Swal.fire({
-      title: "Added to cart",
-      icon: "success",
-      confirmButtonColor: "#ff00d3",
-    });
+      if (itemIndex >= 0) {
+        cartItems[itemIndex].quantity += quantity;
+      } else {
+        cartItems.push({ id: mobile.id, quantity });
+      }
+
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      window.dispatchEvent(new Event("updateCart"));
+      Swal.fire({
+        title: "Added to cart",
+        icon: "success",
+        confirmButtonColor: "#ff00d3",
+      });
+    }
   };
 
   return (

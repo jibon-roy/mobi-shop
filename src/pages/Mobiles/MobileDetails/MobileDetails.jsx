@@ -10,8 +10,6 @@ const MobileDetails = () => {
   const mobile = useLoaderData();
   const [quantity, setQuantity] = useState(mobile?.inStock <= 0 ? 0 : 1);
 
-  console.log(mobile.inStock);
-
   if (!mobile) {
     return <p className="text-center text-red-500">Mobile not found.</p>;
   }
@@ -49,6 +47,11 @@ const MobileDetails = () => {
 
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
       window.dispatchEvent(new Event("updateCart"));
+      Swal.fire({
+        title: "Added to cart",
+        icon: "success",
+        confirmButtonColor: "#ff00d3",
+      });
     }
   };
 
