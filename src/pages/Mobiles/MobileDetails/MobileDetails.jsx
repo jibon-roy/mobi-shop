@@ -4,38 +4,52 @@ import { Link } from "react-router-dom";
 import "./mobileDetail.css";
 import Button from "../../../components/Button";
 import Ratings from "../../../components/Ratings";
+import Swal from "sweetalert2";
 
 const MobileDetails = () => {
   const mobile = useLoaderData();
-  const [quantity, setQuantity] = useState(1); // Initialize the quantity state
+  const [quantity, setQuantity] = useState(mobile?.inStock <= 0 ? 0 : 1);
+
+  console.log(mobile.inStock);
 
   if (!mobile) {
     return <p className="text-center text-red-500">Mobile not found.</p>;
   }
 
-  // Handle incrementing the quantity
   const incrementQuantity = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+    if (mobile?.inStock <= quantity) {
+      Swal.fire({
+        title: "Opps out of stock!",
+        icon: "error",
+        confirmButtonColor: "#ff00d3",
+      });
+    } else setQuantity((prevQuantity) => prevQuantity + 1);
   };
 
-  // Handle decrementing the quantity
   const decrementQuantity = () => {
     setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
   };
 
-  // Handle adding to cart and storing the mobile ID and quantity in local storage
   const addToCart = () => {
-    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    const itemIndex = cartItems.findIndex((item) => item.id === mobile.id);
-
-    if (itemIndex >= 0) {
-      cartItems[itemIndex].quantity += quantity;
+    if (mobile?.inStock <= 0) {
+      Swal.fire({
+        title: "Opps out of stock!",
+        icon: "error",
+        confirmButtonColor: "#ff00d3",
+      });
     } else {
-      cartItems.push({ id: mobile.id, quantity });
-    }
+      const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+      const itemIndex = cartItems.findIndex((item) => item.id === mobile.id);
 
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    window.dispatchEvent(new Event("updateCart"));
+      if (itemIndex >= 0) {
+        cartItems[itemIndex].quantity += quantity;
+      } else {
+        cartItems.push({ id: mobile.id, quantity });
+      }
+
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      window.dispatchEvent(new Event("updateCart"));
+    }
   };
 
   return (
@@ -73,7 +87,7 @@ const MobileDetails = () => {
               </Button>
               <input
                 type="number"
-                value={quantity}
+                value={mobile.inStock == 0 ? 0 : quantity}
                 name={`mobile-${mobile.id}`}
                 autoComplete="number"
                 readOnly
