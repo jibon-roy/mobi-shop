@@ -55,7 +55,15 @@ export default function Mobiles() {
       setFilteredMobiles(priceFilter);
       setCurrentPage(0);
     }
-  }, [data, priceFilt, priceRange, searchBrand, searchMobile, searchParams]);
+  }, [
+    data,
+    isSearched,
+    priceFilt,
+    priceRange,
+    searchBrand,
+    searchMobile,
+    searchParams,
+  ]);
 
   useEffect(() => {
     if (searchKey !== searchMobile) {
