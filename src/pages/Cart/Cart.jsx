@@ -6,27 +6,31 @@ export default function Cart() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  async function fetchCartData() {
+    const localItems = localStorage.getItem("cartItems");
+    const localItemsJson = JSON.parse(localItems) || [];
+
+    const response = await fetch("/phones.json");
+    const mobiles = await response.json();
+
+    const filteredMobiles = mobiles.filter((mobile) =>
+      localItemsJson.some((item) => item.id === mobile.id)
+    );
+
+    setData(filteredMobiles);
+    setLoading(false);
+  }
+
   useEffect(() => {
-    async function fetchCartData() {
-      const localItems = localStorage.getItem("cartItems");
-      const localItemsJson = JSON.parse(localItems) || [];
-
-      const response = await fetch("/phones.json");
-      const mobiles = await response.json();
-
-      const filteredMobiles = mobiles.filter((mobile) =>
-        localItemsJson.some((item) => item.id === mobile.id)
-      );
-
-      setData(filteredMobiles);
-      setLoading(false);
-    }
-
     fetchCartData();
   }, []);
 
   if (loading) {
-    return <div className="flex justify-center">Loading...</div>;
+    return (
+      <div className="flex justify-center items-center min-h-80">
+        <div className="loading loading-dots"></div>
+      </div>
+    );
   }
 
   return (
@@ -40,7 +44,7 @@ export default function Cart() {
         ) : (
           data.map((mobile) => (
             <div className="my-4 mx-auto max-w-2xl" key={mobile.id}>
-              <CartCard mobile={mobile} />
+              <CartCard fetchData={fetchCartData} mobile={mobile} />
             </div>
           ))
         )}

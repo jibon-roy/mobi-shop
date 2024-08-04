@@ -3,14 +3,15 @@ import { Link } from "react-router-dom";
 import Ratings from "./Ratings";
 import Swal from "sweetalert2";
 
-export default function CartCard({ mobile }) {
-  const [quantity, setQuantity] = useState(1); // Default quantity
+export default function CartCard({ mobile, fetchData }) {
+  const [quantity, setQuantity] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Initialize quantity from localStorage
     const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     const item = cartItems.find((item) => item.id === mobile.id);
     if (item) setQuantity(item.quantity);
+    setLoading(false);
   }, [mobile.id]);
 
   const updateLocalStorage = (updatedItems) => {
@@ -21,7 +22,8 @@ export default function CartCard({ mobile }) {
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     cartItems = cartItems.filter((item) => item.id !== mobile.id);
     updateLocalStorage(cartItems);
-    window.location.reload();
+    // window.location.reload();
+    fetchData();
   };
 
   const handleQuantityChange = (change) => {
@@ -47,6 +49,14 @@ export default function CartCard({ mobile }) {
 
     updateLocalStorage(cartItems);
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center">
+        <div className="loading loading-dots"></div>
+      </div>
+    );
+  }
 
   return (
     <div>
