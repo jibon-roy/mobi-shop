@@ -1,7 +1,18 @@
+// import Lottie from "react-lottie";
 import imagebg from "../../assets/faq-bg.jpg";
 import Heading from "../../components/Heading";
+// import animationData from "../../assets/faq.json";
 
 export default function FAQ() {
+  // const defaultOptions = {
+  //   loop: true,
+  //   autoplay: true,
+  //   animationData: animationData,
+  //   rendererSettings: {
+  //     preserveAspectRatio: "xMidYMid slice",
+  //   },
+  // };
+
   return (
     <div>
       <div className="container py-20 pb-28">
@@ -11,6 +22,7 @@ export default function FAQ() {
           </Heading>
         </div>
         <div className="flex justify-evenly items-center gap-10 flex-col lg:flex-row-reverse">
+          {/* <Lottie options={defaultOptions} height={400} width={400}></Lottie> */}
           <img
             src={imagebg}
             className="max-w-md w-[80%] h-80 my-auto object-cover rounded-lg shadow-2xl"

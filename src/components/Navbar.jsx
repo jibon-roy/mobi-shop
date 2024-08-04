@@ -94,14 +94,24 @@ export default function Navbar() {
             <ul className="menu font-semibold menu-horizontal">
               {/* Navbar menu content here */}
               {navItems.map((nav) => (
-                <li className="mx-1" key={nav.id}>
-                  <NavLink className={"navLink"} to={nav.route}>
+                <li className="mx-1 " key={nav.id}>
+                  <NavLink
+                    className={
+                      "navLink hover:bg-transparent hover:text-[#ef00d3]"
+                    }
+                    to={nav.route}
+                  >
                     {nav.name}
                   </NavLink>
                 </li>
               ))}
               <li className="">
-                <NavLink className={"navLink"} to={"/cart"}>
+                <NavLink
+                  className={
+                    "navLink hover:bg-transparent hover:text-[#ef00d3]"
+                  }
+                  to={"/cart"}
+                >
                   <CartIcon cartValue={cartNumber} />
                 </NavLink>
               </li>
@@ -123,13 +133,19 @@ export default function Navbar() {
           </li>
           {navItems.map((nav) => (
             <li className="z-50 my-1" key={nav.id}>
-              <NavLink className={"navLink"} to={nav.route}>
+              <NavLink
+                className={"navLink hover:bg-transparent hover:text-[#ef00d3]"}
+                to={nav.route}
+              >
                 {nav.name}
               </NavLink>
             </li>
           ))}
           <li className="">
-            <NavLink className={"navLink"} to={"/cart"}>
+            <NavLink
+              className={"navLink hover:bg-transparent hover:text-[#ef00d3]"}
+              to={"/cart"}
+            >
               <CartIcon cartValue={cartNumber} />
             </NavLink>
           </li>
