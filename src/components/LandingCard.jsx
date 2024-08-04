@@ -13,7 +13,7 @@ export default function LandingCard({ mobile }) {
             alt="Mobile"
           />
         </figure>
-        <div className="card-body p-5">
+        <div className="card-body p-3">
           <div className="flex justify-between">
             <h2 className="card-title text-base sm:text-md cursor-pointer group-hover:text-primary-red">
               {mobile.name}
