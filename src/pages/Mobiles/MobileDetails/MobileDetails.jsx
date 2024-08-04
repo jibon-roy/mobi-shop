@@ -103,10 +103,13 @@ const MobileDetails = () => {
                 +
               </Button>
             </div>
-            <div className="card-actions justify-between mt-4">
-              <button className="btn btn-md btn-primary" onClick={addToCart}>
+            <div className="card-actions justify-center mt-4">
+              <Button className="btn-md btn-secondary" onClick={addToCart}>
                 Add to Cart
-              </button>
+              </Button>
+              <Button className="btn-md btn-primary" onClick={addToCart}>
+                Order Now
+              </Button>
             </div>
           </div>
         </div>
