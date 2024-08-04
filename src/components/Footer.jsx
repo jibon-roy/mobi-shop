@@ -11,6 +11,7 @@ export default function Footer() {
             <br />
             Providing reliable mobile online store since 1992
           </p>
+          <p>© 2024 Mobi Shop | All Rights Reserved</p>
         </aside>
         <nav>
           <h6 className="footer-title">Services</h6>
