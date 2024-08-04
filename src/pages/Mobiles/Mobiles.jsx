@@ -3,19 +3,21 @@ import Heading from "../../components/Heading";
 import { useState, useEffect } from "react";
 import Card from "../../components/Card";
 import ReactPaginate from "react-paginate";
-// import { useLocation } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function Mobiles() {
-  // const location = useLocation();
-  const [searchParams] = useSearchParams();
-
+  const location = useLocation();
+  const isSearched = location.search.split("?")[1].includes("search");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchpar = searchParams.get("search");
+  console.log(searchpar.length);
   const data = useLoaderData();
 
-  const [searchKey, setSearchKey] = useState("");
+  const [searchKey, setSearchKey] = useState(searchParams.get("search") || "");
   const [err, setErr] = useState(false);
   const [priceRange, setPriceRange] = useState(1700);
-  const [searchMobile, setSearchMobile] = useState(searchKey ? searchKey : "");
+  const [searchMobile, setSearchMobile] = useState(searchKey);
   const [searchBrand, setSearchBrand] = useState("");
   const [priceFilt, setPrice] = useState("default");
   const [filteredMobiles, setFilteredMobiles] = useState([]);
@@ -26,49 +28,57 @@ export default function Mobiles() {
   useEffect(() => {
     if (data.length <= 0) {
       setErr(true);
-    }
-    const searchpar = searchParams.get("search");
-    setSearchKey(searchpar || "");
-    setSearchMobile(searchpar);
-    const search = data?.filter((a) =>
-      a?.name.toLowerCase()?.includes(searchMobile.toLowerCase())
-    );
-    const filterRange = search.filter((a) => a?.price <= priceRange);
-    const filterBrand = filterRange.filter((a) =>
-      a?.brand.toLowerCase().includes(searchBrand.toLowerCase())
-    );
-    const priceFilter = filterBrand.sort((a, b) =>
-      priceFilt === "LowToHigh"
-        ? a?.price - b?.price
-        : priceFilt === "HighToLow"
-        ? b?.price - a?.price
-        : a?.price + b?.price
-    );
+    } else {
+      const searchpar = searchParams.get("search");
+      setSearchKey(searchpar || "");
+      setSearchMobile(searchpar || "");
 
-    setFilteredMobiles(priceFilter);
-    setCurrentPage(0);
-  }, [
-    data,
-    priceFilt,
-    priceRange,
-    searchBrand,
-    searchKey,
-    searchMobile,
-    searchParams,
-  ]);
+      const search = data?.filter((a) => {
+        if (isSearched && searchMobile) {
+          return a?.name.toLowerCase()?.includes(searchMobile.toLowerCase());
+        } else {
+          return a?.name.toLowerCase()?.includes(searchMobile.toLowerCase());
+        }
+      });
+      const filterRange = search.filter((a) => a?.price <= priceRange);
+      const filterBrand = filterRange.filter((a) =>
+        a?.brand.toLowerCase().includes(searchBrand.toLowerCase())
+      );
+      const priceFilter = filterBrand.sort((a, b) =>
+        priceFilt === "LowToHigh"
+          ? a?.price - b?.price
+          : priceFilt === "HighToLow"
+          ? b?.price - a?.price
+          : 0
+      );
+
+      setFilteredMobiles(priceFilter);
+      setCurrentPage(0);
+    }
+  }, [data, priceFilt, priceRange, searchBrand, searchMobile, searchParams]);
+
+  useEffect(() => {
+    if (searchKey !== searchMobile) {
+      setSearchMobile(searchKey);
+    }
+  }, [searchKey, searchMobile]);
 
   const handleSearchMobile = (e) => {
     const value = e.target.value;
     setSearchMobile(value);
+    setSearchParams({ search: value });
   };
+
   const setRange = (e) => {
     const value = e.target.value;
     setPriceRange(value);
   };
+
   const handlePrice = (e) => {
     const value = e.target.value;
     setPrice(value);
   };
+
   const handleBrand = (e) => {
     const value = e.target.value;
     setSearchBrand(value);
@@ -85,8 +95,8 @@ export default function Mobiles() {
   return (
     <section className="container">
       <div className="flex justify-center my-10">
-        <Heading heading={searchKey ? "Search Results" : "All Mobiles"}>
-          {searchKey ? (
+        <Heading heading={isSearched ? "Search Results" : "All Mobiles"}>
+          {isSearched ? (
             <span>
               Search results for: <strong>{searchKey}</strong>
             </span>
@@ -96,7 +106,7 @@ export default function Mobiles() {
         </Heading>
       </div>
       <div className="flex flex-col lg:flex-row my-16 gap-4">
-        <div className="card mx-auto mb-16 bg-base-100  max-w-96 h-fit shadow-xl">
+        <div className="card mx-auto mb-16 bg-base-100 max-w-96 h-fit shadow-xl">
           <div className="card-body">
             <h2 className="card-title font-semibold justify-center">
               Search or filter
@@ -109,7 +119,7 @@ export default function Mobiles() {
                 id="searchMobile"
                 autoComplete="name"
                 className="grow"
-                defaultValue={searchKey ? searchKey : ""}
+                value={searchMobile}
                 placeholder="Search Keyword"
                 onChange={handleSearchMobile}
               />
@@ -145,7 +155,7 @@ export default function Mobiles() {
               type="range"
               min={0}
               max="2000"
-              defaultValue={priceRange}
+              value={priceRange}
               onChange={setRange}
               className="range range-xs range-secondary"
             />
@@ -181,19 +191,19 @@ export default function Mobiles() {
         ) : (
           <div className="flex flex-1 flex-col items-center">
             <div className="grid grid-cols-1 gap-y-10 mx-auto gap-x-4 justify-center md:grid-cols-2 xl:grid-cols-3">
-              {currentItems.length <= 0 ? (
+              {currentItems.length <= 0 || searchpar == "" ? (
                 <div className="flex flex-1 justify-center">
                   Data not found.
                 </div>
               ) : (
                 currentItems.map((mobile) => (
                   <div key={mobile.id}>
-                    <Card mobile={mobile}></Card>
+                    <Card mobile={mobile} />
                   </div>
                 ))
               )}
             </div>
-            {currentItems?.length > 0 && (
+            {currentItems?.length > 0 || searchpar?.length > 0 ? (
               <div className="my-10">
                 <ReactPaginate
                   previousLabel={"Previous"}
@@ -212,6 +222,8 @@ export default function Mobiles() {
                   disabledClassName={"text-gray-400"}
                 />
               </div>
+            ) : (
+              ""
             )}
           </div>
         )}
