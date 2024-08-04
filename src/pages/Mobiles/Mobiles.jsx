@@ -10,9 +10,9 @@ export default function Mobiles() {
   // const location = useLocation();
   const [searchParams] = useSearchParams();
 
-  const searchKey = searchParams.get("search");
   const data = useLoaderData();
 
+  const [searchKey, setSearchKey] = useState("");
   const [err, setErr] = useState(false);
   const [priceRange, setPriceRange] = useState(1700);
   const [searchMobile, setSearchMobile] = useState(searchKey ? searchKey : "");
@@ -27,7 +27,9 @@ export default function Mobiles() {
     if (data.length <= 0) {
       setErr(true);
     }
-
+    const searchpar = searchParams.get("search");
+    setSearchKey(searchpar || "");
+    setSearchMobile(searchpar);
     const search = data?.filter((a) =>
       a?.name.toLowerCase()?.includes(searchMobile.toLowerCase())
     );
@@ -45,7 +47,15 @@ export default function Mobiles() {
 
     setFilteredMobiles(priceFilter);
     setCurrentPage(0);
-  }, [data, priceFilt, priceRange, searchBrand, searchMobile]);
+  }, [
+    data,
+    priceFilt,
+    priceRange,
+    searchBrand,
+    searchKey,
+    searchMobile,
+    searchParams,
+  ]);
 
   const handleSearchMobile = (e) => {
     const value = e.target.value;
