@@ -5,6 +5,7 @@ import CartIcon from "./CartIcon";
 import { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import { useLocation } from "react-router-dom";
+import Button from "./Button";
 
 export default function Navbar() {
   const location = useLocation();
@@ -102,7 +103,7 @@ export default function Navbar() {
             <ul className="menu font-semibold menu-horizontal">
               {/* Navbar menu content here */}
               {navItems.map((nav) => (
-                <li className="" key={nav.id}>
+                <li key={nav.id}>
                   <NavLink
                     className={
                       "navLink px-3 max-h-8 hover:bg-transparent hover:text-[#ef00d3]"
@@ -113,6 +114,12 @@ export default function Navbar() {
                   </NavLink>
                 </li>
               ))}
+              <li>
+                <div className="noLink h-8 flex ">
+                  <Button className={"btn-sm"}>Login</Button>
+                  <Button className={"btn-sm btn-secondary"}>Sign Up</Button>
+                </div>
+              </li>
               <li className="">
                 <Link
                   className={`${
@@ -139,9 +146,9 @@ export default function Navbar() {
         <ul className="menu z-50 w-[70%] sm:w-[40%] font-semibold bg-base-200 min-h-full p-2">
           {/* Sidebar content here */}
           <li>
-            <div className="noLink">
+            <Link to={"/"} className="noLink">
               <Logo />
-            </div>
+            </Link>
           </li>
           <li>
             <div className="noLink lg:hidden">
@@ -158,13 +165,20 @@ export default function Navbar() {
               </NavLink>
             </li>
           ))}
+
           <li>
             <NavLink
-              className={"noLink hover:bg-transparent hover:text-[#ef00d3]"}
+              className={"navLink hover:bg-transparent hover:text-[#ef00d3]"}
               to={"/cart"}
             >
               <CartIcon cartValue={cartNumber} />
             </NavLink>
+          </li>
+          <li>
+            <div className="noLink flex flex-col">
+              <Button className={"btn-md w-full bg-border"}>Login</Button>
+              <Button className={"btn-md w-full btn-secondary"}>Sign Up</Button>
+            </div>
           </li>
         </ul>
       </div>

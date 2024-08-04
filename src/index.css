@@ -33,6 +33,7 @@
 .noLink:focus-within,
 .noLink:hover {
   background-color: transparent !important;
+  color: #000 !important;
 }
 
 .cartLink:active,
