@@ -3,7 +3,7 @@ export default function Heading({ heading, children, left }) {
     <div>
       <div className={`max-w-md ${left ? "text-left" : "text-center"} `}>
         <h1 className="text-3xl min-[320px]:text-5xl font-bold">{heading}</h1>
-        <p className="py-4 text-primary-red">{children && children}</p>
+        <p className="py-4 text-xl text-primary-red">{children && children}</p>
       </div>
     </div>
   );
