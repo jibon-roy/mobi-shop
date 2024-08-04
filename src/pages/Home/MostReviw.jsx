@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Card from "../../components/Card";
 import Heading from "../../components/Heading";
+import Button from "../../components/Button";
 
 export default function MostReviw({ data }) {
   const getMostReviewedMobiles = data
@@ -25,9 +26,7 @@ export default function MostReviw({ data }) {
       </div>
       <div className="text-center mt-16">
         <Link to={"/mobiles"}>
-          <button className="btn rounded-sm btn-secondary">
-            See more {">"}
-          </button>
+          <Button className="btn-secondary">See more {">"}</Button>
         </Link>
       </div>
     </div>

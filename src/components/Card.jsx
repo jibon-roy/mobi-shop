@@ -40,7 +40,7 @@ export default function Card({ mobile }) {
   };
 
   return (
-    <div className="card mx-auto rounded-lg group h-full hover:scale-[0.98] transition-all bg-base-100 max-w-72 shadow-xl">
+    <div className="card mx-auto rounded-md pt-4 border group h-full hover:scale-[0.98] transition-all bg-base-100 max-w-72 shadow-xl">
       <figure>
         <img
           src={mobile?.image}
@@ -66,13 +66,13 @@ export default function Card({ mobile }) {
         </div>
         <p>{words}...</p>
         <Link to={`/mobiles/${mobile?.id}`}>
-          <button className="btn btn-sm rounded-sm  w-full ">Details</button>
+          <button className="btn btn-sm rounded-md  w-full ">Details</button>
         </Link>
         <div className="card-actions justify-between mt-4">
           <div className="flex items-center space-x-2">
             <div className="flex flex-wrap justify-center min-[300px]:flex-nowrap items-center gap-2">
               <button
-                className="btn btn-sm rounded-sm "
+                className="btn btn-sm rounded-md "
                 onClick={decrementQuantity}
               >
                 -
@@ -86,14 +86,14 @@ export default function Card({ mobile }) {
                 className="w-full input input-xs input-bordered m-0 p-0 text-center border rounded"
               />
               <button
-                className="btn btn-sm rounded-sm "
+                className="btn btn-sm rounded-md "
                 onClick={incrementQuantity}
               >
                 +
               </button>
             </div>
             <button
-              className="btn btn-sm rounded-sm btn-secondary"
+              className="btn btn-sm rounded-md btn-secondary"
               onClick={addToCart}
             >
               Add to Cart
