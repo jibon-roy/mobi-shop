@@ -199,7 +199,7 @@ export default function Mobiles() {
         ) : (
           <div className="flex flex-1 flex-col items-center">
             <div className="grid grid-cols-1 gap-y-10 mx-auto gap-x-4 justify-center md:grid-cols-2 xl:grid-cols-3">
-              {currentItems.length <= 0 || searchpar == "" ? (
+              {currentItems.length <= 0 || searchpar == 0 ? (
                 <div className="flex flex-1 justify-center">
                   Data not found.
                 </div>
@@ -211,7 +211,9 @@ export default function Mobiles() {
                 ))
               )}
             </div>
-            {currentItems?.length > 0 || searchpar?.length > 0 ? (
+            {currentItems?.length <= 0 || searchpar == 0 ? (
+              ""
+            ) : (
               <div className="my-10">
                 <ReactPaginate
                   previousLabel={"Previous"}
@@ -230,8 +232,6 @@ export default function Mobiles() {
                   disabledClassName={"text-gray-400"}
                 />
               </div>
-            ) : (
-              ""
             )}
           </div>
         )}
