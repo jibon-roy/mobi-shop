@@ -57,7 +57,7 @@ export default function SearchBar({ id }) {
       </Link>
       <div
         className={
-          "lg:w-96 hidden group-hover:block group-focus-within:block group-focus:block group-active:block group-focus-visible:block bg-white z-50 absolute translate-y-[102%] rounded-md bottom-0 left-0 max-h-80 overflow-auto"
+          "lg:w-96 hidden border group-hover:block group-focus-within:block group-focus:block group-active:block group-focus-visible:block bg-white z-50 absolute translate-y-[102%] rounded-md bottom-0 left-0 max-h-80 overflow-auto"
         }
       >
         {finalData.map((mobile, index) => (

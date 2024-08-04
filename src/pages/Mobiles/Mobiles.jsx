@@ -77,9 +77,9 @@ export default function Mobiles() {
       <div className="flex justify-center my-10">
         <Heading heading={searchKey ? "Search Results" : "All Mobiles"}>
           {searchKey ? (
-            <p>
+            <span>
               Search results for: <strong>{searchKey}</strong>
-            </p>
+            </span>
           ) : (
             "View our mobile phone products."
           )}
