@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Slider from "./Slider";
 import { useState } from "react";
-import Button from "../../components/Button";
+// import Button from "../../components/Button";
 
 export default function Banner() {
   const [searchValue, setSearchValue] = useState("");
@@ -23,11 +23,11 @@ export default function Banner() {
             <div className="flex w-full gap-10 justify-around items-center flex-col lg:flex-row">
               <div>
                 <Slider />
-                <Link to={`/mobiles?search=${searchValue}`}>
+                {/* <Link to={`/mobiles?search=${searchValue}`}>
                   <Button className="btn btn-secondary">
                     Explore Mobiles {">>"}
                   </Button>
-                </Link>
+                </Link> */}
               </div>
               <div className="max-w-xl">
                 <h1 className="text-5xl text-primary-red font-bold">
