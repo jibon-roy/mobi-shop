@@ -152,7 +152,6 @@ export default function Navbar() {
           className="drawer-overlay z-50"
         ></label>
         <ul className="menu z-50 w-[70%] sm:w-[40%] font-semibold bg-base-200 min-h-full p-2">
-          {/* Sidebar content here */}
           <li>
             <Link to={"/"} className="noLink">
               <Logo />
