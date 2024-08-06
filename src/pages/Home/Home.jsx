@@ -10,7 +10,7 @@ import useBackendUri from "../../utils/hooks/useBackendUri";
 export default function Home() {
   const data = useLoaderData();
   const backend = useBackendUri();
-  console.log(backend);
+  // console.log(backend);
   return (
     <>
       <section>
