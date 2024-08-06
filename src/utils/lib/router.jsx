@@ -1,13 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
-import MainLayout from "../pages/MainLayout";
-import Error from "../pages/Error";
-import Home from "../pages/Home/Home";
-import Mobiles from "../pages/Mobiles/Mobiles";
-import AboutUs from "../pages/AboutUs/AboutUs";
-import ContactUs from "../pages/Contact/Contact";
+import MainLayout from "../../pages/MainLayout";
+import Error from "../../pages/Error";
+import Home from "../../pages/Home/Home";
+import Mobiles from "../../pages/Mobiles/Mobiles";
+import AboutUs from "../../pages/AboutUs/AboutUs";
+import ContactUs from "../../pages/Contact/Contact";
 
-import Cart from "../pages/Cart/Cart";
-import MobileDetails from "../pages/Mobiles/MobileDetails/MobileDetails";
+import Cart from "../../pages/Cart/Cart";
+import MobileDetails from "../../pages/Mobiles/MobileDetails/MobileDetails";
 
 // const localItems = localStorage.getItem("cartItems");
 // const localItemsJson = JSON.parse(localItems);
