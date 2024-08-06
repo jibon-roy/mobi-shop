@@ -3,6 +3,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
+  signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../../lib/firebase";
@@ -63,6 +64,39 @@ export const loginUserWithGoogle = createAsyncThunk(
       await axiosPublic.post(
         "/login",
         { email: user.email, uid: user.uid },
+        { headers: { "Content-Type": "application/json" } }
+      );
+
+      return { uid: user.uid, email: user.email };
+    } catch (error) {
+      if (error.code) {
+        return rejectWithValue(error.message);
+      } else if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
+export const loginUserWithEmail = createAsyncThunk(
+  "auth/loginWithEmail",
+  async ({ email, password }, { rejectWithValue }) => {
+    const axiosPublic = useAxiosPublic(); // Initialize axiosPublic
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      // Optional: Send additional user info to your backend
+      await axiosPublic.post(
+        "/login",
+        { email, uid: user.uid },
         { headers: { "Content-Type": "application/json" } }
       );
 
