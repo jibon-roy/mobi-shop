@@ -14,7 +14,7 @@ export default function Navbar() {
   const isSearched = location?.search.split("?")[1]?.includes("search");
 
   const [cartNumber, setCartNumber] = useState(0);
-
+  // console.log(navigator.userAgent);
   const navItems = [
     {
       id: 1,
