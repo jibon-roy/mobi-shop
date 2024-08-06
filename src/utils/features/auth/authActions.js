@@ -17,11 +17,11 @@ export const RegisterUsers = () => {
               "Content-Type": "application/json",
             },
           };
-          await axiosPublic.post(
-            `${backendURL}/api/user/register`,
-            { firstName, lastName, dateOfBirth, gender, email, password },
-            config
-          );
+          //   await axiosPublic.post(
+          //     `${backendURL}/api/user/register`,
+          //     { firstName, lastName, dateOfBirth, gender, email, password },
+          //     config
+          //   );
         } catch (error) {
           // return custom error message from backend if present
           if (error.response && error.response.data.message) {

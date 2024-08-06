@@ -5,10 +5,12 @@ import LatestProduct from "./LatestProduct";
 import FAQ from "./FAQ";
 import WhyChooseUs from "./WhyChooseUs";
 import Statistics from "./Statistics";
+import useBackendUri from "../../utils/hooks/useBackendUri";
 
 export default function Home() {
   const data = useLoaderData();
-
+  const backend = useBackendUri();
+  console.log(backend);
   return (
     <>
       <section>
