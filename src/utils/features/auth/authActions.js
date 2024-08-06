@@ -83,7 +83,7 @@ export const loginUserWithGoogle = createAsyncThunk(
 export const loginUserWithEmail = createAsyncThunk(
   "auth/loginWithEmail",
   async ({ email, password }, { rejectWithValue }) => {
-    const axiosPublic = useAxiosPublic(); // Initialize axiosPublic
+    const axiosPublic = useAxiosPublic();
 
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -93,7 +93,6 @@ export const loginUserWithEmail = createAsyncThunk(
       );
       const user = userCredential.user;
 
-      // Optional: Send additional user info to your backend
       await axiosPublic.post(
         "/login",
         { email, uid: user.uid },
