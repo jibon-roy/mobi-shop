@@ -1,6 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth } from "../../lib/firebase";
 
 export const RegisterUsers = createAsyncThunk(
@@ -39,6 +43,36 @@ export const RegisterUsers = createAsyncThunk(
         return rejectWithValue(error.response.data.message);
       } else {
         // Generic error handling
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
+export const loginUserWithGoogle = createAsyncThunk(
+  "auth/loginWithGoogle",
+  async (_, { rejectWithValue }) => {
+    const axiosPublic = useAxiosPublic(); // Initialize axiosPublic
+    const provider = new GoogleAuthProvider();
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      // Optional: Send additional user info to your backend
+      await axiosPublic.post(
+        "/login",
+        { email: user.email, uid: user.uid },
+        { headers: { "Content-Type": "application/json" } }
+      );
+
+      return { uid: user.uid, email: user.email };
+    } catch (error) {
+      if (error.code) {
+        return rejectWithValue(error.message);
+      } else if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
         return rejectWithValue(error.message);
       }
     }
