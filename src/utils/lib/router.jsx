@@ -8,6 +8,7 @@ import ContactUs from "../../pages/Contact/Contact";
 
 import Cart from "../../pages/Cart/Cart";
 import MobileDetails from "../../pages/Mobiles/MobileDetails/MobileDetails";
+import Login from "../../pages/Login/Login";
 
 // const localItems = localStorage.getItem("cartItems");
 // const localItemsJson = JSON.parse(localItems);
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: "/contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
   },

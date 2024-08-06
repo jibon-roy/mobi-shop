@@ -124,7 +124,9 @@ export default function Navbar() {
               ))}
               <li>
                 <div className="noLink h-8 flex ">
-                  <Button className={"btn-sm"}>Login</Button>
+                  <Link to={"/login"}>
+                    <Button className={"btn-sm"}>Login</Button>
+                  </Link>
                   <Button className={"btn-sm btn-secondary"}>Sign Up</Button>
                 </div>
               </li>
