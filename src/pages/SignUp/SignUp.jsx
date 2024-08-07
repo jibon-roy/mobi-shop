@@ -29,7 +29,7 @@ const SignUp = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                Name
+                Full Name
               </label>
               <input
                 type="text"

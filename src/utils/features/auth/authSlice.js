@@ -26,6 +26,7 @@ const authSlice = createSlice({
       state.userInfo = null;
       state.userToken = null;
       state.loading = false;
+      localStorage.removeItem("userToken");
     },
     initializeAuth: () => {},
   },
