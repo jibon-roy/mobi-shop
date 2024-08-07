@@ -18,7 +18,7 @@ const AuthMiddleware = (store) => (next) => (action) => {
                 email: user.email,
                 displayName: user.displayName,
                 photoURL: user.photoURL,
-                // Add any other properties you need
+                lastSignIn: user.metadata.lastSignInTime,
               },
               userToken: idToken,
             })
