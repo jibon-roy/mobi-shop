@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../lib/firebase";
 
-export const RegisterUsers = createAsyncThunk(
+export const registerUsers = createAsyncThunk(
   "auth/register",
   async (
     { firstName, lastName, dateOfBirth, gender, email, password },
