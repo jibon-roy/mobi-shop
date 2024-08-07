@@ -42,7 +42,7 @@ const authSlice = createSlice({
       .addCase(loginUserWithEmail.fulfilled, (state, action) => {
         state.loading = false;
         state.userInfo = action.payload.data;
-        state.userToken = action.payload.data.userToken;
+        state.userToken = action.payload.userToken;
         console.log("Login successful:", action.payload);
       })
       .addCase(loginUserWithEmail.rejected, (state, action) => {

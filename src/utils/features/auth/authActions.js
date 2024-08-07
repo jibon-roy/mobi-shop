@@ -38,6 +38,7 @@ export const registerUser = createAsyncThunk(
           gender,
           email,
           uid: user.uid,
+          password,
         },
         config
       );
@@ -93,36 +94,36 @@ export const loginUserWithGoogle = createAsyncThunk(
     }
   }
 );
-
 export const loginUserWithEmail = createAsyncThunk(
   "auth/loginWithEmail",
   async ({ email, password }, { rejectWithValue }) => {
     const axiosPublic = useAxiosPublic();
 
     try {
+      // Authenticate with Firebase
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
       const user = userCredential.user;
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
+
+      // Optionally, you can get a token from Firebase if needed
+      const idToken = await user.getIdToken();
+
+      // Optionally, send the Firebase token to your backend
       const { data } = await axiosPublic.post(
         `/api/v1/user/login`,
-        { email, password },
-        config
+        { email, password, idToken }, // Send Firebase token to backend
+        { headers: { "Content-Type": "application/json" } }
       );
-      // Store user's token in local storage
+
+      // Store the backend token if returned
       localStorage.setItem("userToken", data.userToken);
-      return { data, uid: user.uid, email: user.email };
+
+      return data;
     } catch (error) {
-      if (error.code) {
-        return rejectWithValue(error.message);
-      } else if (error.response && error.response.data.message) {
+      if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {
         return rejectWithValue(error.message);

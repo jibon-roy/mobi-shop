@@ -1,10 +1,12 @@
 import { useDispatch } from "react-redux";
 import Button from "../../components/Button";
-import { loginUserWithGoogle } from "../../utils/features/auth/authActions";
+import {
+  loginUserWithEmail,
+  loginUserWithGoogle,
+} from "../../utils/features/auth/authActions";
 
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -20,13 +22,7 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    try {
-      await axios.post("/api/v1/user/login", data);
-      // Handle successful login (e.g., redirect, show a success message)
-    } catch (error) {
-      // Handle login error
-      console.error(error);
-    }
+    dispatch(loginUserWithEmail(data));
   };
 
   return (
