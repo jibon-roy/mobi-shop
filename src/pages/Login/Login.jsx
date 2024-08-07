@@ -9,6 +9,7 @@ import riveImage from "../../assets/login_screen_character.riv";
 // Rive animation
 import { useRive, Fit, Alignment, useStateMachineInput } from "rive-react";
 import { useState, useRef } from "react";
+import Logo from "../../components/Logo";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -139,11 +140,14 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-screen justify-center  bg-gray-100">
+    <div className="flex min-h-screen pb-20 pt-10 p-4 justify-center  bg-[#D6E2EA]">
       <div className="w-full lg:w-1/4 flex flex-col items-center justify-center">
         <RiveComponent fit={Fit.Contain} alignment={Alignment.Center} />
-        <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8">
-          <h2 className="text-2xl font-bold mb-6">Login</h2>
+        <div className="w-full max-w-md bg-white shadow-md rounded-lg pt-4 p-8">
+          <div className="text-2xl flex flex-col items-center justify-start font-bold mb-6">
+            <Logo />
+            Login
+          </div>
           <form
             onSubmit={(e) => {
               e.preventDefault();

@@ -19,6 +19,7 @@ export default function Navbar() {
   // console.log(navigator.userAgent);
   const { user } = useUserActions();
   // console.log(user);
+
   const navItems = [
     {
       id: 1,
@@ -66,6 +67,10 @@ export default function Navbar() {
       window.removeEventListener("updateCart", handleUpdateCart);
     };
   }, []);
+
+  if (location.pathname === "/login" || location.pathname === "/sign-up") {
+    return;
+  }
 
   return (
     <div className="drawer">
