@@ -18,15 +18,15 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      state.userInfo = action.payload.userInfo;
-      state.userToken = action.payload.userToken;
+      const { userInfo, userToken } = action.payload;
+      state.userInfo = userInfo;
+      state.userToken = userToken;
       state.loading = false;
     },
     logout: (state) => {
       state.userInfo = null;
       state.userToken = null;
       state.loading = false;
-      localStorage.removeItem("userToken");
     },
     initializeAuth: () => {},
   },

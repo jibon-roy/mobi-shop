@@ -5,8 +5,10 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
 } from "firebase/auth";
 import { auth } from "../../lib/firebase";
+import { logout } from "./authSlice";
 export const registerUser = createAsyncThunk(
   "auth/register",
   async (
@@ -43,12 +45,18 @@ export const registerUser = createAsyncThunk(
         config
       );
 
-      // Store user's token in local storage if available
-      if (data.userToken) {
-        localStorage.setItem("userToken", data.userToken);
+      const tokenFromBackend = data.userToken;
+      localStorage.setItem("userToken", tokenFromBackend);
+
+      // Retrieve token from localStorage for comparison
+      const tokenFromLocalStorage = localStorage.getItem("userToken");
+
+      // Verify tokens match
+      if (tokenFromBackend !== tokenFromLocalStorage) {
+        throw new Error("Token mismatch error.");
       }
 
-      return data;
+      return { ...data, userToken: tokenFromLocalStorage };
     } catch (error) {
       if (error.code) {
         return rejectWithValue(error.message);
@@ -82,7 +90,18 @@ export const loginUserWithGoogle = createAsyncThunk(
         { headers: { "Content-Type": "application/json" } }
       );
 
-      return data;
+      const tokenFromBackend = data.userToken;
+      localStorage.setItem("userToken", tokenFromBackend);
+
+      // Retrieve token from localStorage for comparison
+      const tokenFromLocalStorage = localStorage.getItem("userToken");
+
+      // Verify tokens match
+      if (tokenFromBackend !== tokenFromLocalStorage) {
+        throw new Error("Token mismatch error.");
+      }
+
+      return { ...data, userToken: tokenFromLocalStorage };
     } catch (error) {
       if (error.code) {
         return rejectWithValue(error.message);
@@ -118,16 +137,38 @@ export const loginUserWithEmail = createAsyncThunk(
         { headers: { "Content-Type": "application/json" } }
       );
 
-      // Store the backend token if returned
-      localStorage.setItem("userToken", data.userToken);
+      const tokenFromBackend = data.userToken;
+      localStorage.setItem("userToken", tokenFromBackend);
 
-      return data;
+      // Retrieve token from localStorage for comparison
+      const tokenFromLocalStorage = localStorage.getItem("userToken");
+
+      // Verify tokens match
+      if (tokenFromBackend !== tokenFromLocalStorage) {
+        throw new Error("Token mismatch error.");
+      }
+
+      return { ...data, userToken: tokenFromLocalStorage };
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {
         return rejectWithValue(error.message);
       }
+    }
+  }
+);
+
+export const logOutUser = createAsyncThunk(
+  "auth/logoutUser",
+  async (_, { dispatch }) => {
+    try {
+      await signOut(auth); // Sign out from Firebase
+      dispatch(logout()); // Clear Redux state
+      localStorage.removeItem("userToken"); // Remove token from localStorage
+    } catch (error) {
+      console.error("Error signing out:", error);
+      throw error;
     }
   }
 );

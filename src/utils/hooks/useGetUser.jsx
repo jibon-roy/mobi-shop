@@ -1,26 +1,39 @@
+// import { jwtDecode } from "jwt-decode";
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../features/auth/authSlice";
-// import { logout as logoutAction } from "../../features/auth/authSlice";
+// import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+// import { logOutUser } from "../features/auth/authActions";
+// import { logout } from "../features/auth/authSlice";
+// import jwtDecode from "jwt-decode"; // Import jwtDecode
 
 export default function useGetUser() {
   const [user, setUser] = useState();
   const [token, setToken] = useState();
   const { userInfo, userToken, loading } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
-
+  // const dispatch = useDispatch();
   useEffect(() => {
     if (userInfo) {
       setUser(userInfo);
+      // console.log("User Info:", userInfo);
     }
     if (userToken) {
       setToken(userToken);
     }
-    const getUserToken = localStorage.getItem("userToken");
-    if (userToken !== getUserToken || !getUserToken) {
-      dispatch(logout());
-    }
-  }, [dispatch, userInfo, userToken]);
+    // const siteToken = localStorage.getItem("userToken");
+
+    // if (!siteToken) {
+    //   dispatch(logOutUser());
+    // }
+    // Decoding the token to verify it
+    // if (userToken) {
+    // try {
+    // const decodedToken = jwtDecode(userToken);
+    // console.log("Decoded Token:", decodedToken);
+    // } catch (error) {
+    // console.error("Error decoding token:", error);
+    // }
+    // }
+  }, [userInfo, userToken]);
 
   return { user, loading, token };
 }

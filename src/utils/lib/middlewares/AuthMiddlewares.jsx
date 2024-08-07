@@ -1,35 +1,36 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../lib/firebase";
-import { setUser, logout } from "../../features/auth/authSlice";
+import { setUser } from "../../features/auth/authSlice";
+import { logOutUser } from "../../features/auth/authActions";
+
 const AuthMiddleware = (store) => (next) => (action) => {
   if (action.type === "auth/initializeAuth") {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      // const localStorageToken = localStorage.getItem("userToken");
+
       if (user) {
         try {
           const idToken = await user.getIdToken();
-          const getUserToken = localStorage.getItem("userToken");
-          if (idToken != getUserToken || !getUserToken) {
-            localStorage.removeItem("userToken"); // Ensure token is removed
-            store.dispatch(logout());
-          } else {
-            store.dispatch(
-              setUser({
-                userInfo: {
-                  uid: user.uid,
-                  email: user.email,
-                  displayName: user.displayName,
-                  photoURL: user.photoURL,
-                  lastSignIn: user.metadata.lastSignInTime,
-                },
-                userToken: idToken,
-              })
-            );
-          }
+
+          // Token matches, proceed with setting user info
+          store.dispatch(
+            setUser({
+              userInfo: {
+                uid: user.uid,
+                email: user.email,
+                displayName: user.displayName,
+                photoURL: user.photoURL,
+                lastSignIn: user.metadata.lastSignInTime,
+              },
+              userToken: idToken,
+            })
+          );
         } catch (error) {
           console.error("Error fetching ID token:", error);
         }
       } else {
-        store.dispatch(logout());
+        // No user found, log out
+        store.dispatch(logOutUser());
       }
     });
 
