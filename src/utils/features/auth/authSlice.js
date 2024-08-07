@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUserWithEmail, registerUsers } from "./authActions";
+import {
+  loginUserWithEmail,
+  loginUserWithGoogle,
+  registerUsers,
+} from "./authActions";
 
 const initialState = {
   loading: false,
@@ -34,9 +38,22 @@ const authSlice = createSlice({
       .addCase(loginUserWithEmail.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.userInfo = payload;
-        state.userToken = payload.userToken;
+        state.userToken = payload?.userToken;
       })
       .addCase(loginUserWithEmail.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(loginUserWithGoogle.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(loginUserWithGoogle.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.userInfo = payload;
+        state.userToken = payload?.userToken;
+      })
+      .addCase(loginUserWithGoogle.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
       });

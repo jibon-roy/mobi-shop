@@ -92,14 +92,19 @@ export const loginUserWithEmail = createAsyncThunk(
         password
       );
       const user = userCredential.user;
-
-      await axiosPublic.post(
-        "/login",
-        { email, uid: user.uid },
-        { headers: { "Content-Type": "application/json" } }
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const { data } = await axiosPublic.post(
+        `/api/v1/user/login`,
+        { email, password },
+        config
       );
-
-      return { uid: user.uid, email: user.email };
+      // Store user's token in local storage
+      localStorage.setItem("userToken", data.userToken);
+      return { data, uid: user.uid, email: user.email };
     } catch (error) {
       if (error.code) {
         return rejectWithValue(error.message);
