@@ -14,8 +14,8 @@ export default function UserDropdown() {
           <img
             alt="Tailwind CSS Navbar component"
             src={
-              user?.photoUrl
-                ? user.photoUrl
+              user?.photoURL
+                ? user.photoURL
                 : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
             }
           />

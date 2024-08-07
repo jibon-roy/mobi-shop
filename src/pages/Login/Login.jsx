@@ -4,11 +4,18 @@ import {
   loginUserWithEmail,
   loginUserWithGoogle,
 } from "../../utils/features/auth/authActions";
-
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import riveImage from "../../assets/login_screen_character.riv";
+//  Rive animation
+import { useRive, Layout, Fit, Alignment } from "rive-react";
 
 const Login = () => {
+  const { rive, RiveComponent } = useRive({
+    src: riveImage, // Path to your Rive file
+    stateMachines: "STATE_MA", // Replace with your state machine name if applicable
+    autoplay: true, // Set to true if you want the animation to start automatically
+  });
   const dispatch = useDispatch();
 
   const handleLoginWithGoogle = () => {
@@ -32,6 +39,7 @@ const Login = () => {
         className="hidden lg:flex lg:w-1/2 bg-cover bg-center"
         style={{ backgroundImage: "url(/path/to/your/image.jpg)" }}
       >
+        <RiveComponent fit={Fit.Contain} alignment={Alignment.Center} />
         {/* Side Image */}
       </div>
       <div className="w-full lg:w-1/2 p-6 flex items-center justify-center">
