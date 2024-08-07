@@ -5,7 +5,7 @@ import {
   loginUserWithGoogle,
 } from "../../utils/features/auth/authActions";
 import { Link } from "react-router-dom";
-import riveImage from "../../assets/login_screen_character.riv";
+// import riveImage from "../../assets/login_screen_character.riv";
 // Rive animation
 import { useRive, Fit, Alignment, useStateMachineInput } from "rive-react";
 import { useState, useRef } from "react";
@@ -21,7 +21,7 @@ const Login = () => {
   const inputRef = useRef(null);
 
   const { rive, RiveComponent } = useRive({
-    src: riveImage,
+    src: "/login_screen_character.riv",
     stateMachines: "State Machine 1",
     autoplay: true,
   });
