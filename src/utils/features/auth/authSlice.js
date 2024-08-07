@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   loginUserWithEmail,
   loginUserWithGoogle,
+  logOutUser,
   registerUser,
 } from "./authActions";
 
@@ -39,9 +40,8 @@ const authSlice = createSlice({
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
-        state.userInfo = action.payload.userInfo; // Assuming payload contains user info
-        state.userToken = action.payload.userToken; // Assuming payload contains token
-        console.log("Registration successful:", action.payload);
+        state.userInfo = action.payload.userInfo;
+        state.userToken = action.payload.userToken;
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
@@ -77,6 +77,11 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
         console.log("Google login error:", action.payload);
+      })
+      .addCase(logOutUser.fulfilled, (state) => {
+        state.userInfo = null;
+        state.userToken = null;
+        state.loading = false;
       });
   },
 });

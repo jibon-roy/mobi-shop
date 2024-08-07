@@ -7,6 +7,7 @@ import SearchBar from "./SearchBar";
 import { useLocation } from "react-router-dom";
 import Button from "./Button";
 import useUserActions from "../utils/hooks/useUserActions";
+import UserDropdown from "./UserDropdown";
 
 export default function Navbar() {
   const location = useLocation();
@@ -16,8 +17,8 @@ export default function Navbar() {
 
   const [cartNumber, setCartNumber] = useState(0);
   // console.log(navigator.userAgent);
-  const { user, logOut } = useUserActions();
-  console.log(user);
+  const { user } = useUserActions();
+  // console.log(user);
   const navItems = [
     {
       id: 1,
@@ -128,9 +129,7 @@ export default function Navbar() {
               <li>
                 <div className="noLink h-8 flex ">
                   {user ? (
-                    <Button onClick={logOut} className={"btn-sm"}>
-                      Log out
-                    </Button>
+                    <UserDropdown />
                   ) : (
                     <>
                       <Link to={"/login"}>
