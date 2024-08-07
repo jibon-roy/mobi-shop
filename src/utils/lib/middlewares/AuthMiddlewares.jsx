@@ -1,14 +1,22 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../lib/firebase";
-import { setUser, logout } from "./authSlice";
+import { setUser, logout } from "../../features/auth/authSlice";
 
-const authMiddleware = (store) => (next) => (action) => {
+const AuthMiddleware = (store) => (next) => (action) => {
   if (action.type === "auth/initializeAuth") {
-    // Set up Firebase auth state listener
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         const idToken = await user.getIdToken();
-        store.dispatch(setUser({ userInfo: user, userToken: idToken }));
+        store.dispatch(
+          setUser({
+            userInfo: {
+              uid: user.uid,
+              email: user.email,
+              displayName: user.displayName,
+            },
+            userToken: idToken,
+          })
+        );
       } else {
         store.dispatch(logout());
       }
@@ -21,4 +29,4 @@ const authMiddleware = (store) => (next) => (action) => {
   return next(action);
 };
 
-export default authMiddleware;
+export default AuthMiddleware;

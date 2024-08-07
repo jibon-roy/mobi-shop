@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   loading: false,
-  userInfo: null, // Initialize as null
+  userInfo: null,
   userToken: null,
   error: null,
   success: false,
@@ -18,8 +18,13 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      state.userInfo = action.payload.userInfo;
-      state.userToken = action.payload.userToken;
+      const { userInfo, userToken } = action.payload;
+      state.userInfo = {
+        uid: userInfo.uid,
+        email: userInfo.email,
+        displayName: userInfo.displayName,
+      };
+      state.userToken = userToken;
       state.loading = false;
     },
     logout: (state) => {
@@ -27,6 +32,7 @@ const authSlice = createSlice({
       state.userToken = null;
       state.loading = false;
     },
+    initializeAuth: () => {}, // Action to initialize auth
   },
   extraReducers: (builder) => {
     builder
@@ -79,5 +85,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { setUser, logout } = authSlice.actions;
+export const { setUser, logout, initializeAuth } = authSlice.actions;
 export default authSlice.reducer;
