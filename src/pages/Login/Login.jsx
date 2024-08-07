@@ -4,48 +4,153 @@ import {
   loginUserWithEmail,
   loginUserWithGoogle,
 } from "../../utils/features/auth/authActions";
-import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import riveImage from "../../assets/login_screen_character.riv";
-//  Rive animation
-import { useRive, Layout, Fit, Alignment } from "rive-react";
+// Rive animation
+import { useRive, Fit, Alignment, useStateMachineInput } from "rive-react";
+import { useState, useRef } from "react";
 
 const Login = () => {
-  const { rive, RiveComponent } = useRive({
-    src: riveImage, // Path to your Rive file
-    stateMachines: "STATE_MA", // Replace with your state machine name if applicable
-    autoplay: true, // Set to true if you want the animation to start automatically
-  });
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const dispatch = useDispatch();
+
+  const inputRef = useRef(null);
+
+  const { rive, RiveComponent } = useRive({
+    src: riveImage,
+    stateMachines: "State Machine 1",
+    autoplay: true,
+  });
+
+  const isCheckingInput = useStateMachineInput(
+    rive,
+    "State Machine 1",
+    "Check"
+  );
+
+  const isHandsUpInput = useStateMachineInput(
+    rive,
+    "State Machine 1",
+    "hands_up"
+  );
+
+  const numLookInput = useStateMachineInput(rive, "State Machine 1", "Look");
+
+  const trigSuccessInput = useStateMachineInput(
+    rive,
+    "State Machine 1",
+    "trigSuccess"
+  );
+
+  const trigFailInput = useStateMachineInput(
+    rive,
+    "State Machine 1",
+    "trigFail"
+  );
 
   const handleLoginWithGoogle = () => {
     dispatch(loginUserWithGoogle());
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const handleUsernameChange = (e) => {
+    const usernameValue = e.target.value;
+    setUsername(usernameValue);
 
-  const onSubmit = async (data) => {
-    // console.log(data);
-    dispatch(loginUserWithEmail(data));
+    if (inputRef.current) {
+      const inputWidth = inputRef.current.offsetWidth;
+      const maxNumLook = 100; // Maximum value for numLook
+      const multiplier = maxNumLook / inputWidth;
+      const numLookValue = usernameValue.length * multiplier;
+
+      if (numLookInput) {
+        // Set the value on the Rive state machine input
+        numLookInput.value = Math.min(numLookValue, maxNumLook) * 10;
+      }
+    }
+
+    if (isCheckingInput) {
+      isCheckingInput.value = true;
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleLogin = () => {
+    // Basic validation
+    let hasError = false;
+    if (!username) {
+      setEmailError("Email is required");
+      hasError = true;
+    } else {
+      setEmailError("");
+    }
+
+    if (!password) {
+      setPasswordError("Password is required");
+      hasError = true;
+    } else {
+      setPasswordError("");
+    }
+
+    if (hasError) return;
+
+    // Check credentials (for demonstration purposes)
+    const isAuthenticated =
+      username === "user@example.com" && password === "password";
+    if (isAuthenticated && trigSuccessInput) {
+      trigSuccessInput.fire();
+    } else if (trigFailInput) {
+      trigFailInput.fire();
+    }
+
+    // Dispatch action
+    if (!hasError) {
+      dispatch(loginUserWithEmail({ email: username, password }));
+    }
+  };
+
+  const handleUsernameFocus = () => {
+    if (isCheckingInput) {
+      isCheckingInput.value = true;
+    }
+  };
+
+  const handleUsernameBlur = () => {
+    if (isCheckingInput) {
+      isCheckingInput.value = false;
+    }
+  };
+
+  const handlePasswordFocus = () => {
+    if (isHandsUpInput) {
+      isHandsUpInput.value = true;
+    }
+  };
+
+  const handlePasswordBlur = () => {
+    if (isHandsUpInput) {
+      isHandsUpInput.value = false;
+    }
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
-      <div
-        className="hidden lg:flex lg:w-1/2 bg-cover bg-center"
-        style={{ backgroundImage: "url(/path/to/your/image.jpg)" }}
-      >
+    <div className="flex min-h-screen justify-center  bg-gray-100">
+      <div className="w-full lg:w-1/4 flex flex-col items-center justify-center">
         <RiveComponent fit={Fit.Contain} alignment={Alignment.Center} />
-        {/* Side Image */}
-      </div>
-      <div className="w-full lg:w-1/2 p-6 flex items-center justify-center">
         <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8">
           <h2 className="text-2xl font-bold mb-6">Login</h2>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleLogin();
+            }}
+            className="space-y-4"
+          >
             <div>
               <label
                 htmlFor="login-email"
@@ -56,12 +161,16 @@ const Login = () => {
               <input
                 id="login-email"
                 autoComplete="email"
+                onChange={handleUsernameChange}
+                onFocus={handleUsernameFocus}
+                onBlur={handleUsernameBlur}
                 type="email"
-                {...register("email", { required: "Email is required" })}
+                value={username}
                 className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                ref={inputRef} // Assign ref to the username input
               />
-              {errors.email && (
-                <p className="text-red-500 text-sm">{errors.email.message}</p>
+              {emailError && (
+                <p className="text-red-500 text-sm">{emailError}</p>
               )}
             </div>
             <div>
@@ -72,16 +181,17 @@ const Login = () => {
                 Password
               </label>
               <input
+                onChange={handlePasswordChange}
                 id="login-pass"
                 type="password"
-                autoComplete="current-password webauthn"
-                {...register("password", { required: "Password is required" })}
+                autoComplete="current-password"
+                value={password}
                 className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                onFocus={handlePasswordFocus}
+                onBlur={handlePasswordBlur}
               />
-              {errors.password && (
-                <p className="text-red-500 text-sm">
-                  {errors.password.message}
-                </p>
+              {passwordError && (
+                <p className="text-red-500 text-sm">{passwordError}</p>
               )}
             </div>
             <button type="submit" className="btn btn-primary w-full">
@@ -97,7 +207,7 @@ const Login = () => {
               </Link>
             </p>
           </form>
-          <Button onClick={handleLoginWithGoogle} className="btn">
+          <Button onClick={handleLoginWithGoogle} className="btn mt-4">
             Login with Google
           </Button>
         </div>
