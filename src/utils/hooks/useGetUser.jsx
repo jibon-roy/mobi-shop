@@ -1,8 +1,8 @@
 // import { jwtDecode } from "jwt-decode";
 import { useState, useEffect } from "react";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-// import { logOutUser } from "../features/auth/authActions";
+import { logOutUser } from "../features/auth/authActions";
 // import { logout } from "../features/auth/authSlice";
 // import jwtDecode from "jwt-decode"; // Import jwtDecode
 
@@ -10,7 +10,7 @@ export default function useGetUser() {
   const [user, setUser] = useState();
   const [token, setToken] = useState();
   const { userInfo, userToken, loading } = useSelector((state) => state.auth);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   useEffect(() => {
     if (userInfo) {
       setUser(userInfo);
@@ -35,5 +35,9 @@ export default function useGetUser() {
     // }
   }, [userInfo, userToken]);
 
-  return { user, loading, token };
+  const logOut = () => {
+    dispatch(logOutUser());
+  };
+
+  return { user, loading, token, logOut };
 }
