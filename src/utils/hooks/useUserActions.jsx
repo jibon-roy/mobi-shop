@@ -6,15 +6,17 @@ import { logOutUser } from "../features/auth/authActions";
 // import { logout } from "../features/auth/authSlice";
 // import jwtDecode from "jwt-decode"; // Import jwtDecode
 
-export default function useGetUser() {
-  const [user, setUser] = useState();
-  const [token, setToken] = useState();
+export default function useUserActions() {
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
   const { userInfo, userToken, loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   useEffect(() => {
     if (userInfo) {
       setUser(userInfo);
       // console.log("User Info:", userInfo);
+    } else {
+      setUser(null);
     }
     if (userToken) {
       setToken(userToken);

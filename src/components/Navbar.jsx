@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import { useLocation } from "react-router-dom";
 import Button from "./Button";
+import useUserActions from "../utils/hooks/useUserActions";
 
 export default function Navbar() {
   const location = useLocation();
@@ -15,6 +16,8 @@ export default function Navbar() {
 
   const [cartNumber, setCartNumber] = useState(0);
   // console.log(navigator.userAgent);
+  const { user, logOut } = useUserActions();
+  console.log(user);
   const navItems = [
     {
       id: 1,
@@ -124,12 +127,22 @@ export default function Navbar() {
               ))}
               <li>
                 <div className="noLink h-8 flex ">
-                  <Link to={"/login"}>
-                    <Button className={"btn-sm"}>Login</Button>
-                  </Link>
-                  <Link to={"/sign-up"}>
-                    <Button className={"btn-sm btn-secondary"}>Sign Up</Button>
-                  </Link>
+                  {user ? (
+                    <Button onClick={logOut} className={"btn-sm"}>
+                      Log out
+                    </Button>
+                  ) : (
+                    <>
+                      <Link to={"/login"}>
+                        <Button className={"btn-sm"}>Login</Button>
+                      </Link>
+                      <Link to={"/sign-up"}>
+                        <Button className={"btn-sm btn-secondary"}>
+                          Sign Up
+                        </Button>
+                      </Link>
+                    </>
+                  )}
                 </div>
               </li>
               <li className="">
