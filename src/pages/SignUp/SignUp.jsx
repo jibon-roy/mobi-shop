@@ -1,31 +1,25 @@
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import { registerUser } from "../../utils/features/auth/authActions";
 import { Link } from "react-router-dom";
-import useAxiosPublic from "../../utils/hooks/useAxiosPublic";
-import img from "../../assets/m2.png";
 
 const SignUp = () => {
-  const axiosPublic = useAxiosPublic();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
-    try {
-      await axiosPublic.post("/api/v1/user/register", data);
-      // Handle successful registration (e.g., redirect, show a success message)
-    } catch (error) {
-      // Handle registration error
-      console.error(error);
-    }
+  const onSubmit = (data) => {
+    dispatch(registerUser(data));
   };
 
   return (
     <div className="flex min-h-screen bg-gray-100">
       <div
         className="hidden lg:flex lg:w-1/2 bg-cover bg-center"
-        style={{ backgroundImage: `url(${img})` }}
+        style={{ backgroundImage: "url(/path/to/your/image.jpg)" }}
       >
         {/* Side Image */}
       </div>

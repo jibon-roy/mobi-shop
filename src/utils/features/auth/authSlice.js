@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   loginUserWithEmail,
   loginUserWithGoogle,
-  registerUsers,
+  registerUser,
 } from "./authActions";
 
 const initialState = {
@@ -19,16 +19,18 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(registerUsers.pending, (state) => {
+      .addCase(registerUser.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(registerUsers.fulfilled, (state, action) => {
+      .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
+        state.userInfo = action.payload; // Assuming payload contains user info
+        state.userToken = action.payload.userToken; // Assuming payload contains token
         console.log("Registration successful:", action.payload);
       })
-      .addCase(registerUsers.rejected, (state, action) => {
+      .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
         console.log("Registration error:", action.payload);

@@ -7,8 +7,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../../lib/firebase";
-
-export const registerUsers = createAsyncThunk(
+export const registerUser = createAsyncThunk(
   "auth/register",
   async (
     { name, dateOfBirth, gender, email, password },
@@ -17,6 +16,7 @@ export const registerUsers = createAsyncThunk(
     const axiosPublic = useAxiosPublic();
 
     try {
+      // Register the user with Firebase Authentication
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -24,6 +24,7 @@ export const registerUsers = createAsyncThunk(
       );
       const user = userCredential.user;
 
+      // Send user details to backend
       const config = {
         headers: {
           "Content-Type": "application/json",
@@ -31,28 +32,33 @@ export const registerUsers = createAsyncThunk(
       };
       const { data } = await axiosPublic.post(
         "/api/v1/user/register",
-        { name, dateOfBirth, gender, email, uid: user.uid },
+        {
+          name,
+          dateOfBirth,
+          gender,
+          email,
+          uid: user.uid,
+        },
         config
       );
 
-      // Store user's token in local storage
-      localStorage.setItem("userToken", data.userToken);
+      // Store user's token in local storage if available
+      if (data.userToken) {
+        localStorage.setItem("userToken", data.userToken);
+      }
 
       return data;
     } catch (error) {
       if (error.code) {
         return rejectWithValue(error.message);
       } else if (error.response && error.response.data.message) {
-        // Backend error handling
         return rejectWithValue(error.response.data.message);
       } else {
-        // Generic error handling
         return rejectWithValue(error.message);
       }
     }
   }
 );
-
 export const loginUserWithGoogle = createAsyncThunk(
   "auth/loginWithGoogle",
   async (_, { rejectWithValue }) => {
