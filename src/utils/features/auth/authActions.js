@@ -11,7 +11,7 @@ import { auth } from "../../lib/firebase";
 export const registerUsers = createAsyncThunk(
   "auth/register",
   async (
-    { firstName, lastName, dateOfBirth, gender, email, password },
+    { name, dateOfBirth, gender, email, password },
     { rejectWithValue }
   ) => {
     const axiosPublic = useAxiosPublic();
@@ -29,13 +29,16 @@ export const registerUsers = createAsyncThunk(
           "Content-Type": "application/json",
         },
       };
-      await axiosPublic.post(
-        "/register",
-        { firstName, lastName, dateOfBirth, gender, email, uid: user.uid },
+      const { data } = await axiosPublic.post(
+        "/api/v1/user/register",
+        { name, dateOfBirth, gender, email, uid: user.uid },
         config
       );
 
-      return { message: "Registration successful" };
+      // Store user's token in local storage
+      localStorage.setItem("userToken", data.userToken);
+
+      return data;
     } catch (error) {
       if (error.code) {
         return rejectWithValue(error.message);
@@ -53,21 +56,26 @@ export const registerUsers = createAsyncThunk(
 export const loginUserWithGoogle = createAsyncThunk(
   "auth/loginWithGoogle",
   async (_, { rejectWithValue }) => {
-    const axiosPublic = useAxiosPublic(); // Initialize axiosPublic
     const provider = new GoogleAuthProvider();
-
+    const axiosPublic = useAxiosPublic();
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
 
       // Optional: Send additional user info to your backend
-      await axiosPublic.post(
-        "/login",
-        { email: user.email, uid: user.uid },
+      const { data } = await axiosPublic.post(
+        "/api/v1/user/google-login",
+        {
+          email: user.email,
+          uid: user.uid,
+          name: user.displayName,
+          dateOfBirth: null,
+          gender: null,
+        },
         { headers: { "Content-Type": "application/json" } }
       );
 
-      return { uid: user.uid, email: user.email };
+      return data;
     } catch (error) {
       if (error.code) {
         return rejectWithValue(error.message);

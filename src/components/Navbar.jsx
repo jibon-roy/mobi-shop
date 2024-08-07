@@ -127,7 +127,9 @@ export default function Navbar() {
                   <Link to={"/login"}>
                     <Button className={"btn-sm"}>Login</Button>
                   </Link>
-                  <Button className={"btn-sm btn-secondary"}>Sign Up</Button>
+                  <Link to={"/sign-up"}>
+                    <Button className={"btn-sm btn-secondary"}>Sign Up</Button>
+                  </Link>
                 </div>
               </li>
               <li className="">
@@ -189,8 +191,14 @@ export default function Navbar() {
           </li>
           <li>
             <div className="noLink flex flex-col">
-              <Button className={"btn-md w-full bg-border"}>Login</Button>
-              <Button className={"btn-md w-full btn-secondary"}>Sign Up</Button>
+              <Link to={"/login"}>
+                <Button className={"btn-md w-full bg-border"}>Login</Button>
+              </Link>
+              <Link to={"/sign-up"}>
+                <Button className={"btn-md w-full btn-secondary"}>
+                  Sign Up
+                </Button>
+              </Link>
             </div>
           </li>
         </ul>
