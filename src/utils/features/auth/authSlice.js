@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   loading: false,
-  userInfo: {},
+  userInfo: null, // Initialize as null
   userToken: null,
   error: null,
   success: false,
@@ -16,7 +16,18 @@ const initialState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    setUser: (state, action) => {
+      state.userInfo = action.payload.userInfo;
+      state.userToken = action.payload.userToken;
+      state.loading = false;
+    },
+    logout: (state) => {
+      state.userInfo = null;
+      state.userToken = null;
+      state.loading = false;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, (state) => {
@@ -26,7 +37,7 @@ const authSlice = createSlice({
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
-        state.userInfo = action.payload; // Assuming payload contains user info
+        state.userInfo = action.payload.userInfo; // Assuming payload contains user info
         state.userToken = action.payload.userToken; // Assuming payload contains token
         console.log("Registration successful:", action.payload);
       })
@@ -56,7 +67,7 @@ const authSlice = createSlice({
       })
       .addCase(loginUserWithGoogle.fulfilled, (state, action) => {
         state.loading = false;
-        state.userInfo = action.payload;
+        state.userInfo = action.payload.userInfo;
         state.userToken = action.payload.userToken;
         console.log("Google login successful:", action.payload);
       })
@@ -68,4 +79,5 @@ const authSlice = createSlice({
   },
 });
 
+export const { setUser, logout } = authSlice.actions;
 export default authSlice.reducer;
