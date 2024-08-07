@@ -1,8 +1,10 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import useAxiosPublic from "../../utils/hooks/useAxiosPublic";
+import img from "../../assets/m2.png";
 
 const SignUp = () => {
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -11,7 +13,7 @@ const SignUp = () => {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post("/api/v1/user/register", data);
+      await axiosPublic.post("/api/v1/user/register", data);
       // Handle successful registration (e.g., redirect, show a success message)
     } catch (error) {
       // Handle registration error
@@ -23,7 +25,7 @@ const SignUp = () => {
     <div className="flex min-h-screen bg-gray-100">
       <div
         className="hidden lg:flex lg:w-1/2 bg-cover bg-center"
-        style={{ backgroundImage: "url(/path/to/your/image.jpg)" }}
+        style={{ backgroundImage: `url(${img})` }}
       >
         {/* Side Image */}
       </div>

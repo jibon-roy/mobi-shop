@@ -1,9 +1,10 @@
 import axios from "axios";
-
-const axiosPublic = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URI,
-});
+import useBackendUri from "./useBackendUri";
 
 export default function useAxiosPublic() {
+  const backendURI = useBackendUri();
+  const axiosPublic = axios.create({
+    baseURL: backendURI,
+  });
   return axiosPublic;
 }
