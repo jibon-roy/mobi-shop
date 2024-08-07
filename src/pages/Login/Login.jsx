@@ -21,7 +21,7 @@ const Login = () => {
   const inputRef = useRef(null);
 
   const { rive, RiveComponent } = useRive({
-    src: "/login_screen_character.riv",
+    src: "./login_screen_character.riv",
     stateMachines: "State Machine 1",
     autoplay: true,
   });
