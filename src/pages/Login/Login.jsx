@@ -38,10 +38,15 @@ const Login = () => {
           <h2 className="text-2xl font-bold mb-6">Login</h2>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="login-email"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Email
               </label>
               <input
+                id="login-email"
+                autoComplete="email"
                 type="email"
                 {...register("email", { required: "Email is required" })}
                 className="mt-1 p-2 border border-gray-300 rounded-md w-full"
@@ -51,11 +56,16 @@ const Login = () => {
               )}
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="login-pass"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Password
               </label>
               <input
+                id="login-pass"
                 type="password"
+                autoComplete="current-password webauthn"
                 {...register("password", { required: "Password is required" })}
                 className="mt-1 p-2 border border-gray-300 rounded-md w-full"
               />
@@ -70,8 +80,11 @@ const Login = () => {
             </button>
             <p className="text-center text-sm">
               Dont have an account?{" "}
-              <Link to="/register" className="text-blue-500 hover:underline">
-                Register
+              <Link
+                to="/sign-up"
+                className="text-blue-500 underline hover:underline"
+              >
+                Sign Up
               </Link>
             </p>
           </form>

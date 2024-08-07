@@ -3,11 +3,11 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import useGetUser from "../utils/hooks/useGetUser";
 
 export default function MainLayout() {
   const [isLoading, setIsLoading] = useState(true);
-  const { userInfo, userToken, loading } = useSelector((state) => state.auth);
+  const { user, loading } = useGetUser();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -17,14 +17,7 @@ export default function MainLayout() {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    if (userInfo) {
-      console.log("User Info:", userInfo);
-    }
-    if (userToken) {
-      console.log("User Token:", userToken);
-    }
-  }, [userInfo, userToken]);
+  console.log(user);
 
   if (loading) return <Loading />;
   // if (error) return <div>Error: {error}</div>;
