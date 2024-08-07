@@ -18,13 +18,8 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      const { userInfo, userToken } = action.payload;
-      state.userInfo = {
-        uid: userInfo.uid,
-        email: userInfo.email,
-        displayName: userInfo.displayName,
-      };
-      state.userToken = userToken;
+      state.userInfo = action.payload.userInfo;
+      state.userToken = action.payload.userToken;
       state.loading = false;
     },
     logout: (state) => {
@@ -32,7 +27,7 @@ const authSlice = createSlice({
       state.userToken = null;
       state.loading = false;
     },
-    initializeAuth: () => {}, // Action to initialize auth
+    initializeAuth: () => {},
   },
   extraReducers: (builder) => {
     builder
