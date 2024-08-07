@@ -163,9 +163,9 @@ export const logOutUser = createAsyncThunk(
   "auth/logoutUser",
   async (_, { dispatch }) => {
     try {
-      await signOut(auth); // Sign out from Firebase
-      dispatch(logout()); // Clear Redux state
-      localStorage.removeItem("userToken"); // Remove token from localStorage
+      await signOut(auth);
+      dispatch(logout());
+      localStorage.removeItem("userToken");
     } catch (error) {
       console.error("Error signing out:", error);
       throw error;

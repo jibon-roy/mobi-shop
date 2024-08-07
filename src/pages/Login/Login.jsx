@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const dispatch = useDispatch();
 
-  const handleLogin = () => {
+  const handleLoginWithGoogle = () => {
     dispatch(loginUserWithGoogle());
   };
 
@@ -22,6 +22,7 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
+    // console.log(data);
     dispatch(loginUserWithEmail(data));
   };
 
@@ -79,7 +80,7 @@ const Login = () => {
               Login
             </button>
             <p className="text-center text-sm">
-              Dont have an account?{" "}
+              Don’t have an account?{" "}
               <Link
                 to="/sign-up"
                 className="text-blue-500 underline hover:underline"
@@ -88,8 +89,8 @@ const Login = () => {
               </Link>
             </p>
           </form>
-          <Button onClick={handleLogin} className={"btn"}>
-            Login
+          <Button onClick={handleLoginWithGoogle} className="btn">
+            Login with Google
           </Button>
         </div>
       </div>
