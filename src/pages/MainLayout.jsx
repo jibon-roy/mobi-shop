@@ -4,12 +4,8 @@ import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 import { useState, useEffect } from "react";
 
-// import useUserActions from "../utils/hooks/useUserActions";
-
 export default function MainLayout() {
-  // const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
-  // const { loading } = useUserActions();
 
   useEffect(() => {
     const timer = setTimeout(() => {

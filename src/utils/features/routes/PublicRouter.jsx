@@ -1,11 +1,12 @@
+import { Navigate } from "react-router-dom";
 import useUserActions from "../../hooks/useUserActions";
 
 export default function PublicRouter({ children }) {
-  const { user, logOut } = useUserActions();
+  const { user } = useUserActions();
 
-  if (!user) {
-    return children;
+  if (user) {
+    return <Navigate to="/" />;
   } else {
-    logOut();
+    return <>{children}</>;
   }
 }

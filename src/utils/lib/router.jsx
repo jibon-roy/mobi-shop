@@ -10,6 +10,7 @@ import Cart from "../../pages/Cart/Cart";
 import MobileDetails from "../../pages/Mobiles/MobileDetails/MobileDetails";
 import Login from "../../pages/Login/Login";
 import SignUp from "../../pages/SignUp/SignUp";
+import PublicRouter from "../features/routes/PublicRouter";
 
 // const localItems = localStorage.getItem("cartItems");
 // const localItemsJson = JSON.parse(localItems);
@@ -71,11 +72,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login />,
+        element: (
+          <PublicRouter>
+            <Login />
+          </PublicRouter>
+        ),
       },
       {
         path: "/sign-up",
-        element: <SignUp />,
+        element: (
+          <PublicRouter>
+            <SignUp />
+          </PublicRouter>
+        ),
       },
     ],
   },
