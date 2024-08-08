@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 import { useRive, Fit, Alignment, useStateMachineInput } from "rive-react";
 import { useState, useRef } from "react";
 import Logo from "../../components/Logo";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -20,6 +22,8 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const inputRef = useRef(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const { rive, RiveComponent } = useRive({
     src: "./login_screen_character.riv",
@@ -48,10 +52,6 @@ const Login = () => {
   );
 
   const trigFailInput = useStateMachineInput(rive, "State Machine 1", "fail");
-
-  const handleLoginWithGoogle = () => {
-    dispatch(loginUserWithGoogle());
-  };
 
   const handleUsernameChange = (e) => {
     const usernameValue = e.target.value;
@@ -102,17 +102,25 @@ const Login = () => {
     }
     // Dispatch action
     if (!hasError) {
-      console.log(email, password);
       try {
         await dispatch(
           loginUserWithEmail({ email: email, password: password })
         ).unwrap();
+        navigate("/", { replace: location.state ? location.state : "/" });
       } catch (error) {
         console.error("Login error:", error);
       }
     }
   };
 
+  const handleLoginWithGoogle = () => {
+    try {
+      dispatch(loginUserWithGoogle());
+      navigate("/", { replace: location.state ? location.state : "/" });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handleUsernameFocus = () => {
     if (isCheckingInput) {
       isCheckingInput.value = true;
