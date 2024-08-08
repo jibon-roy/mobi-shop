@@ -11,6 +11,7 @@ import MobileDetails from "../../pages/Mobiles/MobileDetails/MobileDetails";
 import Login from "../../pages/Login/Login";
 import SignUp from "../../pages/SignUp/SignUp";
 import PublicRouter from "../features/routes/PublicRouter";
+import PrivetRouter from "../features/routes/PrivetRouter";
 
 // const localItems = localStorage.getItem("cartItems");
 // const localItemsJson = JSON.parse(localItems);
