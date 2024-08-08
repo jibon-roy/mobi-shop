@@ -44,14 +44,10 @@ const Login = () => {
   const trigSuccessInput = useStateMachineInput(
     rive,
     "State Machine 1",
-    "trigSuccess"
+    "success"
   );
 
-  const trigFailInput = useStateMachineInput(
-    rive,
-    "State Machine 1",
-    "trigFail"
-  );
+  const trigFailInput = useStateMachineInput(rive, "State Machine 1", "fail");
 
   const handleLoginWithGoogle = () => {
     dispatch(loginUserWithGoogle());
@@ -99,12 +95,7 @@ const Login = () => {
       setPasswordError("");
     }
 
-    if (hasError) return;
-
-    // Check credentials (for demonstration purposes)
-    const isAuthenticated =
-      username === "user@example.com" && password === "password";
-    if (isAuthenticated && trigSuccessInput) {
+    if (!hasError && trigSuccessInput) {
       trigSuccessInput.fire();
     } else if (trigFailInput) {
       trigFailInput.fire();
@@ -141,7 +132,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-screen pb-20 pt-10 p-4 justify-center  bg-[#D6E2EA]">
+    <div className="flex min-h-screen pb-28 pt-0 p-4 justify-center  bg-[#D6E2EA]">
       <div className="w-full lg:w-1/4 flex flex-col items-center justify-center">
         <RiveComponent fit={Fit.Contain} alignment={Alignment.Center} />
         <div className="w-full max-w-md bg-white shadow-md rounded-lg pt-4 p-8">
@@ -211,7 +202,7 @@ const Login = () => {
           </form>
           <Button
             onClick={handleLoginWithGoogle}
-            className="btn flex items-center mx-auto justify-center mt-4"
+            className="btn flex w-full items-center mx-auto justify-center mt-4"
           >
             <FcGoogle />
             Login with Google
