@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
+// import useAxiosPublic from "../../hooks/useAxiosPublic";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -9,14 +9,13 @@ import {
 } from "firebase/auth";
 import { auth } from "../../lib/firebase";
 import { logout } from "./authSlice";
+import axiosPublic from "../axios/axiosPublic";
 export const registerUser = createAsyncThunk(
   "auth/register",
   async (
     { name, dateOfBirth, gender, email, password },
     { rejectWithValue }
   ) => {
-    const axiosPublic = useAxiosPublic();
-
     try {
       // Register the user with Firebase Authentication
       const userCredential = await createUserWithEmailAndPassword(
@@ -72,23 +71,19 @@ export const loginUserWithGoogle = createAsyncThunk(
   "auth/loginWithGoogle",
   async (_, { rejectWithValue }) => {
     const provider = new GoogleAuthProvider();
-    const axiosPublic = useAxiosPublic();
+
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
 
       // Optional: Send additional user info to your backend
-      const { data } = await axiosPublic.post(
-        "/api/v1/user/google-login",
-        {
-          email: user.email,
-          uid: user.uid,
-          name: user.displayName,
-          dateOfBirth: null,
-          gender: null,
-        },
-        { headers: { "Content-Type": "application/json" } }
-      );
+      const { data } = await axiosPublic.post("/api/v1/user/google-login", {
+        email: user.email,
+        uid: user.uid,
+        name: user.displayName,
+        dateOfBirth: null,
+        gender: null,
+      });
 
       const tokenFromBackend = data.userToken;
       localStorage.setItem("userToken", tokenFromBackend);
@@ -116,8 +111,6 @@ export const loginUserWithGoogle = createAsyncThunk(
 export const loginUserWithEmail = createAsyncThunk(
   "auth/loginWithEmail",
   async ({ email, password }, { rejectWithValue }) => {
-    const axiosPublic = useAxiosPublic();
-
     try {
       // Authenticate with Firebase
       const userCredential = await signInWithEmailAndPassword(
@@ -133,8 +126,7 @@ export const loginUserWithEmail = createAsyncThunk(
       // Optionally, send the Firebase token to your backend
       const { data } = await axiosPublic.post(
         `/api/v1/user/login`,
-        { email, password, idToken }, // Send Firebase token to backend
-        { headers: { "Content-Type": "application/json" } }
+        { email, password, idToken } // Send Firebase token to backend
       );
 
       const tokenFromBackend = data.userToken;

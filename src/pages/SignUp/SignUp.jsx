@@ -1,19 +1,19 @@
 import { useState, useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import {
-  loginUserWithGoogle,
-  registerUser,
-} from "../../utils/features/auth/authActions";
+
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import { FcGoogle } from "react-icons/fc";
 import { useRive, Fit, Alignment, useStateMachineInput } from "rive-react";
+import {
+  loginUserWithGoogle,
+  registerUser,
+} from "../../utils/features/auth/authActions";
+import { useDispatch } from "react-redux";
 
 // import Logo from "../../components/Logo";
 
 const SignUp = () => {
   const dispatch = useDispatch();
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -139,7 +139,7 @@ const SignUp = () => {
     }
     if (validate()) {
       dispatch(registerUser(formData));
-      console.log(formData);
+      // console.log(formData);
     }
   };
 
@@ -195,8 +195,10 @@ const SignUp = () => {
                 Password
               </label>
               <input
+                id="registerPassword"
                 type="password"
                 name="password"
+                onChange={handleUsernameChange}
                 defaultValue={formData.password}
                 onFocus={handlePasswordFocus}
                 onBlur={handlePasswordBlur}

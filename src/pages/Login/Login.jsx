@@ -13,7 +13,7 @@ import { useState, useRef } from "react";
 import Logo from "../../components/Logo";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -55,7 +55,7 @@ const Login = () => {
 
   const handleUsernameChange = (e) => {
     const usernameValue = e.target.value;
-    setUsername(usernameValue);
+    setEmail(usernameValue);
 
     if (inputRef.current) {
       const inputWidth = inputRef.current.offsetWidth;
@@ -78,10 +78,10 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     // Basic validation
     let hasError = false;
-    if (!username) {
+    if (!email) {
       setEmailError("Email is required");
       hasError = true;
     } else {
@@ -100,10 +100,16 @@ const Login = () => {
     } else if (trigFailInput) {
       trigFailInput.fire();
     }
-
     // Dispatch action
     if (!hasError) {
-      dispatch(loginUserWithEmail({ email: username, password }));
+      console.log(email, password);
+      try {
+        await dispatch(
+          loginUserWithEmail({ email: email, password: password })
+        ).unwrap();
+      } catch (error) {
+        console.error("Login error:", error);
+      }
     }
   };
 
@@ -163,7 +169,7 @@ const Login = () => {
                 onFocus={handleUsernameFocus}
                 onBlur={handleUsernameBlur}
                 type="email"
-                value={username}
+                value={email}
                 className="mt-1 p-2 border border-gray-300 rounded-md w-full"
                 ref={inputRef}
               />
