@@ -3,11 +3,13 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 import { useState, useEffect } from "react";
-import useUserActions from "../utils/hooks/useUserActions";
+
+// import useUserActions from "../utils/hooks/useUserActions";
 
 export default function MainLayout() {
+  // const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
-  const { loading } = useUserActions();
+  // const { loading } = useUserActions();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -17,7 +19,7 @@ export default function MainLayout() {
     return () => clearTimeout(timer);
   }, []);
 
-  if (loading) return <Loading />;
+  // if (loading) return <Loading />;
   // if (error) return <div>Error: {error}</div>;
   if (isLoading) {
     return <Loading />;

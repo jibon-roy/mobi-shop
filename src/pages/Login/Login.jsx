@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import Button from "../../components/Button";
+import { FcGoogle } from "react-icons/fc";
 import {
   loginUserWithEmail,
   loginUserWithGoogle,
@@ -198,20 +199,21 @@ const Login = () => {
                 <p className="text-red-500 text-sm">{passwordError}</p>
               )}
             </div>
-            <button type="submit" className="btn btn-primary w-full">
+            <button type="submit" className="btn btn-secondary w-full">
               Login
             </button>
             <p className="text-center text-sm">
               Don’t have an account?{" "}
-              <Link
-                to="/sign-up"
-                className="text-blue-500 underline hover:underline"
-              >
+              <Link to="/sign-up" className="text-blue-500 hover:underline">
                 Sign Up
               </Link>
             </p>
           </form>
-          <Button onClick={handleLoginWithGoogle} className="btn mt-4">
+          <Button
+            onClick={handleLoginWithGoogle}
+            className="btn flex items-center mx-auto justify-center mt-4"
+          >
+            <FcGoogle />
             Login with Google
           </Button>
         </div>
