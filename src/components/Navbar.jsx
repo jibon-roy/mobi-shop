@@ -131,11 +131,9 @@ export default function Navbar() {
                   </NavLink>
                 </li>
               ))}
-              <li>
-                <div className="noLink h-8 flex ">
-                  {user ? (
-                    <UserDropdown />
-                  ) : (
+              {!user && (
+                <li>
+                  <div className="noLink h-8 flex ">
                     <>
                       <Link to={"/login"}>
                         <Button className={"btn-sm"}>Login</Button>
@@ -146,10 +144,10 @@ export default function Navbar() {
                         </Button>
                       </Link>
                     </>
-                  )}
-                </div>
-              </li>
-              <li className="">
+                  </div>
+                </li>
+              )}
+              <li>
                 <Link
                   className={`${
                     isCartPath
@@ -160,6 +158,11 @@ export default function Navbar() {
                 >
                   <CartIcon cartValue={cartNumber} />
                 </Link>
+              </li>
+              <li>
+                <div className="noLink h-8 flex m-0 justify-center items-center">
+                  {user && <UserDropdown />}
+                </div>
               </li>
             </ul>
           </div>
@@ -197,7 +200,6 @@ export default function Navbar() {
               </NavLink>
             </li>
           ))}
-
           <li>
             <NavLink
               className={"navLink hover:bg-transparent hover:text-[#ef00d3]"}
@@ -207,11 +209,11 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li>
-            <div className="noLink flex flex-col">
-              <Link to={"/login"}>
+            <div className="noLink w-full flex flex-col">
+              <Link to={"/login"} className="w-full">
                 <Button className={"btn-md w-full bg-border"}>Login</Button>
               </Link>
-              <Link to={"/sign-up"}>
+              <Link to={"/sign-up"} className="w-full">
                 <Button className={"btn-md w-full btn-secondary"}>
                   Sign Up
                 </Button>
