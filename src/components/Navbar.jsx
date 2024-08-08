@@ -78,24 +78,7 @@ export default function Navbar() {
       <div className="drawer-content bg-base-300 flex flex-col">
         {/* Navbar */}
         <div className="navbar container justify-between">
-          <div className="mx-2 flex-1 px-2">
-            {/* Navbar Logo */}
-            <div className="flex gap-4 items-center cursor-pointer ">
-              <Link to={"/"} className="hover:scale-[1.03] transition-all">
-                <Logo />
-              </Link>
-              <div
-                className={
-                  isSearched || isMobiles
-                    ? "hidden"
-                    : "noLink z-50 hidden lg:block"
-                }
-              >
-                <SearchBar />
-              </div>
-            </div>
-          </div>
-          <div className="flex-none  lg:hidden">
+          <div className="lg:hidden">
             <label
               htmlFor="my-drawer-3"
               aria-label="open sidebar"
@@ -116,6 +99,24 @@ export default function Navbar() {
               </svg>
             </label>
           </div>
+          <div className="mx-2 flex px-2">
+            {/* Navbar Logo */}
+            <div className="flex gap-4 items-center cursor-pointer ">
+              <Link to={"/"} className="hover:scale-[1.03] transition-all">
+                <Logo />
+              </Link>
+              <div
+                className={
+                  isSearched || isMobiles
+                    ? "hidden"
+                    : "noLink z-50 hidden lg:block"
+                }
+              >
+                <SearchBar />
+              </div>
+            </div>
+          </div>
+          <div>{user && <UserDropdown></UserDropdown>}</div>
           <div className="hidden flex-none lg:block">
             <ul className="menu font-semibold menu-horizontal">
               {/* Navbar menu content here */}
@@ -208,18 +209,30 @@ export default function Navbar() {
               <CartIcon cartValue={cartNumber} />
             </NavLink>
           </li>
-          <li>
-            <div className="noLink w-full flex flex-col">
-              <Link to={"/login"} className="w-full">
-                <Button className={"btn-md w-full bg-border"}>Login</Button>
-              </Link>
-              <Link to={"/sign-up"} className="w-full">
-                <Button className={"btn-md w-full btn-secondary"}>
+          {!user && (
+            <>
+              <li>
+                <NavLink
+                  className={
+                    "navLink hover:bg-transparent hover:text-[#ef00d3]"
+                  }
+                  to={"/login"}
+                >
+                  Login
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={
+                    "navLink hover:bg-transparent hover:text-[#ef00d3]"
+                  }
+                  to={"/sign-up"}
+                >
                   Sign Up
-                </Button>
-              </Link>
-            </div>
-          </li>
+                </NavLink>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </div>
