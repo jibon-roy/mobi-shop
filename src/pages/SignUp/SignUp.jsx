@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import { FcGoogle } from "react-icons/fc";
 import { useRive, Fit, Alignment, useStateMachineInput } from "rive-react";
+
 // import Logo from "../../components/Logo";
 
 const SignUp = () => {
@@ -22,6 +23,7 @@ const SignUp = () => {
   });
 
   const inputRef = useRef(null);
+  const inputRef2 = useRef(null);
 
   const { rive, RiveComponent } = useRive({
     src: "./login_screen_character.riv",
@@ -46,14 +48,10 @@ const SignUp = () => {
   const trigSuccessInput = useStateMachineInput(
     rive,
     "State Machine 1",
-    "trigSuccess"
+    "success"
   );
 
-  const trigFailInput = useStateMachineInput(
-    rive,
-    "State Machine 1",
-    "trigFail"
-  );
+  const trigFailInput = useStateMachineInput(rive, "State Machine 1", "fail");
 
   useEffect(() => {
     if (numLookInput) numLookInput.value = 0; // Initialize numLookInput
@@ -63,20 +61,25 @@ const SignUp = () => {
 
   const handleUsernameChange = (e) => {
     const usernameValue = e.target.value;
+
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
 
-    if (inputRef.current) {
-      const inputWidth = inputRef.current.offsetWidth;
-      const maxNumLook = 100; // Maximum value for numLook
-      const multiplier = maxNumLook / inputWidth;
-      const numLookValue = usernameValue.length * multiplier;
+    const refFunc = (ref) => {
+      if (ref.current) {
+        const inputWidth = ref.current.offsetWidth;
+        const maxNumLook = 100; // Maximum value for numLook
+        const multiplier = maxNumLook / inputWidth;
+        const numLookValue = usernameValue.length * multiplier;
 
-      if (numLookInput) {
-        // Set the value on the Rive state machine input
-        numLookInput.value = Math.min(numLookValue, maxNumLook) * 10;
+        if (numLookInput) {
+          // Set the value on the Rive state machine input
+          numLookInput.value = Math.min(numLookValue, maxNumLook) * 10;
+        }
       }
-    }
+    };
+    refFunc(inputRef);
+    refFunc(inputRef2);
 
     if (isCheckingInput) {
       isCheckingInput.value = true;
@@ -141,9 +144,11 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex h-[120vh] pb-20 pt-0 p-4 justify-center bg-[#D6E2EA]">
+    <div className="flex  pb-20 pt-0 p-4 justify-center bg-[#D6E2EA]">
       <div className="w-full lg:w-1/4 flex flex-col items-center justify-center">
-        <RiveComponent fit={Fit.Fill} alignment={Alignment.Center} />
+        <div className="h-40 w-40 min-[240px]:h-56 min-[240px]:w-56 min-[300px]:h-72 min-[320px]:w-72 min-[400px]:h-80 min-[400px]:w-80 sm:w-80 sm:h-80">
+          <RiveComponent fit={Fit.Fill} alignment={Alignment.Center} />
+        </div>
         <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8">
           <h2 className="text-2xl font-bold mb-6">Register</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -158,7 +163,8 @@ const SignUp = () => {
                 onBlur={handleUsernameBlur}
                 type="text"
                 name="name"
-                value={formData.name}
+                ref={inputRef}
+                defaultValue={formData.name}
                 className="mt-1 p-2 border border-gray-300 rounded-md w-full"
               />
               {errors.name && (
@@ -176,7 +182,8 @@ const SignUp = () => {
                 onBlur={handleUsernameBlur}
                 type="email"
                 name="email"
-                value={formData.email}
+                ref={inputRef2}
+                defaultValue={formData.email}
                 className="mt-1 p-2 border border-gray-300 rounded-md w-full"
               />
               {errors.email && (
@@ -190,7 +197,7 @@ const SignUp = () => {
               <input
                 type="password"
                 name="password"
-                value={formData.password}
+                defaultValue={formData.password}
                 onFocus={handlePasswordFocus}
                 onBlur={handlePasswordBlur}
                 className="mt-1 p-2 border border-gray-300 rounded-md w-full"
@@ -210,7 +217,7 @@ const SignUp = () => {
                 onBlur={handleUsernameBlur}
                 type="date"
                 name="dateOfBirth"
-                value={formData.dateOfBirth}
+                defaultValue={formData.dateOfBirth}
                 className="mt-1 p-2 border border-gray-300 rounded-md w-full"
               />
             </div>
@@ -224,7 +231,7 @@ const SignUp = () => {
                 onFocus={handleUsernameFocus}
                 onBlur={handleUsernameBlur}
                 name="gender"
-                value={formData.gender}
+                defaultValue={formData.gender}
                 className="mt-1 p-2 border border-gray-300 rounded-md w-full"
               >
                 <option value="">Select</option>
@@ -233,7 +240,7 @@ const SignUp = () => {
                 <option value="other">Other</option>
               </select>
             </div>
-            <button type="submit" className="btn btn-primary w-full">
+            <button type="submit" className="btn btn-secondary w-full">
               Register
             </button>
             <p className="text-center text-sm">

@@ -132,9 +132,11 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-screen pb-28 pt-0 p-4 justify-center  bg-[#D6E2EA]">
+    <div className="flex pb-28 pt-0 p-4 justify-center  bg-[#D6E2EA]">
       <div className="w-full lg:w-1/4 flex flex-col items-center justify-center">
-        <RiveComponent fit={Fit.Contain} alignment={Alignment.Center} />
+        <div className="h-40 w-40 min-[240px]:h-56 min-[240px]:w-56 min-[300px]:h-72 min-[320px]:w-72 min-[400px]:h-80 min-[400px]:w-80 sm:w-80 sm:h-80">
+          <RiveComponent fit={Fit.Fill} alignment={Alignment.Center} />
+        </div>
         <div className="w-full max-w-md bg-white shadow-md rounded-lg pt-4 p-8">
           <div className="text-2xl flex flex-col items-center justify-start font-bold mb-6">
             <Logo />
@@ -163,7 +165,7 @@ const Login = () => {
                 type="email"
                 value={username}
                 className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-                ref={inputRef} // Assign ref to the username input
+                ref={inputRef}
               />
               {emailError && (
                 <p className="text-red-500 text-sm">{emailError}</p>
