@@ -23,10 +23,10 @@ export default function MainLayout() {
   useEffect(() => {
     if (scrollContainerRef.current) {
       const scrollbar = SmoothScrollbar.init(scrollContainerRef.current, {
-        damping: 0.07, // Adjust damping value for smoother scrolling
+        damping: 0.07,
       });
 
-      return () => scrollbar.destroy(); // Clean up on unmount
+      return () => scrollbar.destroy();
     }
   }, []);
 
