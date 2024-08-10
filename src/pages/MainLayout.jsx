@@ -3,6 +3,9 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 import { useState, useEffect } from "react";
+import { useRef } from "react";
+import SmoothScrollbar from "smooth-scrollbar";
+// import { Scrollbar } from "smooth-scrollbar/scrollbar";
 
 export default function MainLayout() {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,13 +18,27 @@ export default function MainLayout() {
     return () => clearTimeout(timer);
   }, []);
 
-  // if (loading) return <Loading />;
-  // if (error) return <div>Error: {error}</div>;
+  const scrollContainerRef = useRef(null);
+
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      const scrollbar = SmoothScrollbar.init(scrollContainerRef.current, {
+        damping: 0.05, // Adjust damping value for smoother scrolling
+      });
+
+      return () => scrollbar.destroy(); // Clean up on unmount
+    }
+  }, []);
+
   if (isLoading) {
     return <Loading />;
   }
   return (
-    <main className="flex min-h-screen flex-col justify-between">
+    <main
+      ref={scrollContainerRef}
+      className="flex min-h-screen flex-col justify-between"
+      style={{ height: "100vh", overflow: "hidden" }}
+    >
       <div>
         <Navbar />
         <Outlet />

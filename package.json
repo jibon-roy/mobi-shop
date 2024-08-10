@@ -31,6 +31,8 @@
     "react-router-dom": "^6.25.1",
     "react-slot-counter": "^3.0.1",
     "rive-react": "^4.13.5",
+    "smooth-scrollbar": "^8.8.4",
+    "smooth-scrollbar-react": "^2.4.1",
     "sweetalert2": "^11.12.4",
     "swiper": "^11.1.9",
     "url": "^0.11.4"
