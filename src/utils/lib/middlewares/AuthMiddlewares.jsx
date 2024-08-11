@@ -6,13 +6,10 @@ import { logOutUser } from "../../features/auth/authActions";
 const AuthMiddleware = (store) => (next) => (action) => {
   if (action.type === "auth/initializeAuth") {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      // const localStorageToken = localStorage.getItem("userToken");
-
       if (user) {
         try {
           const idToken = await user.getIdToken();
 
-          // Token matches, proceed with setting user info
           store.dispatch(
             setUser({
               userInfo: {
