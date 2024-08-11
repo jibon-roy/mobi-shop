@@ -26,7 +26,6 @@ const AuthMiddleware = (store) => (next) => (action) => {
           console.error("Error fetching ID token:", error);
         }
       } else {
-        // No user found, log out
         store.dispatch(logOutUser());
       }
     });
