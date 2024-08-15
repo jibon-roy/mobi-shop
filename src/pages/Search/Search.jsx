@@ -48,8 +48,8 @@ export default function Search() {
         priceFilt === "LowToHigh"
           ? a?.price - b?.price
           : priceFilt === "HighToLow"
-          ? b?.price - a?.price
-          : 0
+            ? b?.price - a?.price
+            : 0
       );
 
       setFilteredMobiles(priceFilter);
@@ -86,14 +86,13 @@ export default function Search() {
     const value = e.target.value;
     setPrice(value);
   };
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+  };
 
   const handleBrand = (e) => {
     const value = e.target.value;
     setSearchBrand(value);
-  };
-
-  const handlePageClick = ({ selected }) => {
-    setCurrentPage(selected);
   };
 
   const offset = currentPage * itemsPerPage;
