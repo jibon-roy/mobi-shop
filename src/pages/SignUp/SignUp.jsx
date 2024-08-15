@@ -25,12 +25,12 @@ const SignUp = () => {
   const inputRef = useRef(null);
   const inputRef2 = useRef(null);
 
+  // animaiton data
   const { rive, RiveComponent } = useRive({
     src: "./login_screen_character.riv",
     stateMachines: "State Machine 1",
     autoplay: true,
   });
-
   const isCheckingInput = useStateMachineInput(
     rive,
     "State Machine 1",

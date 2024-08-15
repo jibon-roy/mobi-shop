@@ -7,7 +7,6 @@ export default function Error() {
         <p className="text-7xl font-semibold">404</p>
         <p className="mb-10">Page Not Found</p>
         <Link to={"/"}>
-          {" "}
           <button className="btn rounded-lg ">Back to home</button>
         </Link>
       </div>
