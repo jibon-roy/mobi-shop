@@ -82,17 +82,16 @@ export default function Search() {
     setPriceRange(value);
   };
 
+  const handleBrand = (e) => {
+    const value = e.target.value;
+    setSearchBrand(value);
+  };
   const handlePrice = (e) => {
     const value = e.target.value;
     setPrice(value);
   };
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
-  };
-
-  const handleBrand = (e) => {
-    const value = e.target.value;
-    setSearchBrand(value);
   };
 
   const offset = currentPage * itemsPerPage;
