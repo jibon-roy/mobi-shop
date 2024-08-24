@@ -236,6 +236,7 @@ const SignUp = () => {
               >
                 <option value="">Select</option>
                 <option value="male">Male</option>
+                <option value="female">Female</option>
               </select>
             </div>
             <button type="submit" className="btn btn-secondary w-full">
