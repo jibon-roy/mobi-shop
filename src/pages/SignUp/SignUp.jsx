@@ -195,11 +195,11 @@ const SignUp = () => {
               <input
                 onChange={handleUsernameChange}
                 onFocus={handlePasswordFocus}
+                onBlur={handlePasswordBlur}
                 id="registerPassword"
                 type="password"
                 name="password"
                 defaultValue={formData.password}
-                onBlur={handlePasswordBlur}
                 className="mt-1 p-2 border border-gray-300 rounded-md w-full"
               />
               {errors.password && (
