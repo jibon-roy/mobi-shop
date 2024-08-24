@@ -26,9 +26,6 @@ export default function Home() {
       <section>
         <Statistics />
       </section>
-      <section>
-        <FAQ />
-      </section>
     </>
   );
 }
