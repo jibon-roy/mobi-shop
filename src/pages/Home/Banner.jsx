@@ -23,11 +23,6 @@ export default function Banner() {
             <div className="flex w-full gap-10 justify-around items-center flex-col lg:flex-row">
               <div>
                 <Slider />
-                {/* <Link to={`/mobiles?search=${searchValue}`}>
-                  <Button className="btn btn-secondary">
-                    Explore Mobiles {">>"}
-                  </Button>
-                </Link> */}
               </div>
               <div className="max-w-xl">
                 <h1 className="text-5xl text-primary-red font-bold">
