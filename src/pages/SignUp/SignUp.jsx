@@ -213,8 +213,8 @@ const SignUp = () => {
               <input
                 id="registerDateOfBirth"
                 onChange={handleUsernameChange}
-                onFocus={handleUsernameFocus}
                 onBlur={handleUsernameBlur}
+                onFocus={handleUsernameFocus}
                 type="date"
                 name="dateOfBirth"
                 defaultValue={formData.dateOfBirth}
