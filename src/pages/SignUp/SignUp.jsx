@@ -194,11 +194,11 @@ const SignUp = () => {
               </label>
               <input
                 onChange={handleUsernameChange}
+                onFocus={handlePasswordFocus}
                 id="registerPassword"
                 type="password"
                 name="password"
                 defaultValue={formData.password}
-                onFocus={handlePasswordFocus}
                 onBlur={handlePasswordBlur}
                 className="mt-1 p-2 border border-gray-300 rounded-md w-full"
               />
