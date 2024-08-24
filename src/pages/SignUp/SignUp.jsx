@@ -10,8 +10,6 @@ import {
 } from "../../utils/features/auth/authActions";
 import { useDispatch } from "react-redux";
 
-// import Logo from "../../components/Logo";
-
 const SignUp = () => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
