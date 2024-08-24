@@ -233,12 +233,7 @@ const SignUp = () => {
                 name="gender"
                 defaultValue={formData.gender}
                 className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-              >
-                <option value="">Select</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </select>
+              ></select>
             </div>
             <button type="submit" className="btn btn-secondary w-full">
               Register
