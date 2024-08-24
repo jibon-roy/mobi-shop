@@ -194,8 +194,8 @@ const SignUp = () => {
               </label>
               <input
                 onChange={handleUsernameChange}
-                onFocus={handlePasswordFocus}
                 onBlur={handlePasswordBlur}
+                onFocus={handlePasswordFocus}
                 id="registerPassword"
                 type="password"
                 name="password"
