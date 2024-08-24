@@ -251,8 +251,8 @@ const SignUp = () => {
             </p>
           </form>
           <Button
-            onClick={handleLoginWithGoogle}
             className="btn flex w-full items-center mx-auto justify-center mt-4"
+            onClick={handleLoginWithGoogle}
           >
             <FcGoogle />
             Login with Google
