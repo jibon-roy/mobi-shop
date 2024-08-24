@@ -12,9 +12,6 @@ export default function Home() {
   return (
     <>
       <section>
-        <Banner />
-      </section>
-      <section>
         <MostReviw data={data} />
       </section>
       <section>
@@ -25,6 +22,9 @@ export default function Home() {
       </section>
       <section>
         <Statistics />
+      </section>
+      <section>
+        <FAQ />
       </section>
     </>
   );
