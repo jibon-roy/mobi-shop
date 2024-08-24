@@ -14,7 +14,10 @@ export default function WhyChooseUs() {
             className="max-w-md w-[90%] sm:w-full max-h-80 my-auto object-cover rounded-lg "
           />
           <div className="max-w-lg my-auto flex-1 text-xl">
-            <p className="mb-5">from top brands at competitive prices.</p>
+            <p className="mb-5">
+              <strong>Wide Selection:</strong> We offer the latest mobile phones
+              from top brands at competitive prices.
+            </p>
             <p className="mb-5">
               <strong>Secure Shopping:</strong> Enjoy a safe and convenient
               shopping experience with multiple payment options.
