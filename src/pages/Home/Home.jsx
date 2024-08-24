@@ -21,6 +21,9 @@ export default function Home() {
         <LatestProduct data={data} />
       </section>
       <section>
+        <WhyChooseUs />
+      </section>
+      <section>
         <Statistics />
       </section>
       <section>
