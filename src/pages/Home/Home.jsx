@@ -12,8 +12,9 @@ export default function Home() {
   return (
     <>
       <section>
-        <MostReviw data={data} />
+        <Banner />
       </section>
+
       <section>
         <LatestProduct data={data} />
       </section>
