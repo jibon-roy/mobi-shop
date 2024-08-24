@@ -19,10 +19,10 @@ export default function WhyChooseUs() {
               from top brands at competitive prices.
             </p>
             <p className="mb-5">
-              <strong>Secure Shopping:</strong> Enjoy a safe and convenient
               shopping experience with multiple payment options.
             </p>
             <p className="mb-5">
+              <strong>Fast Delivery:</strong>
               Get your new phone quickly with our efficient delivery service.
             </p>
             <p className="mb-5">
