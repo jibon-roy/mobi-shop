@@ -228,8 +228,8 @@ const SignUp = () => {
               <select
                 id="registerGender"
                 onChange={handleUsernameChange}
-                onFocus={handleUsernameFocus}
                 onBlur={handleUsernameBlur}
+                onFocus={handleUsernameFocus}
                 name="gender"
                 defaultValue={formData.gender}
                 className="mt-1 p-2 border border-gray-300 rounded-md w-full"
