@@ -14,7 +14,9 @@ export default function Home() {
       <section>
         <Banner />
       </section>
-
+      <section>
+        <MostReviw data={data} />
+      </section>
       <section>
         <LatestProduct data={data} />
       </section>
