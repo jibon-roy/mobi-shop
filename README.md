@@ -1,5 +1,5 @@
 # Mobi Store
-
+Welcome to mobi store
 ## MIT License
 
 Copyright (c) 2024 Jibon Krishna Roy
